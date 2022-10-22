@@ -1,0 +1,72 @@
+﻿@model ECommerce.Web.Models.BrandDto
+
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-info">Brand Details</h1>
+        <hr />
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Id" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <span class="form-control" id="Id">@Model.Id</span>
+            </div>
+            <div class="col-2">
+                <label asp-for="Name" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <span class="form-control">@Model.Name</span>
+            </div>
+            <div class="col-2">
+                <label asp-for="Description" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <span class="form-control">@Model.Description</span>
+            </div>
+
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Products</label>
+            </div>
+            <div class="col-10 pb-3">
+                <span class="form-control" id="ProductsSpan">Loading...                 
+                </span>
+            </div>
+
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Categories</label>
+            </div>
+            <div class="col-10 pb-3">
+                <span class="form-control" id="CategoriesSpan">Loading...</span>
+            </div>
+
+            <div class="row">
+                <div class="col"></div>
+                <div class="col text-center">
+                    <a asp-action="Index" class="btn-primary btn form-control ">Back to List</a>
+                </div>
+                <div class="col text-center">
+                    <a asp-action="Edit" class="btn btn-success form-control" asp-route-id="@Model.Id">Edit</a>
+                </div>
+                <div class="col text-center">
+                    <a asp-action="Delete" class="btn btn-danger form-control" asp-route-id="@Model.Id">Delete</a>
+                </div>          
+            </div>
+        </div>
+
+    </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"/>
+    <script src="~/js/ItemLoaderById.js"></script>
+    <script>
+        $(document).ready(function() { 
+            var apiUrl = '/product/getallbyextid/brandid/'+$('#Id').text();
+            console.log(apiUrl);
+            LoadItemsById(apiUrl, 'Product', '#ProductsSpan');
+
+            apiUrl = '/category/getallbyextid/brandid/'+$('#Id').text();
+            console.log(apiUrl);
+            LoadItemsById(apiUrl, 'Category', '#CategoriesSpan');
+        });      
+    </script>
+}

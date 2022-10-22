@@ -1,0 +1,77 @@
+﻿@model ECommerce.Web.Models.ProductDto
+
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-info">Product Details</h1>
+        <hr />
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Id" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <span class="form-control">@Model.Id</span>
+            </div>
+            <div class="col-2">
+                <label asp-for="Name" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <span class="form-control">@Model.Name</span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Category Name</label>
+            </div>
+            <div class="col-10 pb-3">
+                <span class="form-control">
+                    <a asp-controller="Category" asp-action="Details" asp-route-id="@Model.CategoryId">
+						@Model.CategoryBaseDto.Name
+				    </a>                 
+                </span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Brand Name</label>
+            </div>
+            <div class="col-10 pb-3">
+                <span class="form-control">
+                    <a asp-controller="Brand" asp-action="Details" asp-route-id="@Model.BrandId">
+						@Model.BrandBaseDto.Name
+				    </a>                 
+                </span>
+            </div>
+            <div class="col-2">
+                <label asp-for="Description" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <span class="form-control">@Model.Description</span>
+            </div>
+            <div class="col-2">
+                <label asp-for="ImageUrl" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <span class="form-control">@Model.ImageUrl</span>
+            </div>
+            <div class="col-2">
+                <label asp-for="Price" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <span class="form-control">@Model.Price</span>
+            </div>
+
+            <div class="row">
+                <div class="col"></div>
+                <div class="col text-center">
+                    <a asp-action="Index" class="btn-primary btn form-control ">Back to List</a>
+                </div>
+                <div class="col text-center">
+                    <a asp-action="Edit" class="btn btn-success form-control" asp-route-id="@Model.Id">Edit</a>
+                </div>
+                <div class="col text-center">
+                    <a asp-action="Delete" class="btn btn-danger form-control" asp-route-id="@Model.Id">Delete</a>
+                </div>          
+            </div>
+        </div>
+
+    </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"/>
+}

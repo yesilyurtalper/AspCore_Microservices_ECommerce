@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to ECommerce</h1>
+    @if(User.Identity.IsAuthenticated == false)
+    {
+        <p> 
+            <a class="nav-link" asp-action="Login" asp-controller="Home" >Login to make orders or configurations</a>
+        </p>
+    }
+    
+</div>

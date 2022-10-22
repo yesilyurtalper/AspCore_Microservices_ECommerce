@@ -1,0 +1,105 @@
+﻿@model ECommerce.Web.Models.ProductDto
+
+
+<form id="EditForm" asp-action="EditPost">
+    <input type="hidden" id="catIdHidden" value="@Model.CategoryId" />
+    <input type="hidden"  id="braIdHidden" value="@Model.BrandId" />
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-info">Edit Product</h1>
+
+        <hr />
+        <div class="row">
+            <div asp-validation-summary=All class="text-danger"></div>
+            <div class="col-2">
+                <label asp-for="Id" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Id" class="form-control" readonly />
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Name" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Description" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Choose Category</label>
+            </div>       
+            <div class="col-10 pb-3">
+                <select id="CategoryId" name="CategoryId" class="dropdown form-control" >  
+                    <option value="Select">loading...</option>  
+                </select>
+                @*@Html.DropDownList("CategoryId")*@
+            </div>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+               
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Choose Brand</label>
+            </div>       
+            <div class="col-10 pb-3">
+                <select id="BrandId" name="BrandId" class="dropdown form-control" >  
+                    <option value="Select">loading...</option>  
+                </select>
+                @*@Html.DropDownList("BrandId")*@
+            </div>
+            <span asp-validation-for="BrandId" class="text-danger"></span>
+                       
+            <div class="col-2">
+                <label asp-for="ImageUrl" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Price" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            
+            <div class="row">
+                <div class="col"></div>
+                <div class="col text-center">
+                    <a asp-action="Index" class="btn-primary btn form-control ">Back to List</a>
+                </div>
+                <div class="col text-center">
+                    <a asp-action="Details" class="btn btn-info form-control" asp-route-id="@Model.Id" >Cancel</a>
+                </div>
+                <div class="col text-center">
+                    <input id="submit" type="submit" value="Submit" class="btn btn-success form-control" />
+                </div>          
+            </div>
+
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"/>
+    <script src="~/js/DDLoaderAndSelector.js"> </script>
+    <script>
+        $(document).ready(function() {
+            LoadDDItemsAndSelectOne("/Category/GetAll", "#CategoryId", 
+                $("#catIdHidden").val(),$("#catIdHidden").val());
+            LoadDDItemsAndSelectOne("/Brand/GetAll", "#BrandId", 
+                $("#braIdHidden").val(),$("#braIdHidden").val());
+        });
+        
+    </script>
+}
+

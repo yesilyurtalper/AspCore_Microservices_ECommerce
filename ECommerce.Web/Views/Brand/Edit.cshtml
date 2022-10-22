@@ -1,0 +1,163 @@
+﻿@model ECommerce.Web.Models.BrandDto
+
+
+<form id="EditForm" asp-action="EditPost">
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-info">Edit Brand</h1>
+        <hr />
+
+        <div class="row">
+        
+            <div asp-validation-summary=All class="text-danger"></div>
+            <div class="col-2">
+                <label asp-for="Id" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input id="Id" asp-for="Id" class="form-control" readonly />
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Name" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Description" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Categories</label>
+            </div>
+            <div class="col-10 pb-3">
+                <span class="form-control" id="CategoriesSpan">Loading...</span>
+            </div>
+
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Select Categories to Add</label>
+            </div>       
+            <div class="col-10 pb-3">
+                <select id="CategoryIdAdd" name="CategoryIdAdd" class="dropdown form-control" multiple >  
+                    <option value="Select">Loading...</option>  
+                </select>
+            </div>
+
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Select Categories to Remove</label>
+            </div>       
+            <div class="col-10 pb-3">
+                <select id="CategoryIdRemove" name="CategoryIdRemove" class="dropdown form-control" multiple >  
+                    <option value="Select">Loading...</option>  
+                </select>
+            </div>
+
+
+            <div class="row">
+                <div class="col"></div>
+                <div class="col text-center">
+                    <a asp-action="Index" class="btn-primary btn form-control ">Back to List</a>
+                </div>
+                <div class="col text-center">
+                    <a asp-action="Details" class="btn btn-info form-control" asp-route-id="@Model.Id" >Cancel</a>
+                </div>
+                <div class="col text-center">
+                    <input id="submit" type="submit" formmethod="post" value="Submit" class="btn btn-success form-control" />
+                </div>          
+            </div>
+            
+        </div>
+    </div>
+
+</form>
+
+
+@*<br />
+<div class="container border p-3">
+    <h4 class="text-info">Add/Remove Categories</h4>
+    <hr />
+    <div class="row">
+         
+        
+        <div class="col-2">
+            <input id="remcat" type="button" value="Remove" class="btn btn-danger form-control" />
+        </div>
+                 
+    </div>
+
+</div>*@
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"/>
+    <script src="~/js/DDLoaderAndSelector.js"> </script>
+    <script src="~/js/ItemLoaderById.js"></script>
+    <script>
+        
+        function LoadPageCategories() {
+            var apiUrl = '/category/getallbyextid/brandid/'+$('#Id').val();
+            console.log(apiUrl);
+            LoadItemsById(apiUrl, 'Category', '#CategoriesSpan');
+
+            apiUrl = '/category/getallbyextid/outofbrandid/'+$('#Id').val();
+            console.log(apiUrl);
+            LoadDDItemsAndSelectOne(apiUrl, "#CategoryIdAdd", 
+                sessionStorage.CatIdSelect,$("input[name=Name]").val());
+
+            apiUrl = '/category/getallbyextid/brandid/'+$('#Id').val();
+            console.log(apiUrl);
+            LoadDDItemsAndSelectOne(apiUrl, "#CategoryIdRemove", 
+                sessionStorage.CatIdSelect,$("input[name=Name]").val());
+        }
+
+        $(document).ready(function () {
+            
+            LoadPageCategories();
+
+            $('#submit').click(function () {
+                sessionStorage.setItem("CatIdSelect", $('#CategoryId').val());
+            });  
+            
+            //$('#addcat').click(function () {
+            //    var added = [8, 9];
+            //    $.ajax(
+            //    {
+            //        type: "POST",
+            //        url: '/brand/addcategory/' + $('#Id').val() ,
+            //        data: added,
+            //        success:
+            //            function (response) {
+            //                console.log(response);
+            //                LoadPageCategories();                 
+            //            },
+            //        error: function (response) { alert("Error adding categories async: " + response); }
+            //    });  
+            //});
+
+            //$('#remcat').click(function () {
+            //    $.ajax(
+            //    {
+            //        type: "POST",
+            //        url: '/brand/removecategory/' + $('#Id').val() ,
+            //        data: $("#CategoryIdRemove").val(),
+            //        success:
+            //            function (response) {
+            //                console.log(response);
+            //                LoadPageCategories();                 
+            //            },
+            //        error: function (response) { alert("Error removing categories async: " + response); }
+            //    });  
+            //});
+
+        });
+    </script>
+}
+
