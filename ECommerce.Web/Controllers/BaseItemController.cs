@@ -61,7 +61,7 @@ namespace ECommerce.Web.Controllers
             return NotFound();
         }
 
-        [Authorize(Roles ="Admin")]
+        [Authorize(Policy = "ECommerceAdmin")]
         [Route("edit/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
@@ -76,7 +76,7 @@ namespace ECommerce.Web.Controllers
             return NotFound();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "ECommerceAdmin")]
         [HttpPost]
         [Route("edit")]
         [ValidateAntiForgeryToken]
@@ -99,14 +99,14 @@ namespace ECommerce.Web.Controllers
             return View(nameof(Edit), dto);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "ECommerceAdmin")]
         [Route("create")]
         public async Task<IActionResult> Create()
         {           
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "ECommerceAdmin")]
         [Route("create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -130,7 +130,7 @@ namespace ECommerce.Web.Controllers
             return View(nameof(Create),dto);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "ECommerceAdmin")]
         [Route("delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -145,7 +145,7 @@ namespace ECommerce.Web.Controllers
             return NotFound();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "ECommerceAdmin")]
         [Route("delete")]
         [HttpPost]
         [ValidateAntiForgeryToken]

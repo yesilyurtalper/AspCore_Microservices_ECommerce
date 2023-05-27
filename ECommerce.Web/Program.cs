@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.IdentityModel.Tokens.Jwt;
 using ECommerce.Web;
 using ECommerce.Web.Services;
 using Microsoft.AspNetCore.Authentication.OAuth.Claims;
@@ -38,6 +39,9 @@ cultureInfo.NumberFormat.CurrencySymbol = "$";
 CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
 CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
+IdentityModelEventSource.ShowPII = true;
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
 services.AddAuthentication(options =>
 {
     options.DefaultScheme = "AuthCookies";
@@ -64,8 +68,10 @@ services.AddAuthentication(options =>
     options.Scope.Add("profile");
     options.CallbackPath = "/signin-oidc"; // The same as the Redirect URI configured in Keycloak
     options.SaveTokens = true;
+    options.Scope.Add("email");
+    options.Scope.Add("roles");
 
-    //options.ClaimActions.Add(new JsonKeyClaimAction("phone", null, "phone_number"));
+    options.ClaimActions.Add(new JsonKeyClaimAction("azp", null, "azp"));
     //options.ClaimActions.Add(new JsonKeyClaimAction("website", null, "website"));
     //options.ClaimActions.Add(new JsonKeyClaimAction("CustomClaim", null, "CustomClaim"));
     //options.ClaimActions.Add(new JsonKeyClaimAction("role", null, "role"));
@@ -75,14 +81,22 @@ services.AddAuthentication(options =>
     //    RoleClaimType = "role"
     //};
 
-    //options.Scope.Add("email");
+
     //options.Scope.Add("ItemAPIAllScope");
     //options.Scope.Add("OrderAPIAllScope");
     //options.Scope.Add("CouponAPIAllScope");
     //options.SaveTokens = true;
 });
 
-IdentityModelEventSource.ShowPII = true;
+services.AddAuthorization(options =>
+{
+    options.AddPolicy("ECommerceAdmin", policy =>
+    {
+        policy.RequireClaim("RealmRole", "ECommerceAdmin");
+    });
+});
+
+
 
 var app = builder.Build();
 
