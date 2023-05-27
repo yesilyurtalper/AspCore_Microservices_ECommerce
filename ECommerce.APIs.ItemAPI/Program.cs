@@ -4,6 +4,8 @@ using ECommerce.APIs.ItemAPI.Services;
 using ECommerce.APIs.ItemAPI.Models;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,7 +35,11 @@ if (builder.Environment.IsDevelopment())
     });
 }
 
-builder.Services.AddDbContext<ItemAPIDbContext>(options => options.UseSqlServer("name=DefaultConnection"));
+
+//string conStr = "server=localhost;port=3306;database=ECommerceItemAPI;user=root;password=mysecretpassword;";
+//string conStr = builder.Configuration.GetConnectionString("DefaultConnection");
+string conStr = Environment.GetEnvironmentVariable("DB_CON_STR");
+builder.Services.AddDbContext<ItemAPIDbContext>(options => options.UseMySQL(conStr));
 
 IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
@@ -44,7 +50,8 @@ builder.Services.AddScoped<IProductRepository, DBProductRepository>();
 
 builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
 {
-    options.Authority = "https://localhost:7103/";
+    options.Authority = Environment.GetEnvironmentVariable("OIDC_AUTHORITY");
+    options.RequireHttpsMetadata = false;
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateAudience = false,
@@ -53,14 +60,32 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("ItemAPIAllPolicy", policy =>
+    options.AddPolicy("ItemAPIPolicy", policy =>
     {
-        policy.RequireClaim("scope", "ItemAPIAllScope");
+        policy.RequireClaim("ItemAPIClaim", "ItemAPIClaim");
+    });
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ECommerceAdmin", policy =>
+    {
+        policy.RequireClaim("RealmRole", "ECommerceAdmin");
     });
 });
 
 
 var app = builder.Build();
+
+//Migrate latest database changes during startup
+//using (var scope = app.Services.CreateScope())
+//{
+//    var dbContext = scope.ServiceProvider
+//        .GetRequiredService<ItemAPIDbContext>();
+
+//    // Here is the migration executed
+//    dbContext.Database.Migrate();
+//}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -73,6 +98,6 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers().RequireAuthorization("ItemAPIAllPolicy");
+app.MapControllers().RequireAuthorization("ItemAPIPolicy");
 
 app.Run();

@@ -16,7 +16,6 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             _brandRepo = repo;
         }
 
-        [AllowAnonymous]
         [HttpGet]
         [Route("categoryid/{categoryId}")]
         public async Task<ResponseDto> GetByCategoryIdAsync(int categoryId)

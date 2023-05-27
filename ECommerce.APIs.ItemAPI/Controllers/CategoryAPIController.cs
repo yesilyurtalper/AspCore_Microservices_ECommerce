@@ -16,7 +16,6 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             _categoryRepo = repo;
         }
 
-        [AllowAnonymous]
         [HttpGet]
         [Route("brandid/{brandId}")]
         public async Task<ResponseDto> GetByBrandIdAsync(int brandId)
@@ -37,7 +36,6 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             return _response;
         }
 
-        [AllowAnonymous]
         [HttpGet]
         [Route("outofbrandid/{brandId}")]
         public async Task<ResponseDto> GetOutOfBrandIdAsync(int brandId)

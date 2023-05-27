@@ -21,7 +21,6 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             _mapper = mapper;
         }
 
-        [AllowAnonymous]
         [HttpGet]
         public async Task<ResponseDto> GetAllAsync()
         {
@@ -41,7 +40,6 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             return _response;
         }
 
-        [AllowAnonymous]
         [HttpGet]
         [Route("{id}")]
         public async Task<ResponseDto> GetByIdAsync(int id)
@@ -70,7 +68,6 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             return _response;
         }
 
-        [AllowAnonymous]
         [HttpGet]
         [Route("name/{name}")]
         public async Task<ResponseDto> GetByNameAsync(string name)
@@ -99,7 +96,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             return _response;
         }
 
-        [Authorize(Roles ="Admin")]
+        [Authorize(Policy = "ECommerceAdmin")]
         [HttpPost]
         public async Task<ResponseDto> UpdateAsync([FromBody] TDto dto)
         {
@@ -127,7 +124,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             return _response;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "ECommerceAdmin")]
         [HttpPut]
         public async Task<ResponseDto> CreateAsync([FromBody] TDto dto)
         {
@@ -155,7 +152,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             return _response;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "ECommerceAdmin")]
         [HttpDelete]
         public async Task<ResponseDto> DeleteAsync([FromBody]int id)
         {

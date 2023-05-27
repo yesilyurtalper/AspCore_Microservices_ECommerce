@@ -15,9 +15,11 @@
         "launchBrowser": true,
         "launchUrl": "swagger",
         "applicationUrl": "https://localhost:7207;http://localhost:5207",
-        "environmentVariables": {
-            "ASPNETCORE_ENVIRONMENT": "Development"
-        }
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DB_CON_STR": "server=localhost;port=3306;database=ECommerceItemAPI;user=root;password=mysecretpassword;",
+        "OIDC_AUTHORITY": "http://localhost:8080/auth/realms/local_realm"
+      }
     },
     "IIS Express": {
       "commandName": "IISExpress",
