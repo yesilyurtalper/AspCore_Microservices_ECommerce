@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Users\\40532178808\\gtb docs\\udemy\\.net microservices wit IS4\\ECommerce\\IdentityWebApp\\IdentityWebApp.csproj": {}
+    "D:\\repo\\AspCore6_Microservices_ECommerce\\IdentityWebApp\\IdentityWebApp.csproj": {}
   },
   "projects": {
-    "D:\\Users\\40532178808\\gtb docs\\udemy\\.net microservices wit IS4\\ECommerce\\IdentityWebApp\\IdentityWebApp.csproj": {
+    "D:\\repo\\AspCore6_Microservices_ECommerce\\IdentityWebApp\\IdentityWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Users\\40532178808\\gtb docs\\udemy\\.net microservices wit IS4\\ECommerce\\IdentityWebApp\\IdentityWebApp.csproj",
+        "projectUniqueName": "D:\\repo\\AspCore6_Microservices_ECommerce\\IdentityWebApp\\IdentityWebApp.csproj",
         "projectName": "IdentityWebApp",
-        "projectPath": "D:\\Users\\40532178808\\gtb docs\\udemy\\.net microservices wit IS4\\ECommerce\\IdentityWebApp\\IdentityWebApp.csproj",
-        "packagesPath": "D:\\Users\\40532178808\\.nuget\\packages\\",
-        "outputPath": "D:\\Users\\40532178808\\gtb docs\\udemy\\.net microservices wit IS4\\ECommerce\\IdentityWebApp\\obj\\",
+        "projectPath": "D:\\repo\\AspCore6_Microservices_ECommerce\\IdentityWebApp\\IdentityWebApp.csproj",
+        "packagesPath": "C:\\Users\\ALPER\\.nuget\\packages\\",
+        "outputPath": "D:\\repo\\AspCore6_Microservices_ECommerce\\IdentityWebApp\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "D:\\Users\\40532178808\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ALPER\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://nuget.gtb.gov.tr/api/v2": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -77,7 +73,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -89,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

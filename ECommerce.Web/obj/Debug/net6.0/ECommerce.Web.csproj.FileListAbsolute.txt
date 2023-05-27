@@ -64,3 +64,46 @@ D:\Users\40532178808\gtb docs\udemy\.net microservices wit IS4\ECommerce\ECommer
 D:\Users\40532178808\gtb docs\udemy\.net microservices wit IS4\ECommerce\ECommerce.Web\obj\Debug\net6.0\ECommerce.Web.pdb
 D:\Users\40532178808\gtb docs\udemy\.net microservices wit IS4\ECommerce\ECommerce.Web\obj\Debug\net6.0\ECommerce.Web.genruntimeconfig.cache
 D:\Users\40532178808\gtb docs\udemy\.net microservices wit IS4\ECommerce\ECommerce.Web\obj\Debug\net6.0\ref\ECommerce.Web.dll
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\ECommerce.Web.csproj.AssemblyReference.cache
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\ECommerce.Web.GeneratedMSBuildEditorConfig.editorconfig
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\ECommerce.Web.AssemblyInfoInputs.cache
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\ECommerce.Web.AssemblyInfo.cs
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\ECommerce.Web.csproj.CoreCompileInputs.cache
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\ECommerce.Web.MvcApplicationPartsAssemblyInfo.cache
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\ECommerce.Web.RazorAssemblyInfo.cache
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\ECommerce.Web.RazorAssemblyInfo.cs
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\ECommerce.Web.dll
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\refint\ECommerce.Web.dll
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\ECommerce.Web.pdb
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\appsettings.Development.json
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\appsettings.json
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\ECommerce.Web.staticwebassets.runtime.json
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\ECommerce.Web.exe
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\ECommerce.Web.deps.json
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\ECommerce.Web.runtimeconfig.json
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\ECommerce.Web.dll
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\ECommerce.Web.pdb
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\IdentityModel.dll
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\staticwebassets\msbuild.ECommerce.Web.Microsoft.AspNetCore.StaticWebAssets.props
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\staticwebassets\msbuild.build.ECommerce.Web.props
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.ECommerce.Web.props
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.ECommerce.Web.props
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\staticwebassets.pack.json
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\staticwebassets.build.json
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\staticwebassets.development.json
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\scopedcss\bundle\ECommerce.Web.styles.css
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\scopedcss\projectbundle\ECommerce.Web.bundle.scp.css
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\ECommerce.Web.csproj.CopyComplete
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\ECommerce.Web.genruntimeconfig.cache
+D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\obj\Debug\net6.0\ref\ECommerce.Web.dll

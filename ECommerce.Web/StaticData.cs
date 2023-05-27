@@ -11,6 +11,8 @@
         }
         public static string ItemAPIBaseUrl { get; set; }
         public static string IdentityServerBaseUrl { get; set; }
+
+        public static string KeycloakRealm { get; set; }
         public static string ShoppingCartAPIBaseUrl { get; set; }
         public static string CouponAPIBaseUrl { get; set; }
 

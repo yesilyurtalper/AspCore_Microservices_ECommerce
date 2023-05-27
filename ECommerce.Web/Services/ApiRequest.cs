@@ -9,5 +9,6 @@ namespace ECommerce.Web.Services
         public string RelativeUrl { get; set; } = "";
         public object Data { get; set; }
         public string AccessToken { get; set; }
+        public string ApiUrl { get; internal set; }
     }
 }

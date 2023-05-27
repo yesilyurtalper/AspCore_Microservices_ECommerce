@@ -5,112 +5,113 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ECommerce.Web
 build_property.RootNamespace = ECommerce.Web
-build_property.ProjectDir = D:\Users\40532178808\gtb docs\udemy\.net microservices wit IS4\ECommerce\ECommerce.Web\
+build_property.ProjectDir = D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Users\40532178808\gtb docs\udemy\.net microservices wit IS4\ECommerce\ECommerce.Web
+build_property.MSBuildProjectDirectory = D:\repo\AspCore6_Microservices_ECommerce\ECommerce.Web
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Brand/Create.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Brand/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmRcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Brand/Delete.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Brand/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmRcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Brand/Details.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Brand/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmRcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Brand/Edit.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Brand/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmRcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Brand/Index.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Brand/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Category/Create.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Category/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Category/Delete.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Category/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Category/Details.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Category/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Category/Edit.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Category/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Category/Index.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Category/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Diagnostics/Index.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Diagnostics/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlhZ25vc3RpY3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Home/AccessDenied.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Home/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Home/Index.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Home/Privacy.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Product/Create.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Product/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Product/Delete.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Product/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Product/Details.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Product/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Product/Edit.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Product/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Product/Index.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Product/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Shared/Error.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Shared/LoginStatusPartial.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Shared/LoginStatusPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXExvZ2luU3RhdHVzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/_ViewImports.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/_ViewStart.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/40532178808/gtb docs/udemy/.net microservices wit IS4/ECommerce/ECommerce.Web/Views/Shared/_Layout.cshtml]
+[D:/repo/AspCore6_Microservices_ECommerce/ECommerce.Web/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-pqtbn6satp

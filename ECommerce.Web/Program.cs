@@ -2,6 +2,8 @@
 using ECommerce.Web;
 using ECommerce.Web.Services;
 using Microsoft.AspNetCore.Authentication.OAuth.Claims;
+using Microsoft.IdentityModel.Logging;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,7 @@ services.AddControllers();
 //Add product service
 StaticData.ItemAPIBaseUrl = builder.Configuration["ServiceUrls:ItemAPIBase"];
 StaticData.IdentityServerBaseUrl = builder.Configuration["ServiceUrls:IdentityServerBase"];
+StaticData.KeycloakRealm = builder.Configuration["ServiceUrls:KeycloakRealm"];
 
 //services.AddHttpClient<IItemService, ItemService>();
 services.AddHttpClient(StaticData.APIClient.ItemAPI.ToString(), 
@@ -51,28 +54,35 @@ services.AddAuthentication(options =>
     };
 }).AddOpenIdConnect("oidc", options =>
 {
-    options.Authority = StaticData.IdentityServerBaseUrl;
+    options.Authority = StaticData.KeycloakRealm;
     options.GetClaimsFromUserInfoEndpoint = true;
     options.ClientId = "ECommerceWeb";
-    options.ClientSecret = "secret";
-    options.ResponseType = "code";
-
-    options.ClaimActions.Add(new JsonKeyClaimAction("phone", null, "phone_number"));
-    options.ClaimActions.Add(new JsonKeyClaimAction("website", null, "website"));
-    options.ClaimActions.Add(new JsonKeyClaimAction("CustomClaim", null, "CustomClaim"));
-    options.ClaimActions.Add(new JsonKeyClaimAction("role", null, "role"));
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        NameClaimType = "name",
-        RoleClaimType = "role"
-    };
-
-    options.Scope.Add("email");
-    options.Scope.Add("ItemAPIAllScope");
-    options.Scope.Add("OrderAPIAllScope");
-    options.Scope.Add("CouponAPIAllScope");
+    options.ClientSecret = "jL9YbpZbyyaFEZqeZR6CCuBAb5ZhsvgO";
+    options.ResponseType = OpenIdConnectResponseType.Code;
+    options.RequireHttpsMetadata = false;
+    options.Scope.Add("openid");
+    options.Scope.Add("profile");
+    options.CallbackPath = "/signin-oidc"; // The same as the Redirect URI configured in Keycloak
     options.SaveTokens = true;
+
+    //options.ClaimActions.Add(new JsonKeyClaimAction("phone", null, "phone_number"));
+    //options.ClaimActions.Add(new JsonKeyClaimAction("website", null, "website"));
+    //options.ClaimActions.Add(new JsonKeyClaimAction("CustomClaim", null, "CustomClaim"));
+    //options.ClaimActions.Add(new JsonKeyClaimAction("role", null, "role"));
+    //options.TokenValidationParameters = new TokenValidationParameters
+    //{
+    //    NameClaimType = "name",
+    //    RoleClaimType = "role"
+    //};
+
+    //options.Scope.Add("email");
+    //options.Scope.Add("ItemAPIAllScope");
+    //options.Scope.Add("OrderAPIAllScope");
+    //options.Scope.Add("CouponAPIAllScope");
+    //options.SaveTokens = true;
 });
+
+IdentityModelEventSource.ShowPII = true;
 
 var app = builder.Build();
 
