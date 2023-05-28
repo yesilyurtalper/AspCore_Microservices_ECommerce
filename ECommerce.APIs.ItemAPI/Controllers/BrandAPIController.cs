@@ -38,6 +38,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
 
         [HttpPost]
         [Route("addcat/{brandId}")]
+        [Authorize(Policy = "ECommerceAdmin")]
         public async Task<ResponseDto> AddCategoryAsync(int brandId, [FromBody]List<int> categoryIds)
         {
             try
@@ -58,6 +59,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
 
         [HttpPost]
         [Route("remcat/{brandId}")]
+        [Authorize(Policy = "ECommerceAdmin")]
         public async Task<ResponseDto> RemoveCategoryAsync(int brandId, [FromBody]List<int> categoryIds)
         {
             try
@@ -78,6 +80,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
 
         [HttpPost]
         [Route("updatecat/{brandId}")]
+        [Authorize(Policy = "ECommerceAdmin")]
         public async Task<ResponseDto> UpdateCategoryAsync(int brandId, [FromBody]List<int> categoryIds)
         {
             try

@@ -16,7 +16,7 @@ namespace ECommerce.Web.Controllers
             base.relativeUrl = "brands";
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "ECommerceAdmin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("create")]
@@ -40,7 +40,7 @@ namespace ECommerce.Web.Controllers
             return View(nameof(Create), dto);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "ECommerceAdmin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("edit")]
