@@ -14,7 +14,11 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7187;http://localhost:5187",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "OIDC_AUTHORITY": "http://localhost:8080/auth/realms/local_realm",
+        "OIDC_CLIENT": "ECommerceWebClient_AspMvc",
+        "OIDC_PASSWORD": "CpO9xSH5oR9Zofk8tBiorYlsdLHWQHKs",
+        "ITEM_API_BASE_URL": "https://localhost:7207/itemapi/"
       }
     },
     "IIS Express": {

@@ -14,10 +14,11 @@ var services = builder.Services;
 services.AddControllersWithViews();
 services.AddControllers();
 
-//Add product service
-StaticData.ItemAPIBaseUrl = builder.Configuration["ServiceUrls:ItemAPIBase"];
-StaticData.IdentityServerBaseUrl = builder.Configuration["ServiceUrls:IdentityServerBase"];
-StaticData.KeycloakRealm = builder.Configuration["ServiceUrls:KeycloakRealm"];
+StaticData.ItemAPIBaseUrl = Environment.GetEnvironmentVariable("ITEM_API_BASE_URL");
+StaticData.OIDCClient = Environment.GetEnvironmentVariable("OIDC_CLIENT");
+StaticData.OIDCPassword = Environment.GetEnvironmentVariable("OIDC_PASSWORD");
+StaticData.OIDCAuthority = Environment.GetEnvironmentVariable("OIDC_AUTHORITY");
+//builder.Configuration["ServiceUrls:KeycloakRealm"];
 
 //services.AddHttpClient<IItemService, ItemService>();
 services.AddHttpClient(StaticData.APIClient.ItemAPI.ToString(), 
@@ -58,10 +59,10 @@ services.AddAuthentication(options =>
     };
 }).AddOpenIdConnect("oidc", options =>
 {
-    options.Authority = StaticData.KeycloakRealm;
+    options.Authority = StaticData.OIDCAuthority;
     options.GetClaimsFromUserInfoEndpoint = true;
-    options.ClientId = "ECommerceWeb";
-    options.ClientSecret = "jL9YbpZbyyaFEZqeZR6CCuBAb5ZhsvgO";
+    options.ClientId = StaticData.OIDCClient;
+    options.ClientSecret = StaticData.OIDCPassword;
     options.ResponseType = OpenIdConnectResponseType.Code;
     options.RequireHttpsMetadata = false;
     options.Scope.Add("openid");
@@ -71,7 +72,7 @@ services.AddAuthentication(options =>
     options.Scope.Add("email");
     options.Scope.Add("roles");
 
-    options.ClaimActions.Add(new JsonKeyClaimAction("azp", null, "azp"));
+    //options.ClaimActions.Add(new JsonKeyClaimAction("azp", null, "azp"));
     //options.ClaimActions.Add(new JsonKeyClaimAction("website", null, "website"));
     //options.ClaimActions.Add(new JsonKeyClaimAction("CustomClaim", null, "CustomClaim"));
     //options.ClaimActions.Add(new JsonKeyClaimAction("role", null, "role"));

@@ -60,9 +60,9 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("ItemAPIPolicy", policy =>
+    options.AddPolicy("ECommerceWebClient", policy =>
     {
-        policy.RequireClaim("ItemAPIClaim", "ItemAPIClaim");
+        policy.RequireClaim("ECommerceWebClient", "ECommerceWebClient");
     });
 });
 
@@ -78,14 +78,14 @@ builder.Services.AddAuthorization(options =>
 var app = builder.Build();
 
 //Migrate latest database changes during startup
-//using (var scope = app.Services.CreateScope())
-//{
-//    var dbContext = scope.ServiceProvider
-//        .GetRequiredService<ItemAPIDbContext>();
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider
+        .GetRequiredService<ItemAPIDbContext>();
 
-//    // Here is the migration executed
-//    dbContext.Database.Migrate();
-//}
+    // Here is the migration executed
+    dbContext.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -98,6 +98,6 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers().RequireAuthorization("ItemAPIPolicy");
+app.MapControllers().RequireAuthorization("ECommerceWebClient");
 
 app.Run();
