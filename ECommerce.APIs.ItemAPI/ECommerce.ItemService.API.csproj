@@ -25,4 +25,8 @@
     <ProjectReference Include="..\ECommerce.ItemService.Domain\ECommerce.ItemService.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Middleware\" />
+  </ItemGroup>
+
 </Project>
