@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+using ECommerce.ItemService.Domain;
+
 namespace ECommerce.APIs.ItemAPI.Models
 {
     public class ItemAPIDbContext : DbContext

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using ECommerce.APIs.ItemAPI.Models;
+using ECommerce.ItemService.Domain;
 
 namespace ECommerce.APIs.ItemAPI.Services
 {

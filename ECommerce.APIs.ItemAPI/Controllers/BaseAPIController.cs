@@ -5,10 +5,11 @@ using ECommerce.APIs.ItemAPI.Services;
 using ECommerce.APIs.ItemAPI.Models;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
+using ECommerce.ItemService.Domain;
 
 namespace ECommerce.APIs.ItemAPI.Controllers
 {
-    public class BaseAPIController<TModel, TDto> : ControllerBase where TModel : BaseModel where TDto : BaseDto
+    public class BaseAPIController<TModel, TDto> : ControllerBase where TModel : BaseItem where TDto : BaseDto
     {
         protected ResponseDto _response;
         protected readonly IRepository<TModel> _repo;

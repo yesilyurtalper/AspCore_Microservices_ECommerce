@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using ECommerce.ItemService.Domain;
 using ECommerce.APIs.ItemAPI.Models;
 
 namespace ECommerce.APIs.ItemAPI.Services
 {
-    public class DBRepository<TModel> : IRepository<TModel> where TModel : BaseModel
+    public class DBRepository<TModel> : IRepository<TModel> where TModel : BaseItem
     {
         protected readonly ItemAPIDbContext _dbContext;
         protected DbSet<TModel> _dbSet = null;

@@ -1,9 +1,9 @@
 ﻿
-using ECommerce.APIs.ItemAPI.Models;
+using ECommerce.ItemService.Domain;
 
 namespace ECommerce.APIs.ItemAPI.Services
 {
-    public interface IRepository<TModel> where TModel : BaseModel
+    public interface IRepository<TModel> where TModel : BaseItem
     {
         Task<List<TModel>> GetAllAsync();
         Task<TModel> GetByIdAsync(int id);

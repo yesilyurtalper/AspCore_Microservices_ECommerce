@@ -22,4 +22,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ECommerce.ItemService.Domain\ECommerce.ItemService.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

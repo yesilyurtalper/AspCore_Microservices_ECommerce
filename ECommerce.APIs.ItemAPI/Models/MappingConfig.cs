@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ECommerce.ItemService.Domain;
 
 namespace ECommerce.APIs.ItemAPI.Models
 {
@@ -8,7 +9,7 @@ namespace ECommerce.APIs.ItemAPI.Models
         {
             var config = new MapperConfiguration(config =>
                 {
-                    config.CreateMap<BaseModel, BaseDto>().ReverseMap();
+                    config.CreateMap<BaseItem, BaseDto>().ReverseMap();
                     config.CreateMap<BrandCategory, BCBaseDto>().ReverseMap();
                     config.CreateMap<Product, ProductBaseDto>().ReverseMap();
 
