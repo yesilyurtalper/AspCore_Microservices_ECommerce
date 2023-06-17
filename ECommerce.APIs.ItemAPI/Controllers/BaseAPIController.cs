@@ -6,6 +6,8 @@ using ECommerce.APIs.ItemAPI.Models;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using ECommerce.ItemService.Domain;
+using ECommerce.ItemService.Application.Contracts.Persistence;
+using ECommerce.ItemService.Application.Dtos;
 
 namespace ECommerce.APIs.ItemAPI.Controllers
 {

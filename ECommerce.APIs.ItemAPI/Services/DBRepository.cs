@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ECommerce.ItemService.Domain;
 using ECommerce.APIs.ItemAPI.Models;
+using ECommerce.ItemService.Application.Contracts.Persistence;
 
 namespace ECommerce.APIs.ItemAPI.Services
 {

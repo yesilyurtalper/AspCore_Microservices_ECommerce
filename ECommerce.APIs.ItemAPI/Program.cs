@@ -1,4 +1,4 @@
-using AutoMapper;
+
 using Microsoft.EntityFrameworkCore;
 using ECommerce.APIs.ItemAPI.Services;
 using ECommerce.APIs.ItemAPI.Models;
@@ -6,6 +6,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Configuration;
+using ECommerce.ItemService.Application.Contracts.Persistence;
+using HR.LeaveManagement.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,9 +43,7 @@ if (builder.Environment.IsDevelopment())
 string conStr = Environment.GetEnvironmentVariable("DB_CON_STR");
 builder.Services.AddDbContext<ItemAPIDbContext>(options => options.UseMySQL(conStr));
 
-IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
-builder.Services.AddSingleton(mapper);
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddApplicationServices();
 builder.Services.AddScoped<ICategoryRepository, DBCategoryRepository>();
 builder.Services.AddScoped<IBrandRepository, DBBrandRepository>();
 builder.Services.AddScoped<IProductRepository, DBProductRepository>();
