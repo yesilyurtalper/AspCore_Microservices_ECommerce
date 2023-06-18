@@ -44,7 +44,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         {
             try
             {
-                await _brandRepo.AddCategorieAsync(brandId, categoryIds);
+                await _brandRepo.AddCategoriesAsync(brandId, categoryIds);
                 await _repo.SaveChangesAsync();
                 _response.Result = _mapper.Map<BrandDto>(await _brandRepo.GetByIdAsync(brandId));
                 _response.IsSuccess = true;

@@ -58,7 +58,7 @@ public class DBBrandRepository : DBRepository<Brand>, IBrandRepository
         return model;
     }
 
-    public async Task AddCategorieAsync(int brandId, List<int> categoryIds)
+    public async Task AddCategoriesAsync(int brandId, List<int> categoryIds)
     {
         foreach(var catId in categoryIds)
         {
@@ -69,14 +69,11 @@ public class DBBrandRepository : DBRepository<Brand>, IBrandRepository
 
     public async Task RemoveCategoriesAsync(int brandId, List<int> categoryIds)
     {
-        await Task.Run(() =>
+        foreach (var catId in categoryIds)
         {
-            foreach (var catId in categoryIds)
-            {
-                var bc = new BrandCategory { BrandId = brandId, CategoryId = catId };
-                _dbContext.BrandCategories.Remove(bc);
-            }
-        });        
+            var bc = new BrandCategory { BrandId = brandId, CategoryId = catId };
+            _dbContext.BrandCategories.Remove(bc);
+        }
     }
 
     public async Task UpdateCategoriesAsync(int brandId, List<int> categoryIds)
