@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using ECommerce.ItemService.Application.Dtos;
 using ECommerce.ItemService.Domain;
 
-namespace ECommerce.ItemService.Application.Mapping;
+namespace ECommerce.ItemService.Application.Dtos.Mapping;
 
 public class CategoryProfile : Profile
 {
@@ -26,6 +25,10 @@ public class CategoryProfile : Profile
             });
         CreateMap<CategoryDto, Category>()
             .ForMember(model => model.Products, opt => opt.Ignore())
-            .ForMember(model => model.BrandCategories, opt => opt.Ignore());
+            .ForMember(model => model.BrandCategories, opt => opt.Ignore())
+            .ForMember(model => model.CreatedBy, opt => opt.Ignore())
+            .ForMember(model => model.ModifiedBy, opt => opt.Ignore())
+            .ForMember(model => model.DateCreated, opt => opt.Ignore())
+            .ForMember(model => model.DateModified, opt => opt.Ignore());
     }
 }

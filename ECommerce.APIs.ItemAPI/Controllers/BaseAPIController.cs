@@ -99,16 +99,24 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [HttpPost]
         public async Task<ResponseDto> UpdateAsync([FromBody] TDto dto)
         {
-            if(dto == null || ModelState.IsValid == false)
+            if (dto == null || ModelState.IsValid == false)
             {
                 _response.IsSuccess = false;
                 _response.ErrorMessages = ModelState.Values.SelectMany(v => v.Errors).Select(x => x.ErrorMessage).ToList<string>();
                 return _response;
             }
 
+            var model = await _repo.GetByIdAsync(dto.Id);
+            if (model == null)
+            {
+                _response.IsSuccess = false;
+                _response.ErrorMessages = new List<string> { "not found" };
+                return _response;
+            }
+
             try
             {
-                var model = _mapper.Map<TModel>(dto);
+                _mapper.Map(dto, model);
                 await _repo.UpdateAsync(model);
                 await _repo.SaveChangesAsync();
                 _response.Result = _mapper.Map<TDto>(model);

@@ -5,6 +5,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ECommerce.ItemService.Infra;
 using System.Text.Json.Serialization;
+using ECommerce.ItemService.Infra.DBContext;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,7 +40,7 @@ if (builder.Environment.IsDevelopment())
 }
 
 builder.Services.AddApplicationServices();
-builder.Services.AddInfraServices();
+builder.Services.AddInfraServices(builder.Configuration);
 
 builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
 {
@@ -69,15 +71,15 @@ builder.Services.AddAuthorization(options =>
 
 var app = builder.Build();
 
-////Migrate latest database changes during startup
-//using (var scope = app.Services.CreateScope())
-//{
-//    var dbContext = scope.ServiceProvider
-//        .GetRequiredService<ItemAPIDbContext>();
+//Migrate latest database changes during startup
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider
+        .GetRequiredService<ItemAPIDbContext>();
 
-//    // Here is the migration executed
-//    dbContext.Database.Migrate();
-//}
+    // Here is the migration executed
+    dbContext.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
