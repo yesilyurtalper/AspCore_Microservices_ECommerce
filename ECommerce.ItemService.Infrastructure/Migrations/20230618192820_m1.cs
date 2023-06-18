@@ -19,12 +19,12 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "varchar(255)", nullable: false),
-                    Description = table.Column<string>(type: "longtext", nullable: false),
+                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    CreatedBy = table.Column<string>(type: "longtext", nullable: true),
+                    CreatedBy = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     DateModified = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "longtext", nullable: true)
+                    ModifiedBy = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -38,12 +38,12 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "varchar(255)", nullable: false),
-                    Description = table.Column<string>(type: "longtext", nullable: false),
+                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    CreatedBy = table.Column<string>(type: "longtext", nullable: true),
+                    CreatedBy = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     DateModified = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "longtext", nullable: true)
+                    ModifiedBy = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -82,16 +82,16 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    ImageUrl = table.Column<string>(type: "longtext", nullable: false),
+                    ImageUrl = table.Column<string>(type: "longtext", nullable: true),
                     Price = table.Column<double>(type: "double", nullable: false),
                     BrandId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "varchar(255)", nullable: false),
-                    Description = table.Column<string>(type: "longtext", nullable: false),
+                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    CreatedBy = table.Column<string>(type: "longtext", nullable: true),
+                    CreatedBy = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     DateModified = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "longtext", nullable: true)
+                    ModifiedBy = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -116,9 +116,9 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateModified", "Description", "ModifiedBy", "Name" },
                 values: new object[,]
                 {
-                    { 1, "admin", new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7556), new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7566), "BraA", "admin", "BraA" },
-                    { 2, "admin", new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7567), new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7568), "BraB", "admin", "BraB" },
-                    { 3, "admin", new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7569), new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7569), "BraC", "admin", "BraC" }
+                    { 1, "admin", new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8073), new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8081), "BraA", "admin", "BraA" },
+                    { 2, "admin", new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8082), new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8083), "BraB", "admin", "BraB" },
+                    { 3, "admin", new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8084), new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8084), "BraC", "admin", "BraC" }
                 });
 
             migrationBuilder.InsertData(
@@ -126,9 +126,9 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateModified", "Description", "ModifiedBy", "Name" },
                 values: new object[,]
                 {
-                    { 1, "admin", new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7571), new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7572), "CatA", "admin", "CatA" },
-                    { 2, "admin", new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7573), new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7573), "CatB", "admin", "CatB" },
-                    { 3, "admin", new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7574), new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7575), "CatC", "admin", "CatC" }
+                    { 1, "admin", new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8556), new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8556), "CatA", "admin", "CatA" },
+                    { 2, "admin", new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8557), new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8557), "CatB", "admin", "CatB" },
+                    { 3, "admin", new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8558), new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8558), "CatC", "admin", "CatC" }
                 });
 
             migrationBuilder.InsertData(
@@ -149,10 +149,10 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                 columns: new[] { "Id", "BrandId", "CategoryId", "CreatedBy", "DateCreated", "DateModified", "Description", "ImageUrl", "ModifiedBy", "Name", "Price" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, "admin", new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7700), new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7701), "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.", "https://alperazurestorage.blob.core.windows.net/mango/14.jpg", "admin", "ProA", 15.0 },
-                    { 2, 2, 2, "admin", new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7710), new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7710), "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.", "https://alperazurestorage.blob.core.windows.net/mango/11.jpg", "admin", "ProB", 13.99 },
-                    { 3, 1, 1, "admin", new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7717), new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7717), "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.", "https://alperazurestorage.blob.core.windows.net/mango/12.jpg", "admin", "ProC", 10.99 },
-                    { 4, 3, 3, "admin", new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7723), new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7724), "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.", "https://alperazurestorage.blob.core.windows.net/mango/13.jpg", "admin", "Pro4", 15.0 }
+                    { 1, 1, 1, "admin", new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8735), new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8736), "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.", "https://alperazurestorage.blob.core.windows.net/mango/14.jpg", "admin", "ProA", 15.0 },
+                    { 2, 2, 2, "admin", new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8739), new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8740), "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.", "https://alperazurestorage.blob.core.windows.net/mango/11.jpg", "admin", "ProB", 13.99 },
+                    { 3, 1, 1, "admin", new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8741), new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8742), "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.", "https://alperazurestorage.blob.core.windows.net/mango/12.jpg", "admin", "ProC", 10.99 },
+                    { 4, 3, 3, "admin", new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8743), new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8744), "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.", "https://alperazurestorage.blob.core.windows.net/mango/13.jpg", "admin", "Pro4", 15.0 }
                 });
 
             migrationBuilder.CreateIndex(

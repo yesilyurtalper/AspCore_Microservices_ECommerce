@@ -26,7 +26,9 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime(6)");
@@ -36,14 +38,18 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
 
                     b.Property<string>("ModifiedBy")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
 
@@ -57,8 +63,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                         {
                             Id = 1,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7556),
-                            DateModified = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7566),
+                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8073),
+                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8081),
                             Description = "BraA",
                             ModifiedBy = "admin",
                             Name = "BraA"
@@ -67,8 +73,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                         {
                             Id = 2,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7567),
-                            DateModified = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7568),
+                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8082),
+                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8083),
                             Description = "BraB",
                             ModifiedBy = "admin",
                             Name = "BraB"
@@ -77,8 +83,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                         {
                             Id = 3,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7569),
-                            DateModified = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7569),
+                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8084),
+                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8084),
                             Description = "BraC",
                             ModifiedBy = "admin",
                             Name = "BraC"
@@ -139,7 +145,9 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime(6)");
@@ -149,14 +157,18 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
 
                     b.Property<string>("ModifiedBy")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
 
@@ -170,8 +182,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                         {
                             Id = 1,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7571),
-                            DateModified = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7572),
+                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8556),
+                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8556),
                             Description = "CatA",
                             ModifiedBy = "admin",
                             Name = "CatA"
@@ -180,8 +192,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                         {
                             Id = 2,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7573),
-                            DateModified = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7573),
+                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8557),
+                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8557),
                             Description = "CatB",
                             ModifiedBy = "admin",
                             Name = "CatB"
@@ -190,8 +202,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                         {
                             Id = 3,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7574),
-                            DateModified = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7575),
+                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8558),
+                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8558),
                             Description = "CatC",
                             ModifiedBy = "admin",
                             Name = "CatC"
@@ -211,7 +223,9 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime(6)");
@@ -221,18 +235,21 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("ModifiedBy")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<double>("Price")
                         .HasColumnType("double");
@@ -255,8 +272,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                             BrandId = 1,
                             CategoryId = 1,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7700),
-                            DateModified = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7701),
+                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8735),
+                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8736),
                             Description = "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.",
                             ImageUrl = "https://alperazurestorage.blob.core.windows.net/mango/14.jpg",
                             ModifiedBy = "admin",
@@ -269,8 +286,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                             BrandId = 2,
                             CategoryId = 2,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7710),
-                            DateModified = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7710),
+                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8739),
+                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8740),
                             Description = "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.",
                             ImageUrl = "https://alperazurestorage.blob.core.windows.net/mango/11.jpg",
                             ModifiedBy = "admin",
@@ -283,8 +300,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                             BrandId = 1,
                             CategoryId = 1,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7717),
-                            DateModified = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7717),
+                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8741),
+                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8742),
                             Description = "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.",
                             ImageUrl = "https://alperazurestorage.blob.core.windows.net/mango/12.jpg",
                             ModifiedBy = "admin",
@@ -297,8 +314,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                             BrandId = 3,
                             CategoryId = 3,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7723),
-                            DateModified = new DateTime(2023, 6, 18, 16, 28, 58, 671, DateTimeKind.Local).AddTicks(7724),
+                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8743),
+                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8744),
                             Description = "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.",
                             ImageUrl = "https://alperazurestorage.blob.core.windows.net/mango/13.jpg",
                             ModifiedBy = "admin",

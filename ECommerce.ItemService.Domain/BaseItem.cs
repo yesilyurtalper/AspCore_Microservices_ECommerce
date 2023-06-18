@@ -4,12 +4,21 @@ namespace ECommerce.ItemService.Domain;
 
 public class BaseItem
 {
+    [Required]
     public int Id { get; set; }
     [Required]
-    public string Name { get; set; }
-    public string Description { get; set; }
+    [MaxLength(100)]
+    public string Name  { get; set; } = string.Empty;
+    [MaxLength(1000)]
+    public string Description { get; set; } = string.Empty;
+    [Required]
     public DateTime DateCreated { get; set; }
-    public string? CreatedBy { get; set; }
+    [Required]
+    [MaxLength(100)]
+    public string CreatedBy { get; set; } = string.Empty;
+    [Required]
     public DateTime DateModified { get; set; }
-    public string? ModifiedBy { get; set; }
+    [Required]
+    [MaxLength(100)]
+    public string ModifiedBy { get; set; } = string.Empty;
 }

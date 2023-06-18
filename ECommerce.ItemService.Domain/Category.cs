@@ -3,7 +3,7 @@ namespace ECommerce.ItemService.Domain;
 
 public class Category : BaseItem
 {
-    public List<Product> Products { get; set; }
+    public ICollection<Product>? Products { get; set; }
 
-    public List<BrandCategory> BrandCategories { get; set; }
+    public ICollection<BrandCategory>? BrandCategories { get; set; }
 }
