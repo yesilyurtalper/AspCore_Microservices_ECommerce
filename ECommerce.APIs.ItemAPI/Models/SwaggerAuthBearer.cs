@@ -2,7 +2,7 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace ECommerce.APIs.ItemAPI.Models
+namespace ECommerce.ItemService.API.Models
 {
     public class AuthenticationRequirementsOperationFilter : IOperationFilter
     {

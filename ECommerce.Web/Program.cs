@@ -2,10 +2,8 @@
 using System.IdentityModel.Tokens.Jwt;
 using ECommerce.Web;
 using ECommerce.Web.Services;
-using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;

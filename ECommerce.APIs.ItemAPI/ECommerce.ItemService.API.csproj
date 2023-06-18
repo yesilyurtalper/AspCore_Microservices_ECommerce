@@ -8,13 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="MySql.EntityFrameworkCore" Version="7.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.4.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.4.0" />
@@ -23,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ECommerce.ItemService.Application\ECommerce.ItemService.Application.csproj" />
     <ProjectReference Include="..\ECommerce.ItemService.Domain\ECommerce.ItemService.Domain.csproj" />
+    <ProjectReference Include="..\ECommerce.ItemService.Infrastructure\ECommerce.ItemService.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

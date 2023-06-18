@@ -2,7 +2,7 @@
 using ECommerce.ItemService.Application.Dtos;
 using ECommerce.ItemService.Domain;
 
-namespace ECommerce.ItemService.Application.MappingProfiles;
+namespace ECommerce.ItemService.Application.Mapping;
 
 public class BrandProfile : Profile
 {

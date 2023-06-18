@@ -1,9 +1,5 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ECommerce.APIs.ItemAPI.Services;
-using ECommerce.APIs.ItemAPI.Models;
-using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using ECommerce.ItemService.Domain;
 using ECommerce.ItemService.Application.Contracts.Persistence;

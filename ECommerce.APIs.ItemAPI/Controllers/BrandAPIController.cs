@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ECommerce.APIs.ItemAPI.Services;
-using ECommerce.APIs.ItemAPI.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using ECommerce.ItemService.Domain;

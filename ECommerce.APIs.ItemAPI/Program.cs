@@ -1,20 +1,20 @@
 
-using Microsoft.EntityFrameworkCore;
-using ECommerce.APIs.ItemAPI.Services;
-using ECommerce.APIs.ItemAPI.Models;
+using ECommerce.ItemService.API.Models;
+using ECommerce.ItemService.Application;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Configuration;
-using ECommerce.ItemService.Application.Contracts.Persistence;
-using HR.LeaveManagement.Application;
+using ECommerce.ItemService.Infra;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers().AddNewtonsoftJson(options =>
-    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+//builder.Services.AddControllers().AddNewtonsoftJson(options =>
+//    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddControllers();
 
@@ -37,16 +37,8 @@ if (builder.Environment.IsDevelopment())
     });
 }
 
-
-//string conStr = "server=localhost;port=3306;database=ECommerceItemAPI;user=root;password=mysecretpassword;";
-//string conStr = builder.Configuration.GetConnectionString("DefaultConnection");
-string conStr = Environment.GetEnvironmentVariable("DB_CON_STR");
-builder.Services.AddDbContext<ItemAPIDbContext>(options => options.UseMySQL(conStr));
-
 builder.Services.AddApplicationServices();
-builder.Services.AddScoped<ICategoryRepository, DBCategoryRepository>();
-builder.Services.AddScoped<IBrandRepository, DBBrandRepository>();
-builder.Services.AddScoped<IProductRepository, DBProductRepository>();
+builder.Services.AddInfraServices();
 
 builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
 {
@@ -77,15 +69,15 @@ builder.Services.AddAuthorization(options =>
 
 var app = builder.Build();
 
-//Migrate latest database changes during startup
-using (var scope = app.Services.CreateScope())
-{
-    var dbContext = scope.ServiceProvider
-        .GetRequiredService<ItemAPIDbContext>();
+////Migrate latest database changes during startup
+//using (var scope = app.Services.CreateScope())
+//{
+//    var dbContext = scope.ServiceProvider
+//        .GetRequiredService<ItemAPIDbContext>();
 
-    // Here is the migration executed
-    dbContext.Database.Migrate();
-}
+//    // Here is the migration executed
+//    dbContext.Database.Migrate();
+//}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
