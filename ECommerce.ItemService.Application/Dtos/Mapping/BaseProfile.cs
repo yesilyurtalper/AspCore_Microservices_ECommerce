@@ -7,6 +7,8 @@ public class BaseProfile : Profile
 {
     public BaseProfile()
     {
+        CreateMap<BrandCategory, BCBaseDto>().ReverseMap();
+
         CreateMap<BaseItem, BaseDto>();
 
         CreateMap<BaseDto, BaseItem>().

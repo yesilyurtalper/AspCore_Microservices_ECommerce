@@ -7,7 +7,7 @@ using ECommerce.ItemService.Application.Dtos;
 namespace ECommerce.APIs.ItemAPI.Controllers
 {
     [Route("itemapi/categories")]
-    public class CategoryAPIController : BaseAPIController<Category, CategoryDto>
+    public class CategoryAPIController : BaseAPIController<Category, BaseDto>
     {
         private ICategoryRepository _categoryRepo;
 
@@ -23,7 +23,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             try
             {
                 var entities = await _categoryRepo.GetAllCategoriesByBrandIdAsync(brandId);
-                var dtos = _mapper.Map<List<CategoryDto>>(entities);
+                var dtos = _mapper.Map<List<BaseDto>>(entities);
                 _response.Result = dtos;
                 _response.IsSuccess = true;
             }
@@ -43,7 +43,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             try
             {
                 var entities = await _categoryRepo.GetAllCategoriesOutOfBrandIdAsync(brandId);
-                var dtos = _mapper.Map<List<CategoryDto>>(entities);
+                var dtos = _mapper.Map<List<BaseDto>>(entities);
                 _response.Result = dtos;
                 _response.IsSuccess = true;
             }

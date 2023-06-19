@@ -8,7 +8,7 @@ using ECommerce.ItemService.Application.Dtos;
 namespace ECommerce.APIs.ItemAPI.Controllers
 {
     [Route("itemapi/brands")]
-    public class BrandAPIController : BaseAPIController<Brand, BrandDto>
+    public class BrandAPIController : BaseAPIController<Brand, BaseDto>
     {
         private IBrandRepository _brandRepo;
 
@@ -24,7 +24,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             try
             {
                 var models = await _brandRepo.GetAllBrandsByCategoryIdAsync(categoryId);
-                var dtos = _mapper.Map<List<BrandDto>>(models);
+                var dtos = _mapper.Map<List<BaseDto>>(models);
                 _response.Result = dtos;
                 _response.IsSuccess = true;
             }
@@ -46,7 +46,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             {
                 await _brandRepo.AddCategoriesAsync(brandId, categoryIds);
                 await _repo.SaveChangesAsync();
-                _response.Result = _mapper.Map<BrandDto>(await _brandRepo.GetByIdAsync(brandId));
+                _response.Result = _mapper.Map<BaseDto>(await _brandRepo.GetByIdAsync(brandId));
                 _response.IsSuccess = true;
             }
             catch (Exception ex)
@@ -67,7 +67,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             {
                 await _brandRepo.RemoveCategoriesAsync(brandId, categoryIds);
                 await _repo.SaveChangesAsync();
-                _response.Result = _mapper.Map<BrandDto>(await _brandRepo.GetByIdAsync(brandId));
+                _response.Result = _mapper.Map<BaseDto>(await _brandRepo.GetByIdAsync(brandId));
                 _response.IsSuccess = true;
             }
             catch (Exception ex)
@@ -88,7 +88,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             {
                 await _brandRepo.UpdateCategoriesAsync(brandId, categoryIds);
                 await _repo.SaveChangesAsync();
-                _response.Result = _mapper.Map<BrandDto>(await _brandRepo.GetByIdAsync(brandId));
+                _response.Result = _mapper.Map<BaseDto>(await _brandRepo.GetByIdAsync(brandId));
                 _response.IsSuccess = true;
             }
             catch (Exception ex)

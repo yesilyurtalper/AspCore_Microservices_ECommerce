@@ -13,58 +13,64 @@ public class DBBrandRepository : DBRepository<Brand>, IBrandRepository
     {
     }
 
-    public override async Task<List<Brand>> GetAllAsync()
-    {
-        var models = await _dbContext.Brands
-            .Include(x => x.BrandCategories)
-            .ThenInclude(x => x.Category)
-            .ToListAsync();
+    //public override async Task<List<Brand>> GetAllAsync()
+    //{
+    //    var models = await _dbContext.Brands
+    //        .Include(x => x.BrandCategories)
+    //        .ThenInclude(x => x.Category)
+    //        .ToListAsync();
 
-        return models;
-    }
+    //    return models;
+    //}
 
     public async Task<List<Brand>> GetAllBrandsByCategoryIdAsync(int categoryId)
     {
         var entities = await _dbContext.BrandCategories
             .Where(x => x.CategoryId == categoryId)
             .Include(x => x.Brand)
-            .ThenInclude(x => x.BrandCategories)
-            .ThenInclude(x => x.Category)
+            //.ThenInclude(x => x.BrandCategories)
+            //.ThenInclude(x => x.Category)
             .Select(x => x.Brand)
             .ToListAsync();
 
         return entities;
     }
 
-    public override async Task<Brand> GetByIdAsync(int id)
-    {
-        var entity = await _dbContext.Brands
-            .Where(x => x.Id == id)
-            .Include(x => x.BrandCategories)
-            .ThenInclude(x => x.Category)
-            .FirstOrDefaultAsync();
+    //public override async Task<Brand> GetByIdAsync(int id)
+    //{
+    //    var entity = await _dbContext.Brands
+    //        .Where(x => x.Id == id)
+    //        .Include(x => x.Products)
+    //        .Include(x => x.BrandCategories)
+    //        .ThenInclude(x => x.Category)
+    //        .FirstOrDefaultAsync();
 
-        return entity;
-    }
+    //    return entity;
+    //}
 
-    public override async Task<Brand> GetByNameAsync(string name)
-    {
-        var model = await _dbContext.Brands
-            .Where(x => x.Name == name)
-            .Include(x => x.BrandCategories)
-            .ThenInclude(x => x.Category)
-            .FirstOrDefaultAsync();
+    //public override async Task<Brand> GetByNameAsync(string name)
+    //{
+    //    var model = await _dbContext.Brands
+    //        .Where(x => x.Name == name)
+    //        .Include(x => x.BrandCategories)
+    //        .ThenInclude(x => x.Category)
+    //        .FirstOrDefaultAsync();
 
-        return model;
-    }
+    //    return model;
+    //}
 
     public async Task AddCategoriesAsync(int brandId, List<int> categoryIds)
     {
-        foreach(var catId in categoryIds)
-        {
-            var bc = new BrandCategory { BrandId = brandId, CategoryId = catId};
-            await _dbContext.BrandCategories.AddAsync(bc);
-        }
+        var added = categoryIds.Select(x => new BrandCategory { BrandId = brandId, CategoryId = x });
+        await _dbContext.AddRangeAsync(added);
+        //await SaveChangesAsync();
+
+        //foreach (var catId in categoryIds)
+        //{
+        //    var bc = new BrandCategory { BrandId = brandId, CategoryId = catId };
+        //    await _dbContext.BrandCategories.AddAsync(bc);
+        //    await SaveChangesAsync();
+        //}
     }
 
     public async Task RemoveCategoriesAsync(int brandId, List<int> categoryIds)
