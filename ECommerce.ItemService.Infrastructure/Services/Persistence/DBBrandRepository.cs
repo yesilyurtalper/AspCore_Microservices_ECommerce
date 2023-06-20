@@ -62,36 +62,22 @@ public class DBBrandRepository : DBRepository<Brand>, IBrandRepository
     public async Task AddCategoriesAsync(int brandId, List<int> categoryIds)
     {
         var added = categoryIds.Select(x => new BrandCategory { BrandId = brandId, CategoryId = x });
-        await _dbContext.AddRangeAsync(added);
-        //await SaveChangesAsync();
-
-        //foreach (var catId in categoryIds)
-        //{
-        //    var bc = new BrandCategory { BrandId = brandId, CategoryId = catId };
-        //    await _dbContext.BrandCategories.AddAsync(bc);
-        //    await SaveChangesAsync();
-        //}
+        await _dbContext.BrandCategories.AddRangeAsync(added);
     }
 
     public async Task RemoveCategoriesAsync(int brandId, List<int> categoryIds)
     {
-        foreach (var catId in categoryIds)
-        {
-            var bc = new BrandCategory { BrandId = brandId, CategoryId = catId };
-            _dbContext.BrandCategories.Remove(bc);
-        }
+        var removed = categoryIds.Select(x => new BrandCategory { BrandId = brandId, CategoryId = x });
+        await Task.Run(() => _dbContext.BrandCategories.RemoveRange(removed));
     }
 
     public async Task UpdateCategoriesAsync(int brandId, List<int> categoryIds)
     {
-        var brand = await _dbSet.Include(x => x.BrandCategories)
-            .FirstOrDefaultAsync(x => x.Id == brandId);
-        brand.BrandCategories.Clear();
-        foreach(var catId in categoryIds)
-        {
-            var bc = new BrandCategory { BrandId = brandId, CategoryId = catId };
-            brand.BrandCategories.Add(bc);
-        }
+        var removed =  await _dbContext.BrandCategories.Where(x => x.BrandId == brandId).ToListAsync();
+        await Task.Run(() => _dbContext.BrandCategories.RemoveRange(removed));
+
+        var added = categoryIds.Select(x => new BrandCategory { BrandId = brandId, CategoryId = x });
+        await _dbContext.AddRangeAsync(added);
     }
 }
 

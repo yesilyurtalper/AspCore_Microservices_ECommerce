@@ -63,8 +63,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                         {
                             Id = 1,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8073),
-                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8081),
+                            DateCreated = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(4826),
+                            DateModified = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(4834),
                             Description = "BraA",
                             ModifiedBy = "admin",
                             Name = "BraA"
@@ -73,8 +73,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                         {
                             Id = 2,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8082),
-                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8083),
+                            DateCreated = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(4836),
+                            DateModified = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(4836),
                             Description = "BraB",
                             ModifiedBy = "admin",
                             Name = "BraB"
@@ -83,8 +83,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                         {
                             Id = 3,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8084),
-                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8084),
+                            DateCreated = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(4838),
+                            DateModified = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(4838),
                             Description = "BraC",
                             ModifiedBy = "admin",
                             Name = "BraC"
@@ -182,8 +182,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                         {
                             Id = 1,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8556),
-                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8556),
+                            DateCreated = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(5008),
+                            DateModified = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(5009),
                             Description = "CatA",
                             ModifiedBy = "admin",
                             Name = "CatA"
@@ -192,8 +192,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                         {
                             Id = 2,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8557),
-                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8557),
+                            DateCreated = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(5010),
+                            DateModified = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(5010),
                             Description = "CatB",
                             ModifiedBy = "admin",
                             Name = "CatB"
@@ -202,8 +202,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                         {
                             Id = 3,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8558),
-                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8558),
+                            DateCreated = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(5011),
+                            DateModified = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(5012),
                             Description = "CatC",
                             ModifiedBy = "admin",
                             Name = "CatC"
@@ -272,8 +272,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                             BrandId = 1,
                             CategoryId = 1,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8735),
-                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8736),
+                            DateCreated = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(5240),
+                            DateModified = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(5241),
                             Description = "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.",
                             ImageUrl = "https://alperazurestorage.blob.core.windows.net/mango/14.jpg",
                             ModifiedBy = "admin",
@@ -286,8 +286,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                             BrandId = 2,
                             CategoryId = 2,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8739),
-                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8740),
+                            DateCreated = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(5245),
+                            DateModified = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(5246),
                             Description = "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.",
                             ImageUrl = "https://alperazurestorage.blob.core.windows.net/mango/11.jpg",
                             ModifiedBy = "admin",
@@ -300,8 +300,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                             BrandId = 1,
                             CategoryId = 1,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8741),
-                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8742),
+                            DateCreated = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(5248),
+                            DateModified = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(5249),
                             Description = "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.",
                             ImageUrl = "https://alperazurestorage.blob.core.windows.net/mango/12.jpg",
                             ModifiedBy = "admin",
@@ -314,8 +314,8 @@ namespace ECommerce.ItemService.Infrastructure.Migrations
                             BrandId = 3,
                             CategoryId = 3,
                             CreatedBy = "admin",
-                            DateCreated = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8743),
-                            DateModified = new DateTime(2023, 6, 18, 22, 28, 20, 311, DateTimeKind.Local).AddTicks(8744),
+                            DateCreated = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(5251),
+                            DateModified = new DateTime(2023, 6, 20, 20, 0, 35, 817, DateTimeKind.Local).AddTicks(5252),
                             Description = "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.",
                             ImageUrl = "https://alperazurestorage.blob.core.windows.net/mango/13.jpg",
                             ModifiedBy = "admin",
