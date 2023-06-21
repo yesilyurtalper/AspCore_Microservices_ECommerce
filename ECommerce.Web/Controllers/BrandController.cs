@@ -24,11 +24,15 @@ namespace ECommerce.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(dto.CategoryIdAdd != null && dto.CategoryIdAdd.Count != 0)
-                    dto.BCBaseDtos = dto.CategoryIdAdd.Select( item => new BCBaseDto { BrandId = 0, CategoryId = item}).ToList();
                 var response = await _itemService.CreateItemAsync<ResponseDto, BrandDto>(relativeUrl, dto, await GetAccessTokenAsync());
                 if (response != null && response.IsSuccess)
-                    return RedirectToAction(nameof(Details), new { id = JsonConvert.DeserializeObject<BrandDto>(Convert.ToString(response.Result)).Id });
+                {
+                    int newId = JsonConvert.DeserializeObject<BrandDto>(Convert.ToString(response.Result)).Id;
+                    var result2 = _itemService.AddCategoryToBrandAsync<ResponseDto, BrandDto>
+                        (relativeUrl+"/addcat/"+newId, dto.CategoryIdAdd, await GetAccessTokenAsync());
+
+                    return RedirectToAction(nameof(Details), new {id = newId });
+                }
                 else
                 {
                     foreach (var error in response.ErrorMessages)
@@ -53,13 +57,13 @@ namespace ECommerce.Web.Controllers
                 ResponseDto resp2 = new();
                 resp2.IsSuccess = true;
                 if (dto.CategoryIdAdd != null && dto.CategoryIdAdd.Count != 0)
-                    resp2 = await _itemService.UpdateItemAsync<ResponseDto, List<int>>
-                        (relativeUrl+"/addcat/" + dto.Id, dto.CategoryIdAdd, await GetAccessTokenAsync());
+                    resp2 = await _itemService.AddCategoryToBrandAsync<ResponseDto, BrandDto>
+                        (relativeUrl + "/addcat/" + dto.Id, dto.CategoryIdAdd, await GetAccessTokenAsync());
 
                 ResponseDto resp3 = new();
                 resp3.IsSuccess = true;
                 if (dto.CategoryIdRemove != null && dto.CategoryIdRemove.Count != 0)
-                    resp3 = await _itemService.UpdateItemAsync < ResponseDto, List<int> >
+                    resp3 = await _itemService.RemoveCategoryFromBrandAsync<ResponseDto, BrandDto>
                         (relativeUrl + "/remcat/" + dto.Id, dto.CategoryIdRemove, await GetAccessTokenAsync());
 
                 bool err = false;
@@ -92,33 +96,5 @@ namespace ECommerce.Web.Controllers
 
             return View(nameof(Edit), dto);
         }
-
-        //[Route("addcategory/{brandid}")]
-        //[HttpPost]
-        //public async Task<BrandDto> AddCategoryAsync(int brandid, [FromBody]List<int> catIds)
-        //{
-        //    BrandDto dto = new();
-        //    var response = await _itemService.UpdateItemAsync<ResponseDto, List<int>>
-        //        (url+"/addcat/"+brandid, catIds);
-
-        //    if (response != null && response.IsSuccess)
-        //        dto = JsonConvert.DeserializeObject<BrandDto>(Convert.ToString(response.Result));
-
-        //    return dto;         
-        //}
-
-        //[Route("removecategory/{brandid}")]
-        //[HttpPost]
-        //public async Task<BrandDto> RemoveCategoryAsync(int brandid, [FromBody] List<int> catIds)
-        //{
-        //    BrandDto dto = new();
-        //    var response = await _itemService.UpdateItemAsync<ResponseDto, List<int>>
-        //        (url + "/remcat/" + brandid, catIds);
-
-        //    if (response != null && response.IsSuccess)
-        //        dto = JsonConvert.DeserializeObject<BrandDto>(Convert.ToString(response.Result));
-
-        //    return dto;
-        //}
     }
 }

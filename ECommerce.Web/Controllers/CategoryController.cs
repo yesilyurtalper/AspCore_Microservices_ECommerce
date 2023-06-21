@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 namespace ECommerce.Web.Controllers
 {
     [Route("category")]
-    public class CategoryController : BaseItemController<CategoryDto>
+    public class CategoryController : BaseItemController<BaseDto>
     {
         public CategoryController(IItemService apiService) : base(apiService)
         {

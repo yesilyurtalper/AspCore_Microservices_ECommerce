@@ -54,5 +54,27 @@ namespace ECommerce.Web.Services
                 AccessToken = accessToken
             });
         }
+
+        public async Task<Tout> AddCategoryToBrandAsync<Tout, Tin>(string relativeUrl, List<int> add, string accessToken)
+        {
+            return await SendAsync<Tout>(new ApiRequest
+            {
+                ApiMethod = StaticData.APIMethod.POST,
+                Data = add,
+                RelativeUrl = relativeUrl,
+                AccessToken = accessToken
+            });
+        }
+
+        public async Task<Tout> RemoveCategoryFromBrandAsync<Tout, Tin>(string relativeUrl, List<int> rem, string accessToken)
+        {
+            return await SendAsync<Tout>(new ApiRequest
+            {
+                ApiMethod = StaticData.APIMethod.POST,
+                Data = rem,
+                RelativeUrl = relativeUrl,
+                AccessToken = accessToken
+            });
+        }
     }
 }
