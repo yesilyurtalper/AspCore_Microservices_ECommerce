@@ -25,8 +25,6 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             _response.Result = dtos;
             _response.IsSuccess = true;
 
-            //throw new Exception("test exception from GetByBrandIdAsync");
-
             return _response;
         }
 

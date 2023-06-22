@@ -47,8 +47,6 @@ namespace ECommerce.APIs.ItemAPI.Controllers
                 _response.Result = dto;
             }
 
-            //throw new Exception("test exception from GetByIdAsync");
-
             return _response;
         }
 
