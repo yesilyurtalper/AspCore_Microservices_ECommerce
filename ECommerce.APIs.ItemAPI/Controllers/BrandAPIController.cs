@@ -21,18 +21,10 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [Route("categoryid/{categoryId}")]
         public async Task<ResponseDto> GetByCategoryIdAsync(int categoryId)
         {
-            try
-            {
-                var models = await _brandRepo.GetAllBrandsByCategoryIdAsync(categoryId);
-                var dtos = _mapper.Map<List<BaseDto>>(models);
-                _response.Result = dtos;
-                _response.IsSuccess = true;
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.ToString() };
-            }
+            var models = await _brandRepo.GetAllBrandsByCategoryIdAsync(categoryId);
+            var dtos = _mapper.Map<List<BaseDto>>(models);
+            _response.Result = dtos;
+            _response.IsSuccess = true;
 
             return _response;
         }
@@ -42,18 +34,10 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [Authorize(Policy = "ECommerceAdmin")]
         public async Task<ResponseDto> AddCategoryAsync(int brandId, [FromBody]List<int> categoryIds)
         {
-            try
-            {
-                await _brandRepo.AddCategoriesAsync(brandId, categoryIds);
-                await _repo.SaveChangesAsync();
-                _response.Result = _mapper.Map<BaseDto>(await _brandRepo.GetByIdAsync(brandId));
-                _response.IsSuccess = true;
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.ToString() };
-            }
+            await _brandRepo.AddCategoriesAsync(brandId, categoryIds);
+            await _repo.SaveChangesAsync();
+            _response.Result = _mapper.Map<BaseDto>(await _brandRepo.GetByIdAsync(brandId));
+            _response.IsSuccess = true;
 
             return _response;
         }
@@ -63,18 +47,10 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [Authorize(Policy = "ECommerceAdmin")]
         public async Task<ResponseDto> RemoveCategoryAsync(int brandId, [FromBody]List<int> categoryIds)
         {
-            try
-            {
-                await _brandRepo.RemoveCategoriesAsync(brandId, categoryIds);
-                await _repo.SaveChangesAsync();
-                _response.Result = _mapper.Map<BaseDto>(await _brandRepo.GetByIdAsync(brandId));
-                _response.IsSuccess = true;
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.ToString() };
-            }
+            await _brandRepo.RemoveCategoriesAsync(brandId, categoryIds);
+            await _repo.SaveChangesAsync();
+            _response.Result = _mapper.Map<BaseDto>(await _brandRepo.GetByIdAsync(brandId));
+            _response.IsSuccess = true;
 
             return _response;
         }
@@ -84,18 +60,10 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [Authorize(Policy = "ECommerceAdmin")]
         public async Task<ResponseDto> UpdateCategoryAsync(int brandId, [FromBody]List<int> categoryIds)
         {
-            try
-            {
-                await _brandRepo.UpdateCategoriesAsync(brandId, categoryIds);
-                await _repo.SaveChangesAsync();
-                _response.Result = _mapper.Map<BaseDto>(await _brandRepo.GetByIdAsync(brandId));
-                _response.IsSuccess = true;
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.ToString() };
-            }
+            await _brandRepo.UpdateCategoriesAsync(brandId, categoryIds);
+            await _repo.SaveChangesAsync();
+            _response.Result = _mapper.Map<BaseDto>(await _brandRepo.GetByIdAsync(brandId));
+            _response.IsSuccess = true;
 
             return _response;
         }

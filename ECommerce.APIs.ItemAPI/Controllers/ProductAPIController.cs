@@ -20,18 +20,12 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [Route("brandid/{brandId}")]
         public async Task<ResponseDto> GetByBrandIdAsync(int brandId)
         {
-            try
-            {
-                var models = await _productRepo.GetAllProductsByBrandIdAsync(brandId);
-                var dtos = _mapper.Map<List<ProductDto>>(models);
-                _response.Result = dtos;
-                _response.IsSuccess = true;
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.ToString() };
-            }
+            var models = await _productRepo.GetAllProductsByBrandIdAsync(brandId);
+            var dtos = _mapper.Map<List<ProductDto>>(models);
+            _response.Result = dtos;
+            _response.IsSuccess = true;
+
+            //throw new Exception("test exception from GetByBrandIdAsync");
 
             return _response;
         }
@@ -40,18 +34,10 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [Route("categoryid/{categoryId}")]
         public async Task<ResponseDto> GetByCategoryIdAsync(int categoryId)
         {
-            try
-            {
-                var models = await _productRepo.GetAllProductsByCategoryIdAsync(categoryId);
-                var dtos = _mapper.Map<List<ProductDto>>(models);
-                _response.Result = dtos;
-                _response.IsSuccess = true;
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.ToString() };
-            }
+            var models = await _productRepo.GetAllProductsByCategoryIdAsync(categoryId);
+            var dtos = _mapper.Map<List<ProductDto>>(models);
+            _response.Result = dtos;
+            _response.IsSuccess = true;
 
             return _response;
         }

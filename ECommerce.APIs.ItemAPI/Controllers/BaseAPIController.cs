@@ -23,19 +23,10 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [HttpGet]
         public async Task<ResponseDto> GetAllAsync()
         {
-            try
-            {
-                var models = await _repo.GetAllAsync();
-                var dtos = _mapper.Map<List<TDto>>(models);
-                _response.Result = dtos;
-                _response.IsSuccess = true;
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.ToString() };
-            }
-
+            var models = await _repo.GetAllAsync();
+            var dtos = _mapper.Map<List<TDto>>(models);
+            _response.Result = dtos;
+            _response.IsSuccess = true;
             return _response;
         }
 
@@ -43,26 +34,20 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [Route("{id}")]
         public async Task<ResponseDto> GetByIdAsync(int id)
         {
-            try
-            {
-                var model = await _repo.GetByIdAsync(id);
-                if(model == null)
-                {
-                    _response.IsSuccess = false;
-                    _response.ErrorMessages = new List<string> { "not found" };
-                }
-                else
-                {
-                    _response.IsSuccess = true;
-                    var dto = _mapper.Map<TDto>(model);
-                    _response.Result = dto;
-                }          
-            }
-            catch (Exception ex)
+            var model = await _repo.GetByIdAsync(id);
+            if (model == null)
             {
                 _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.ToString() };
+                _response.ErrorMessages = new List<string> { "not found" };
             }
+            else
+            {
+                _response.IsSuccess = true;
+                var dto = _mapper.Map<TDto>(model);
+                _response.Result = dto;
+            }
+
+            //throw new Exception("test exception from GetByIdAsync");
 
             return _response;
         }
@@ -71,25 +56,17 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [Route("name/{name}")]
         public async Task<ResponseDto> GetByNameAsync(string name)
         {
-            try
-            {
-                var model = await _repo.GetByNameAsync(name);
-                if (model == null)
-                {
-                    _response.IsSuccess = false;
-                    _response.ErrorMessages = new List<string> { "not found" };
-                }
-                else
-                {
-                    _response.IsSuccess = true;
-                    var dto = _mapper.Map<TDto>(model);
-                    _response.Result = dto;
-                }
-            }
-            catch (Exception ex)
+            var model = await _repo.GetByNameAsync(name);
+            if (model == null)
             {
                 _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.ToString() };
+                _response.ErrorMessages = new List<string> { "not found" };
+            }
+            else
+            {
+                _response.IsSuccess = true;
+                var dto = _mapper.Map<TDto>(model);
+                _response.Result = dto;
             }
 
             return _response;
@@ -114,19 +91,11 @@ namespace ECommerce.APIs.ItemAPI.Controllers
                 return _response;
             }
 
-            try
-            {
-                _mapper.Map(dto, model);
-                await _repo.UpdateAsync(model);
-                await _repo.SaveChangesAsync();
-                _response.Result = _mapper.Map<TDto>(model);
-                _response.IsSuccess = true;
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.ToString() };
-            }
+            _mapper.Map(dto, model);
+            await _repo.UpdateAsync(model);
+            await _repo.SaveChangesAsync();
+            _response.Result = _mapper.Map<TDto>(model);
+            _response.IsSuccess = true;
 
             return _response;
         }
@@ -142,19 +111,11 @@ namespace ECommerce.APIs.ItemAPI.Controllers
                 return _response;
             }
 
-            try
-            {
-                var model = _mapper.Map<TModel>(dto);
-                await _repo.CreateAsync(model);
-                await _repo.SaveChangesAsync();
-                _response.Result = _mapper.Map<TDto>(model);
-                _response.IsSuccess = true;
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.ToString() };
-            }
+            var model = _mapper.Map<TModel>(dto);
+            await _repo.CreateAsync(model);
+            await _repo.SaveChangesAsync();
+            _response.Result = _mapper.Map<TDto>(model);
+            _response.IsSuccess = true;
 
             return _response;
         }
@@ -163,25 +124,17 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [HttpDelete]
         public async Task<ResponseDto> DeleteAsync([FromBody]int id)
         {
-            try
+            var model = await _repo.GetByIdAsync(id);
+            if (model == null)
             {
-                var model = await _repo.GetByIdAsync(id);
-                if(model == null)
-                {
-                    _response.ErrorMessages = new List<string> { "not found to delete" };
-                    _response.IsSuccess = false;
-                }
-                else
-                {
-                    await _repo.DeleteAsync(model);
-                    await _repo.SaveChangesAsync();
-                    _response.IsSuccess = true;
-                }              
-            }
-            catch (Exception ex)
-            {
+                _response.ErrorMessages = new List<string> { "not found to delete" };
                 _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.ToString() };
+            }
+            else
+            {
+                await _repo.DeleteAsync(model);
+                await _repo.SaveChangesAsync();
+                _response.IsSuccess = true;
             }
 
             return _response;

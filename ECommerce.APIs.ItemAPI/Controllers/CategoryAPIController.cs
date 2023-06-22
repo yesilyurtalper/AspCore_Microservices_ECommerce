@@ -20,18 +20,10 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [Route("brandid/{brandId}")]
         public async Task<ResponseDto> GetByBrandIdAsync(int brandId)
         {
-            try
-            {
-                var entities = await _categoryRepo.GetAllCategoriesByBrandIdAsync(brandId);
-                var dtos = _mapper.Map<List<BaseDto>>(entities);
-                _response.Result = dtos;
-                _response.IsSuccess = true;
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.ToString() };
-            }
+            var entities = await _categoryRepo.GetAllCategoriesByBrandIdAsync(brandId);
+            var dtos = _mapper.Map<List<BaseDto>>(entities);
+            _response.Result = dtos;
+            _response.IsSuccess = true;
 
             return _response;
         }
@@ -40,18 +32,10 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [Route("outofbrandid/{brandId}")]
         public async Task<ResponseDto> GetOutOfBrandIdAsync(int brandId)
         {
-            try
-            {
-                var entities = await _categoryRepo.GetAllCategoriesOutOfBrandIdAsync(brandId);
-                var dtos = _mapper.Map<List<BaseDto>>(entities);
-                _response.Result = dtos;
-                _response.IsSuccess = true;
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.ToString() };
-            }
+            var entities = await _categoryRepo.GetAllCategoriesOutOfBrandIdAsync(brandId);
+            var dtos = _mapper.Map<List<BaseDto>>(entities);
+            _response.Result = dtos;
+            _response.IsSuccess = true;
 
             return _response;
         }

@@ -7,6 +7,7 @@ using ECommerce.ItemService.Infra;
 using System.Text.Json.Serialization;
 using ECommerce.ItemService.Infra.DBContext;
 using Microsoft.EntityFrameworkCore;
+using ECommerce.ItemService.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -74,12 +75,12 @@ var app = builder.Build();
 //Migrate latest database changes during startup
 using (var scope = app.Services.CreateScope())
 {
-    var dbContext = scope.ServiceProvider
-        .GetRequiredService<ItemAPIDbContext>();
-
-    // Here is the migration executed
+    var dbContext = scope.ServiceProvider.GetRequiredService<ItemAPIDbContext>();
     dbContext.Database.Migrate();
 }
+
+//custom global exception handling middleware
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -88,7 +89,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+//app.UseSerilogRequestLogging();
+
 app.UseHttpsRedirection();
+app.UseCors("all");
+
 app.UseAuthentication();
 app.UseAuthorization();
 
