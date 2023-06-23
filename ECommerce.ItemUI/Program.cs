@@ -8,6 +8,8 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
+//test after renaming
+
 // Add services to the container.
 services.AddControllersWithViews();
 services.AddControllers();
