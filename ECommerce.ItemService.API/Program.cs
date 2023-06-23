@@ -9,7 +9,7 @@ using ECommerce.ItemService.Infra.DBContext;
 using Microsoft.EntityFrameworkCore;
 using ECommerce.ItemService.Api.Middleware;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args); //test
 
 // Add services to the container.
 
