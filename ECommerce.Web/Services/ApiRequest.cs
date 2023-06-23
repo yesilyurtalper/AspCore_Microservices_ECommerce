@@ -1,6 +1,6 @@
-﻿using static ECommerce.Web.StaticData;
+﻿using static ECommer.ItemUI.StaticData;
 
-namespace ECommerce.Web.Services
+namespace ECommer.ItemUI.Services
 {
     public class ApiRequest
     {

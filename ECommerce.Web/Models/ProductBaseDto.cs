@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ECommerce.Web.Models
+namespace ECommer.ItemUI.Models
 {
     public class ProductBaseDto : BaseDto
     {

@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using ECommerce.Web.Models;
+using ECommer.ItemUI.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace ECommerce.Web.Controllers
+namespace ECommer.ItemUI.Controllers
 {
     public class HomeController : Controller
     {

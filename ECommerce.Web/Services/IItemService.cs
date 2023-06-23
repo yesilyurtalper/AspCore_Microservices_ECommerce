@@ -1,7 +1,7 @@
 ﻿
-using ECommerce.Web.Models;
+using ECommer.ItemUI.Models;
 
-namespace ECommerce.Web.Services
+namespace ECommer.ItemUI.Services
 {
     public interface IItemService
     {

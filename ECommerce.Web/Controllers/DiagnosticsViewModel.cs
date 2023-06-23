@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
 
-namespace ECommerce.Web.Controllers
+namespace ECommer.ItemUI.Controllers
 {
     public class DiagnosticsViewModel
     {

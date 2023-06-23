@@ -1,11 +1,11 @@
-﻿using ECommerce.Web.Models;
-using ECommerce.Web.Services;
+﻿using ECommer.ItemUI.Models;
+using ECommer.ItemUI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 
-namespace ECommerce.Web.Controllers
+namespace ECommer.ItemUI.Controllers
 {
     [Route("brand")]
     public class BrandController : BaseItemController<BrandDto>

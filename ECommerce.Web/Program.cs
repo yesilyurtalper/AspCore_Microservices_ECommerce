@@ -1,7 +1,7 @@
 ﻿using System.Globalization; 
 using System.IdentityModel.Tokens.Jwt;
-using ECommerce.Web;
-using ECommerce.Web.Services;
+using ECommer.ItemUI;
+using ECommer.ItemUI.Services;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 

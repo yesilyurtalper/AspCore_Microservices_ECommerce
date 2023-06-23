@@ -1,11 +1,11 @@
-﻿using ECommerce.Web.Models;
-using ECommerce.Web.Services;
+﻿using ECommer.ItemUI.Models;
+using ECommer.ItemUI.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace ECommerce.Web.Controllers
+namespace ECommer.ItemUI.Controllers
 {
     public class BaseItemController<TDto> : Controller where TDto : BaseDto
     {

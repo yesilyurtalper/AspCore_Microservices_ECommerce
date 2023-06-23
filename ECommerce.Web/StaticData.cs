@@ -1,4 +1,4 @@
-﻿namespace ECommerce.Web
+﻿namespace ECommer.ItemUI
 {
     public static class StaticData
     {

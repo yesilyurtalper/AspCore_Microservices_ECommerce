@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ECommerce.Web.Controllers
+namespace ECommer.ItemUI.Controllers
 {
     public class DiagnosticsController : Controller
     {

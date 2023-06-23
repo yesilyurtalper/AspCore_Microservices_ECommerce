@@ -1,10 +1,10 @@
 ﻿using System.Text;
-using ECommerce.Web.Models;
+using ECommer.ItemUI.Models;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authentication;
-using static ECommerce.Web.StaticData;
+using static ECommer.ItemUI.StaticData;
 
-namespace ECommerce.Web.Services
+namespace ECommer.ItemUI.Services
 {
     public class ItemService : BaseService, IItemService 
     {
