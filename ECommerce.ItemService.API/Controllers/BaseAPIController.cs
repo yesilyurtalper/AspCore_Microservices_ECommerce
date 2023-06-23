@@ -28,8 +28,6 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             _response.Result = dtos;
             _response.IsSuccess = true;
 
-            throw new Exception("asdfasdfasdfasdf");
-
             return _response;
         }
 
