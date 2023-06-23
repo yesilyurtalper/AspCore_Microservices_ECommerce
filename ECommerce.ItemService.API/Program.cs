@@ -8,6 +8,7 @@ using System.Text.Json.Serialization;
 using ECommerce.ItemService.Infra.DBContext;
 using Microsoft.EntityFrameworkCore;
 using ECommerce.ItemService.Api.Middleware;
+using ECommerce.ItemService.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args); //test
 
@@ -80,7 +81,7 @@ using (var scope = app.Services.CreateScope())
 }
 
 //custom global exception handling middleware
-app.UseMiddleware<ExceptionMiddleware>();
+app.UseExceptionMiddleware();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

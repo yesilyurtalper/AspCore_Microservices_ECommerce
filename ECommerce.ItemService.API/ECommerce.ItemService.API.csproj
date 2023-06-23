@@ -23,8 +23,4 @@
     <ProjectReference Include="..\ECommerce.ItemService.Infrastructure\ECommerce.ItemService.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Middleware\" />
-  </ItemGroup>
-
 </Project>

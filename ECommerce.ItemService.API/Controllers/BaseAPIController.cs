@@ -27,6 +27,9 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             var dtos = _mapper.Map<List<TDto>>(models);
             _response.Result = dtos;
             _response.IsSuccess = true;
+
+            throw new Exception("asdfasdfasdfasdf");
+
             return _response;
         }
 

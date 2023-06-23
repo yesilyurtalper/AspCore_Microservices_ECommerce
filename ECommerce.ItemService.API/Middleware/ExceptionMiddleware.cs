@@ -1,6 +1,7 @@
 ﻿
 using ECommerce.ItemService.Application.Dtos;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 
 namespace ECommerce.ItemService.Api.Middleware;
@@ -79,6 +80,5 @@ public class ExceptionMiddleware
         var logMessage = JsonSerializer.Serialize(problem);
         _logger.LogError(logMessage);
         await httpContext.Response.WriteAsJsonAsync(problem);
-
     }
 }
