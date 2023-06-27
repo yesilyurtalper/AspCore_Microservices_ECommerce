@@ -1,4 +1,4 @@
-﻿namespace ECommerce.ItemService.Application.Dtos;
+﻿namespace ECommerce.ItemService.Application.DTOs;
 
 public class ResponseDto
 {

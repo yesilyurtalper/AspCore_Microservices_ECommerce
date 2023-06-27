@@ -2,7 +2,8 @@
 using AutoMapper;
 using ECommerce.ItemService.Domain;
 using ECommerce.ItemService.Application.Contracts.Persistence;
-using ECommerce.ItemService.Application.Dtos;
+using ECommerce.ItemService.Application.DTOs;
+using MediatR;
 
 namespace ECommerce.APIs.ItemAPI.Controllers
 {
@@ -11,7 +12,8 @@ namespace ECommerce.APIs.ItemAPI.Controllers
     {
         private ICategoryRepository _categoryRepo;
 
-        public CategoryAPIController(ICategoryRepository repo, IMapper mapper) : base(repo, mapper)
+        public CategoryAPIController(ICategoryRepository repo, IMapper mapper, IMediator mediator) 
+            : base(repo, mapper, mediator)
         {
             _categoryRepo = repo;
         }

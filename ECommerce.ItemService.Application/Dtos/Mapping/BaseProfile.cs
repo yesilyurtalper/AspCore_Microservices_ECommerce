@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ECommerce.ItemService.Domain;
 
-namespace ECommerce.ItemService.Application.Dtos.Mapping;
+namespace ECommerce.ItemService.Application.DTOs.Mapping;
 
 public class BaseProfile : Profile
 {

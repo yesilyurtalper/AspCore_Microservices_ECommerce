@@ -1,5 +1,6 @@
 ﻿
 using ECommerce.ItemService.Application.Contracts.Persistence;
+using ECommerce.ItemService.Domain;
 using ECommerce.ItemService.Infra.DBContext;
 using ECommerce.ItemService.Infra.Services.Persistence;
 using Microsoft.AspNetCore.Http;

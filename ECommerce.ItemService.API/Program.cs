@@ -7,8 +7,9 @@ using ECommerce.ItemService.Infra;
 using System.Text.Json.Serialization;
 using ECommerce.ItemService.Infra.DBContext;
 using Microsoft.EntityFrameworkCore;
-using ECommerce.ItemService.Api.Middleware;
 using ECommerce.ItemService.API.Middleware;
+using Autofac;
+
 
 var builder = WebApplication.CreateBuilder(args); //test
 
@@ -41,8 +42,8 @@ if (builder.Environment.IsDevelopment())
     });
 }
 
-builder.Services.AddApplicationServices();
 builder.Services.AddInfraServices(builder.Configuration);
+builder.Services.AddApplicationServices();
 
 builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
 {
@@ -69,7 +70,6 @@ builder.Services.AddAuthorization(options =>
         policy.RequireClaim("RealmRole", "ECommerceAdmin");
     });
 });
-
 
 var app = builder.Build();
 

@@ -3,16 +3,18 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using ECommerce.ItemService.Domain;
 using ECommerce.ItemService.Application.Contracts.Persistence;
-using ECommerce.ItemService.Application.Dtos;
+using ECommerce.ItemService.Application.DTOs;
+using MediatR;
 
 namespace ECommerce.APIs.ItemAPI.Controllers
 {
     [Route("itemapi/brands")]
     public class BrandAPIController : BaseAPIController<Brand, BaseDto>
     {
-        private IBrandRepository _brandRepo;
+        private readonly IBrandRepository _brandRepo;
 
-        public BrandAPIController(IBrandRepository repo, IMapper mapper) : base(repo, mapper)
+        public BrandAPIController(IBrandRepository repo, IMapper mapper, IMediator mediator) : 
+            base(repo, mapper, mediator)
         {
             _brandRepo = repo;
         }

@@ -1,5 +1,6 @@
 ﻿
-using ECommerce.ItemService.Application.Dtos;
+using ECommerce.ItemService.Application.DTOs;
+using ECommerce.ItemService.Application.Exceptions;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
@@ -33,50 +34,21 @@ public class ExceptionMiddleware
     {
         HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
         ResponseDto problem = new();
-        
-        //switch (ex)
-        //{
-        //    case BadRequestException badRequestException:
-        //        statusCode = HttpStatusCode.BadRequest;
-        //        problem = new CustomProblemDetails
-        //        {
-        //            Title = badRequestException.Message,
-        //            Status = (int)statusCode,
-        //            Detail = badRequestException.InnerException?.Message,
-        //            Type = nameof(BadRequestException),
-        //            Errors = badRequestException.ValidationErrors
-        //        };
-        //        break;
-        //    case NotFoundException NotFound:
-        //        statusCode = HttpStatusCode.NotFound;
-        //        problem = new CustomProblemDetails
-        //        {
-        //            Title = NotFound.Message,
-        //            Status = (int)statusCode,
-        //            Type = nameof(NotFoundException),
-        //            Detail = NotFound.InnerException?.Message,
-        //        };
-        //        break;
-        //    default:
-        //        problem = new CustomProblemDetails
-        //        {
-        //            Title = ex.Message,
-        //            Status = (int)statusCode,
-        //            Type = nameof(HttpStatusCode.InternalServerError),
-        //            Detail = ex.StackTrace,
-        //        };
-        //        break;
-        //}
 
-        //httpContext.Response.StatusCode = (int)statusCode;
-        //var logMessage = JsonConvert.SerializeObject(problem);
-        //_logger.LogError(logMessage);
-        //await httpContext.Response.WriteAsJsonAsync(problem);
+        switch (ex)
+        {
+            case BadRequestException:
+                statusCode = HttpStatusCode.BadRequest;
+                break;
+            case NotFoundException:
+                statusCode = HttpStatusCode.NotFound;
+                break;
+        }
 
         httpContext.Response.StatusCode = (int)statusCode;
+        problem.ResultCode = statusCode.ToString();
         problem.ErrorMessages = new List<string> { ex.ToString() };
         problem.DisplayMessage = ex.Message;
-        problem.ResultCode = "500"; 
         var logMessage = JsonSerializer.Serialize(problem);
         _logger.LogError(logMessage);
         await httpContext.Response.WriteAsJsonAsync(problem);
