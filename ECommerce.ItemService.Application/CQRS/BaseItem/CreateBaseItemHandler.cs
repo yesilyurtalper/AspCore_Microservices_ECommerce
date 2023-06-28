@@ -27,7 +27,7 @@ public class CreateBaseItemHandler<TModel,TDto> :
 
         var model = await _repo.GetByNameAsync(command._dto.Name);
         if (model != null)
-            throw new BadRequestException($"{nameof(TModel)} with name = {command._dto.Name} already exists!" );
+            throw new BadRequestException($"{typeof(TModel).Name} with name = {command._dto.Name} already exists!" );
 
         model = _mapper.Map<TModel>(command._dto);
         await _repo.CreateAsync(model);

@@ -9,25 +9,28 @@ using ECommerce.ItemService.Infra.DBContext;
 using Microsoft.EntityFrameworkCore;
 using ECommerce.ItemService.API.Middleware;
 using Autofac;
+using ECommerce.ItemService.API.Filters;
+using Autofac.Core;
+using Microsoft.AspNetCore.Mvc;
 
+var builder = WebApplication.CreateBuilder(args); 
+var Services = builder.Services;
 
-var builder = WebApplication.CreateBuilder(args); //test
+Services.AddControllers(options => { 
+    options.Filters.Add(new ValidationFilter()); }).
+    AddJsonOptions(options =>
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-// Add services to the container.
-
-//builder.Services.AddControllers().AddNewtonsoftJson(options =>
-//    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
-builder.Services.AddControllers().AddJsonOptions(options =>
-    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-
-builder.Services.AddControllers();
+Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 if (builder.Environment.IsDevelopment())
 {
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen(c => {
+    Services.AddEndpointsApiExplorer();
+    Services.AddSwaggerGen(c => {
 
         //c.OperationFilter<SwaggerRequestHeader>();
 
@@ -42,20 +45,20 @@ if (builder.Environment.IsDevelopment())
     });
 }
 
-builder.Services.AddInfraServices(builder.Configuration);
-builder.Services.AddApplicationServices();
+Services.AddInfraServices(builder.Configuration);
+Services.AddApplicationServices();
 
-builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
+Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
 {
     options.Authority = Environment.GetEnvironmentVariable("OIDC_AUTHORITY");
     options.RequireHttpsMetadata = false;
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateAudience = false,
+        ValidateAudience = false
     };
 });
 
-builder.Services.AddAuthorization(options =>
+Services.AddAuthorization(options =>
 {
     options.AddPolicy("ECommerceWebClient", policy =>
     {
@@ -63,7 +66,7 @@ builder.Services.AddAuthorization(options =>
     });
 });
 
-builder.Services.AddAuthorization(options =>
+Services.AddAuthorization(options =>
 {
     options.AddPolicy("ECommerceAdmin", policy =>
     {
@@ -83,7 +86,6 @@ using (var scope = app.Services.CreateScope())
 //custom global exception handling middleware
 app.UseExceptionMiddleware();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

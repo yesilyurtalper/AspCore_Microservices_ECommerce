@@ -21,17 +21,6 @@ public static class ApplicationServiceRegistration
             options.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
         });
 
-        //var builder = new ContainerBuilder();
-        //builder.RegisterGeneric(typeof(IRequestHandler<,>)).AsImplementedInterfaces();
-
-        //services.AddTransient(typeof(IRequestHandler<Category,BaseDto>), typeof(CreateBaseItemCommandHandler<,>));
-
-            //services.AddTransient<
-            //    IRequestHandler<CreateBaseItemCommand<BaseDto>, ResponseDto>,
-            //    CreateBaseItemCommandHandler<BaseItem, BaseDto>
-            //    >();
-
-        //No service for type 'MediatR.IRequestHandler`2[ECommerce.ItemService.Application.CQRS.BaseItem.Commands.CreateBaseItemCommand`1[ECommerce.ItemService.Application.DTOs.BaseDto],ECommerce.ItemService.Application.DTOs.ResponseDto]' has been registered.
         return services;
     }
 }

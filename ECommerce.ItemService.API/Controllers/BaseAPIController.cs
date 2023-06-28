@@ -6,6 +6,7 @@ using ECommerce.ItemService.Application.Contracts.Persistence;
 using ECommerce.ItemService.Application.DTOs;
 using MediatR;
 using ECommerce.ItemService.Application.CQRS.BaseItem;
+using System.Xml.Linq;
 
 namespace ECommerce.APIs.ItemAPI.Controllers
 {
@@ -28,52 +29,24 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [HttpGet]
         public async Task<ResponseDto> GetAllAsync()
         {
-            var models = await _repo.GetAllAsync();
-            var dtos = _mapper.Map<List<TDto>>(models);
-            _response.Result = dtos;
-            _response.IsSuccess = true;
-
-            return _response;
+            var req = new GetAll<TModel, TDto>();
+            return await _mediator.Send(req);
         }
 
         [HttpGet]
         [Route("{id}")]
         public async Task<ResponseDto> GetByIdAsync(int id)
         {
-            var model = await _repo.GetByIdAsync(id);
-            if (model == null)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { "not found" };
-            }
-            else
-            {
-                _response.IsSuccess = true;
-                var dto = _mapper.Map<TDto>(model);
-                _response.Result = dto;
-            }
-
-            return _response;
+            var req = new GetById<TModel,TDto>(id);
+            return await _mediator.Send(req);
         }
 
         [HttpGet]
         [Route("name/{name}")]
         public async Task<ResponseDto> GetByNameAsync(string name)
         {
-            var model = await _repo.GetByNameAsync(name);
-            if (model == null)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { "not found" };
-            }
-            else
-            {
-                _response.IsSuccess = true;
-                var dto = _mapper.Map<TDto>(model);
-                _response.Result = dto;
-            }
-
-            return _response;
+            var req = new GetByName<TModel,TDto>(name);
+            return await _mediator.Send(req);
         }
 
         [Authorize(Policy = "ECommerceAdmin")]

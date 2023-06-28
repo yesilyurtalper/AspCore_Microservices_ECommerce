@@ -46,7 +46,7 @@ public class ExceptionMiddleware
         }
 
         httpContext.Response.StatusCode = (int)statusCode;
-        problem.ResultCode = statusCode.ToString();
+        problem.ResultCode = httpContext.Response.StatusCode.ToString();
         problem.ErrorMessages = new List<string> { ex.ToString() };
         problem.DisplayMessage = ex.Message;
         var logMessage = JsonSerializer.Serialize(problem);
