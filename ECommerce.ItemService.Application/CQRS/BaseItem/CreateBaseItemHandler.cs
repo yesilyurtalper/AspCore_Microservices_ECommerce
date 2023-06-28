@@ -6,7 +6,8 @@ using MediatR;
 
 namespace ECommerce.ItemService.Application.CQRS.BaseItem;
 
-public class CreateBaseItemHandler<TModel, TDto> : IRequestHandler<CreateBaseItem<TDto>, ResponseDto>
+public class CreateBaseItemHandler<TModel,TDto> : 
+    IRequestHandler<CreateBaseItem<TModel,TDto>, ResponseDto>
     where TModel : Domain.BaseItem where TDto : BaseDto
 
 {
@@ -20,7 +21,7 @@ public class CreateBaseItemHandler<TModel, TDto> : IRequestHandler<CreateBaseIte
         _mapper = mapper;
     }
 
-    public async Task<ResponseDto> Handle(CreateBaseItem<TDto> command, CancellationToken cancellationToken)
+    public async Task<ResponseDto> Handle(CreateBaseItem<TModel,TDto> command, CancellationToken cancellationToken)
     {
         var _response = new ResponseDto();
 

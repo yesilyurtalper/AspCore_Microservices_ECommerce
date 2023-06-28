@@ -2,10 +2,12 @@
 
 namespace ECommerce.ItemService.Application.DTOs.Validation;
 
-public class ProductBaseDtoValidator: AbstractValidator<ProductBaseDto>
+public class ProductDtoValidator: AbstractValidator<ProductDto>
 {
-    public ProductBaseDtoValidator()
+    public ProductDtoValidator()
     {
+        Include(new BaseDtoValidator());
+
         RuleFor(p => p.Price).
             Cascade(CascadeMode.Stop).
             NotEmpty().WithMessage("{PropertyName} should not be empty").

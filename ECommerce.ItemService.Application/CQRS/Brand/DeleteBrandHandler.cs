@@ -4,9 +4,9 @@ using ECommerce.ItemService.Application.CQRS.BaseItem;
 
 namespace ECommerce.ItemService.Application.CQRS.Brand;
 
-public class CreateBrandHandler : CreateBaseItemHandler <Domain.Brand,DTOs.BaseDto>
+public class DeleteBrandHandler : DeleteBaseItemHandler <Domain.Brand,DTOs.BaseDto>
 {
-    public CreateBrandHandler(IBrandRepository repo, IMapper mapper) :
+    public DeleteBrandHandler(IBrandRepository repo, IMapper mapper) :
         base(repo,mapper)
     {
         

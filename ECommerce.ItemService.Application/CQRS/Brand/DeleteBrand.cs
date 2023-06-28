@@ -3,9 +3,9 @@ using ECommerce.ItemService.Application.DTOs;
 
 namespace ECommerce.ItemService.Application.CQRS.Brand;
 
-public class CreateBrand : CreateBaseItem<Domain.Brand,BaseDto>
+public class DeleteBrand : DeleteBaseItem<Domain.Brand,BaseDto>
 {
-    public CreateBrand(BaseDto dto) : base(dto)
+    public DeleteBrand(int id) : base(id)
     {
         
     }

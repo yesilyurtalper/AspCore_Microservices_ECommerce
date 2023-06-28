@@ -4,9 +4,9 @@ using ECommerce.ItemService.Application.CQRS.BaseItem;
 
 namespace ECommerce.ItemService.Application.CQRS.Product;
 
-public class CreateProductCommandHandler : CreateBaseItemHandler <Domain.Product,DTOs.ProductDto>
+public class DeleteProductHandler : DeleteBaseItemHandler <Domain.Product, DTOs.ProductDto>
 {
-    public CreateProductCommandHandler(IProductRepository repo, IMapper mapper) :
+    public DeleteProductHandler(IProductRepository repo, IMapper mapper) :
         base(repo,mapper)
     {
         

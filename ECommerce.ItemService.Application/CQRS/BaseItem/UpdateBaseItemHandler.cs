@@ -6,7 +6,8 @@ using MediatR;
 
 namespace ECommerce.ItemService.Application.CQRS.BaseItem;
 
-public class UpdateBaseItemHandler<TModel, TDto> : IRequestHandler<UpdateBaseItem<TDto>, ResponseDto>
+public class UpdateBaseItemHandler<TModel,TDto> : 
+    IRequestHandler<UpdateBaseItem<TModel,TDto>, ResponseDto>
     where TModel : Domain.BaseItem where TDto : BaseDto
 
 {
@@ -20,17 +21,17 @@ public class UpdateBaseItemHandler<TModel, TDto> : IRequestHandler<UpdateBaseIte
         _mapper = mapper;
     }
 
-    public async Task<ResponseDto> Handle(UpdateBaseItem<TDto> command, CancellationToken cancellationToken)
+    public async Task<ResponseDto> Handle(UpdateBaseItem<TModel,TDto> command, CancellationToken cancellationToken)
     {
         var dto = command._dto;
         var _response = new ResponseDto();
 
         if (dto == null || dto.Id == 0)
-            throw new BadRequestException("Invalid input");
+            throw new BadRequestException("No input or invalid input for Id");
 
         var model = await _repo.GetByIdAsync(dto.Id);
         if (model == null)
-            throw new NotFoundException(nameof(TModel), dto.Id);
+            throw new NotFoundException(typeof(TModel).Name, dto.Id);
 
         _mapper.Map(dto, model);
         await _repo.UpdateAsync(model);

@@ -3,10 +3,10 @@ using ECommerce.ItemService.Application.DTOs;
 
 namespace ECommerce.ItemService.Application.CQRS.Category;
 
-public class CreateCategory : CreateBaseItem<Domain.Category,BaseDto>
+public class DeleteCategory : DeleteBaseItem<Domain.Category,BaseDto>
 {
-    public CreateCategory(BaseDto dto) : base(dto)
+    public DeleteCategory(int id) : base(id)
     {
-
+        
     }
 }

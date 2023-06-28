@@ -4,9 +4,9 @@ using ECommerce.ItemService.Application.CQRS.BaseItem;
 
 namespace ECommerce.ItemService.Application.CQRS.Product;
 
-public class CreateProductCommandHandler : CreateBaseItemHandler <Domain.Product,DTOs.ProductDto>
+public class UpdateProductHandler : UpdateBaseItemHandler <Domain.Product,DTOs.ProductDto>
 {
-    public CreateProductCommandHandler(IProductRepository repo, IMapper mapper) :
+    public UpdateProductHandler(IProductRepository repo, IMapper mapper) :
         base(repo,mapper)
     {
         

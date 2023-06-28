@@ -80,7 +80,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [HttpPost]
         public async Task<ResponseDto> UpdateAsync(TDto dto)
         {
-            UpdateBaseItem<TDto> command = new(dto);
+            UpdateBaseItem<TModel,TDto> command = new(dto);
             return await _mediator.Send(command);
         }
 
@@ -88,7 +88,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [HttpPut]
         public async Task<ResponseDto> CreateAsync(TDto dto)
         {
-            CreateBaseItem<TDto> command = new (dto);
+            CreateBaseItem<TModel,TDto> command = new (dto);
             return await _mediator.Send(command);
         }
 
@@ -96,7 +96,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [HttpDelete]
         public async Task<ResponseDto> DeleteAsync([FromBody]int id)
         {
-            DeleteBaseItem command = new(id);
+            DeleteBaseItem<TModel, TDto> command = new(id);
             return await _mediator.Send(command);
         }
     }
