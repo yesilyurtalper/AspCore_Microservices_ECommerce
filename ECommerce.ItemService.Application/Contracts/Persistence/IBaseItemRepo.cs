@@ -11,5 +11,4 @@ public interface IBaseItemRepo<TModel> where TModel : BaseItem
     Task CreateAsync(TModel model);
     Task UpdateAsync(TModel model);
     Task DeleteAsync(TModel model);
-    Task SaveChangesAsync();
 }

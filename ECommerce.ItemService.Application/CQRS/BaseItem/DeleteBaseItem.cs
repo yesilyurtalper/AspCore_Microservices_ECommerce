@@ -41,7 +41,6 @@ public class DeleteBaseItemHandler<TModel, TDto> :
             throw new NotFoundException(typeof(TModel).Name, command.Id);
 
         await _repo.DeleteAsync(model);
-        await _repo.SaveChangesAsync();
         _response.IsSuccess = true;
 
         return _response;

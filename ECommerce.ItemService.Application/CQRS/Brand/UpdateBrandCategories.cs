@@ -32,7 +32,6 @@ public class UpdateBrandCategoriesHandler : IRequestHandler<UpdateBrandCategorie
     {
         var _response = new ResponseDto();
         await _repo.UpdateBrandCategoriesAsync(request._id, request._categoryIds);
-        await _repo.SaveChangesAsync();
         _response.Result = _mapper.Map<BaseDto>(await _repo.GetByIdAsync(request._id));
         _response.IsSuccess = true;
 

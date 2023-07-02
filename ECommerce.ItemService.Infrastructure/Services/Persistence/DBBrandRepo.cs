@@ -63,21 +63,25 @@ public class DBBrandRepo : DBBaseItemRepo<Brand>, IBrandRepo
     {
         var added = categoryIds.Select(x => new BrandCategory { BrandId = brandId, CategoryId = x });
         await _dbContext.BrandCategories.AddRangeAsync(added);
+        await _dbContext.SaveChangesAsync();
     }
 
     public async Task RemoveBrandCategoriesAsync(int brandId, List<int> categoryIds)
     {
         var removed = categoryIds.Select(x => new BrandCategory { BrandId = brandId, CategoryId = x });
-        await Task.Run(() => _dbContext.BrandCategories.RemoveRange(removed));
+        _dbContext.BrandCategories.RemoveRange(removed);
+        await _dbContext.SaveChangesAsync();
     }
 
     public async Task UpdateBrandCategoriesAsync(int brandId, List<int> categoryIds)
     {
         var removed =  await _dbContext.BrandCategories.Where(x => x.BrandId == brandId).ToListAsync();
-        await Task.Run(() => _dbContext.BrandCategories.RemoveRange(removed));
+        _dbContext.BrandCategories.RemoveRange(removed);
 
         var added = categoryIds.Select(x => new BrandCategory { BrandId = brandId, CategoryId = x });
         await _dbContext.AddRangeAsync(added);
+
+        await _dbContext.SaveChangesAsync();
     }
 }
 

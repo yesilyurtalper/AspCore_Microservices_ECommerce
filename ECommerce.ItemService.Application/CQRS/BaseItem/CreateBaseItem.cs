@@ -42,7 +42,6 @@ public class CreateBaseItemHandler<TModel, TDto> :
 
         model = _mapper.Map<TModel>(command._dto);
         await _repo.CreateAsync(model);
-        await _repo.SaveChangesAsync();
         _response.Result = _mapper.Map<TDto>(model);
         _response.IsSuccess = true;
 

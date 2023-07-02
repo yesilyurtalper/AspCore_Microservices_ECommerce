@@ -20,19 +20,19 @@ public class DBBaseItemRepo<TModel> : IBaseItemRepo<TModel> where TModel : BaseI
     public virtual async Task CreateAsync(TModel model)
     {
         await _dbSet.AddAsync(model);
+        await _dbContext.SaveChangesAsync();
     }
 
     public virtual async Task UpdateAsync(TModel model)
     {
-        await Task.Run(() => 
-        {
-            _dbSet.Update(model);
-        });
+        _dbSet.Update(model);
+        await _dbContext.SaveChangesAsync();
     }
 
     public virtual async Task DeleteAsync(TModel model)
     {
-        await Task.Run( () => _dbSet.Remove(model));
+        _dbSet.Remove(model);
+        await _dbContext.SaveChangesAsync();
     }
 
     public virtual async Task<TModel> GetByIdAsync(int id)
@@ -48,10 +48,5 @@ public class DBBaseItemRepo<TModel> : IBaseItemRepo<TModel> where TModel : BaseI
     public virtual async Task<List<TModel>> GetAllAsync()
     {
         return await _dbSet.ToListAsync();
-    }
-
-    public async Task SaveChangesAsync()
-    {
-        await _dbContext.SaveChangesAsync();
     }
 }

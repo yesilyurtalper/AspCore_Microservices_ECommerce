@@ -46,7 +46,6 @@ public class UpdateBaseItemHandler<TModel, TDto> :
 
         _mapper.Map(dto, model);
         await _repo.UpdateAsync(model);
-        await _repo.SaveChangesAsync();
         _response.Result = _mapper.Map<TDto>(model);
         _response.IsSuccess = true;
 
