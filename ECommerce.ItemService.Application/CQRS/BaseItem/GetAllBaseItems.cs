@@ -1,31 +1,29 @@
 ﻿using AutoMapper;
 using ECommerce.ItemService.Application.Contracts.Persistence;
 using ECommerce.ItemService.Application.DTOs;
-using ECommerce.ItemService.Application.Exceptions;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace ECommerce.ItemService.Application.CQRS.BaseItem;
 
-public class GetAllHandler<TModel, TDto> :
-    IRequestHandler<GetAll<TModel, TDto>, ResponseDto>
+public class GetAllBaseItems<TModel, TDto> : IRequest<ResponseDto>
+        where TModel : Domain.BaseItem where TDto : BaseDto
+{
+}
+
+public class GetAllBaseItemsHandler<TModel, TDto> :
+    IRequestHandler<GetAllBaseItems<TModel, TDto>, ResponseDto>
     where TModel : Domain.BaseItem where TDto : BaseDto
 {
-    private IRepository<TModel> _repo;
+    private IBaseItemRepo<TModel> _repo;
     private IMapper _mapper;
 
-    public GetAllHandler(IRepository<TModel> repo, IMapper mapper)
+    public GetAllBaseItemsHandler(IBaseItemRepo<TModel> repo, IMapper mapper)
     {
         _repo = repo;
         _mapper = mapper;
     }
 
-    public async Task<ResponseDto> Handle(GetAll<TModel, TDto> request, CancellationToken cancellationToken)
+    public async Task<ResponseDto> Handle(GetAllBaseItems<TModel, TDto> request, CancellationToken cancellationToken)
     {
         var _response = new ResponseDto();
         var models = await _repo.GetAllAsync();

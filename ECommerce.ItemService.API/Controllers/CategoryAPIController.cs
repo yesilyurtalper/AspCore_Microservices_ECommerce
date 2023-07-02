@@ -4,42 +4,33 @@ using ECommerce.ItemService.Domain;
 using ECommerce.ItemService.Application.Contracts.Persistence;
 using ECommerce.ItemService.Application.DTOs;
 using MediatR;
+using ECommerce.ItemService.Application.CQRS.Brand;
+using ECommerce.ItemService.Application.CQRS.Category;
 
 namespace ECommerce.APIs.ItemAPI.Controllers
 {
     [Route("itemapi/categories")]
     public class CategoryAPIController : BaseAPIController<Category, BaseDto>
     {
-        private ICategoryRepository _categoryRepo;
 
-        public CategoryAPIController(ICategoryRepository repo, IMapper mapper, IMediator mediator) 
-            : base(repo, mapper, mediator)
+        public CategoryAPIController(IMediator mediator) : base(mediator)
         {
-            _categoryRepo = repo;
         }
 
         [HttpGet]
         [Route("brandid/{brandId}")]
         public async Task<ResponseDto> GetByBrandIdAsync(int brandId)
         {
-            var entities = await _categoryRepo.GetAllCategoriesByBrandIdAsync(brandId);
-            var dtos = _mapper.Map<List<BaseDto>>(entities);
-            _response.Result = dtos;
-            _response.IsSuccess = true;
-
-            return _response;
+            var req = new GetCategoriesByBrandId(brandId);
+            return await _mediator.Send(req);
         }
 
         [HttpGet]
         [Route("outofbrandid/{brandId}")]
         public async Task<ResponseDto> GetOutOfBrandIdAsync(int brandId)
         {
-            var entities = await _categoryRepo.GetAllCategoriesOutOfBrandIdAsync(brandId);
-            var dtos = _mapper.Map<List<BaseDto>>(entities);
-            _response.Result = dtos;
-            _response.IsSuccess = true;
-
-            return _response;
+            var req = new GetCategoriesOutOfByBrandId(brandId);
+            return await _mediator.Send(req);
         }
     }
 }

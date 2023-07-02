@@ -14,14 +14,14 @@ using Autofac.Core;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args); 
-var Services = builder.Services;
+var services = builder.Services;
 
-Services.AddControllers(options => { 
+services.AddControllers(options => { 
     options.Filters.Add(new ValidationFilter()); }).
     AddJsonOptions(options =>
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-Services.Configure<ApiBehaviorOptions>(options =>
+services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
 });
@@ -29,8 +29,8 @@ Services.Configure<ApiBehaviorOptions>(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 if (builder.Environment.IsDevelopment())
 {
-    Services.AddEndpointsApiExplorer();
-    Services.AddSwaggerGen(c => {
+    services.AddEndpointsApiExplorer();
+    services.AddSwaggerGen(c => {
 
         //c.OperationFilter<SwaggerRequestHeader>();
 
@@ -45,10 +45,10 @@ if (builder.Environment.IsDevelopment())
     });
 }
 
-Services.AddInfraServices(builder.Configuration);
-Services.AddApplicationServices();
+services.AddInfraServices(builder.Configuration);
+services.AddApplicationServices();
 
-Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
+services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
 {
     options.Authority = Environment.GetEnvironmentVariable("OIDC_AUTHORITY");
     options.RequireHttpsMetadata = false;
@@ -58,7 +58,7 @@ Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
     };
 });
 
-Services.AddAuthorization(options =>
+services.AddAuthorization(options =>
 {
     options.AddPolicy("ECommerceWebClient", policy =>
     {
@@ -66,7 +66,7 @@ Services.AddAuthorization(options =>
     });
 });
 
-Services.AddAuthorization(options =>
+services.AddAuthorization(options =>
 {
     options.AddPolicy("ECommerceAdmin", policy =>
     {

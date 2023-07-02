@@ -3,7 +3,7 @@ using ECommerce.ItemService.Domain;
 
 namespace ECommerce.ItemService.Application.Contracts.Persistence;
 
-public interface IRepository<TModel> where TModel : BaseItem
+public interface IBaseItemRepo<TModel> where TModel : BaseItem
 {
     Task<List<TModel>> GetAllAsync();
     Task<TModel> GetByIdAsync(int id);

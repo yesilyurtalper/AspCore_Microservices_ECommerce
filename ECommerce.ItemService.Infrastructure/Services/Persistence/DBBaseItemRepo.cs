@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.ItemService.Infra.Services.Persistence;
 
-public class DBRepository<TModel> : IRepository<TModel> where TModel : BaseItem
+public class DBBaseItemRepo<TModel> : IBaseItemRepo<TModel> where TModel : BaseItem
 {
     protected readonly ItemAPIDbContext _dbContext;
     protected DbSet<TModel> _dbSet = null;
 
-    public DBRepository(ItemAPIDbContext dbContext)
+    public DBBaseItemRepo(ItemAPIDbContext dbContext)
     {
         _dbContext = dbContext;
         _dbSet = _dbContext.Set<TModel>();

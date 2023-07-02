@@ -1,12 +1,10 @@
-﻿using AutoMapper;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using ECommerce.ItemService.Domain;
-using ECommerce.ItemService.Application.Contracts.Persistence;
 using ECommerce.ItemService.Application.DTOs;
 using MediatR;
 using ECommerce.ItemService.Application.CQRS.BaseItem;
-using System.Xml.Linq;
 
 namespace ECommerce.APIs.ItemAPI.Controllers
 {
@@ -14,22 +12,18 @@ namespace ECommerce.APIs.ItemAPI.Controllers
     public class BaseAPIController<TModel, TDto> : ControllerBase where TModel : BaseItem where TDto : BaseDto
     {
         protected ResponseDto _response;
-        protected readonly IRepository<TModel> _repo;
-        protected readonly IMapper _mapper;
-        private IMediator _mediator;
+        protected IMediator _mediator;
 
-        public BaseAPIController(IRepository<TModel> repo, IMapper mapper, IMediator mediator)
+        public BaseAPIController(IMediator mediator)
         {
-            _repo = repo;
             _response = new ResponseDto();
-            _mapper = mapper;
             _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<ResponseDto> GetAllAsync()
         {
-            var req = new GetAll<TModel, TDto>();
+            var req = new GetAllBaseItems<TModel, TDto>();
             return await _mediator.Send(req);
         }
 
@@ -37,7 +31,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [Route("{id}")]
         public async Task<ResponseDto> GetByIdAsync(int id)
         {
-            var req = new GetById<TModel,TDto>(id);
+            var req = new GetBaseItemById<TModel,TDto>(id);
             return await _mediator.Send(req);
         }
 
@@ -45,7 +39,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [Route("name/{name}")]
         public async Task<ResponseDto> GetByNameAsync(string name)
         {
-            var req = new GetByName<TModel,TDto>(name);
+            var req = new GetBaseItemByName<TModel,TDto>(name);
             return await _mediator.Send(req);
         }
 

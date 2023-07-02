@@ -6,14 +6,14 @@ using ECommerce.ItemService.Infra.DBContext;
 
 namespace ECommerce.ItemService.Infra.Services.Persistence;
 
-public class DBCategoryRepository : DBRepository<Category>, ICategoryRepository
+public class DBCategoryRepo : DBBaseItemRepo<Category>, ICategoryRepo
 {
 
-    public DBCategoryRepository(ItemAPIDbContext dbContext) : base(dbContext)
+    public DBCategoryRepo(ItemAPIDbContext dbContext) : base(dbContext)
     {
     }
 
-    public async Task<List<Category>> GetAllCategoriesByBrandIdAsync(int brandId)
+    public async Task<List<Category>> GetCategoriesByBrandIdAsync(int brandId)
     {
         var entities = await _dbContext.BrandCategories
             .Where(x => x.BrandId == brandId)
@@ -24,9 +24,9 @@ public class DBCategoryRepository : DBRepository<Category>, ICategoryRepository
         return entities;
     }
 
-    public async Task<List<Category>> GetAllCategoriesOutOfBrandIdAsync(int brandId)
+    public async Task<List<Category>> GetCategoriesOutOfBrandIdAsync(int brandId)
     {
-        var brandCats = await GetAllCategoriesByBrandIdAsync(brandId);
+        var brandCats = await GetCategoriesByBrandIdAsync(brandId);
         var allCats = await GetAllAsync();
         foreach (var cat in brandCats)
             allCats.Remove(cat);

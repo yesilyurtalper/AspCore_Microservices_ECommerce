@@ -5,17 +5,17 @@ using ECommerce.ItemService.Application.DTOs;
 
 namespace ECommerce.ItemService.Application.CQRS.Product;
 
-public class UpdateProduct : UpdateBaseItem<Domain.Product,ProductDto>
+public class CreateProduct : CreateBaseItem<Domain.Product,ProductDto>
 {
-    public UpdateProduct(ProductDto dto) : base(dto)
+    public CreateProduct(ProductDto dto) : base(dto)
     {
         
     }
 }
 
-public class UpdateProductHandler : UpdateBaseItemHandler<Domain.Product, DTOs.ProductDto>
+public class CreateProductHandler : CreateBaseItemHandler<Domain.Product, DTOs.ProductDto>
 {
-    public UpdateProductHandler(IProductRepo repo, IMapper mapper) :
+    public CreateProductHandler(IProductRepo repo, IMapper mapper) :
         base(repo, mapper)
     {
 

@@ -3,29 +3,33 @@ using ECommerce.ItemService.Application.Contracts.Persistence;
 using ECommerce.ItemService.Application.DTOs;
 using ECommerce.ItemService.Application.Exceptions;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace ECommerce.ItemService.Application.CQRS.BaseItem;
 
-public class GetByNameHandler<TModel,TDto> : 
-    IRequestHandler<GetByName<TModel,TDto>,ResponseDto>
+public class GetBaseItemByName<TModel,TDto> : IRequest<ResponseDto>
     where TModel : Domain.BaseItem where TDto : BaseDto
 {
-    private IRepository<TModel> _repo;
+    public string Name { get; set; }
+    public GetBaseItemByName(string name)
+    {
+        Name = name;
+    }
+}
+
+public class GetBaseItemByNameHandler<TModel, TDto> :
+    IRequestHandler<GetBaseItemByName<TModel, TDto>, ResponseDto>
+    where TModel : Domain.BaseItem where TDto : BaseDto
+{
+    private IBaseItemRepo<TModel> _repo;
     private IMapper _mapper;
 
-    public GetByNameHandler(IRepository<TModel> repo, IMapper mapper)
+    public GetBaseItemByNameHandler(IBaseItemRepo<TModel> repo, IMapper mapper)
     {
         _repo = repo;
         _mapper = mapper;
     }
 
-    public async Task<ResponseDto> Handle(GetByName<TModel, TDto> request, CancellationToken cancellationToken)
+    public async Task<ResponseDto> Handle(GetBaseItemByName<TModel, TDto> request, CancellationToken cancellationToken)
     {
         var _response = new ResponseDto();
 

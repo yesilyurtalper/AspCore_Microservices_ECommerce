@@ -1,34 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using ECommerce.ItemService.Domain;
-using ECommerce.ItemService.Application.Contracts.Persistence;
 using ECommerce.ItemService.Application.DTOs;
 using MediatR;
+using ECommerce.ItemService.Application.CQRS.Brand;
 
 namespace ECommerce.APIs.ItemAPI.Controllers
 {
     [Route("itemapi/brands")]
     public class BrandAPIController : BaseAPIController<Brand, BaseDto>
     {
-        private readonly IBrandRepository _brandRepo;
-
-        public BrandAPIController(IBrandRepository repo, IMapper mapper, IMediator mediator) : 
-            base(repo, mapper, mediator)
+        public BrandAPIController(IMediator mediator) : base(mediator)
         {
-            _brandRepo = repo;
         }
 
         [HttpGet]
         [Route("categoryid/{categoryId}")]
         public async Task<ResponseDto> GetByCategoryIdAsync(int categoryId)
         {
-            var models = await _brandRepo.GetAllBrandsByCategoryIdAsync(categoryId);
-            var dtos = _mapper.Map<List<BaseDto>>(models);
-            _response.Result = dtos;
-            _response.IsSuccess = true;
-
-            return _response;
+            var req = new GetBrandsByCategoryId(categoryId);
+            return await _mediator.Send(req);
         }
 
         [HttpPost]
@@ -36,12 +27,8 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [Authorize(Policy = "ECommerceAdmin")]
         public async Task<ResponseDto> AddCategoryAsync(int brandId, [FromBody]List<int> categoryIds)
         {
-            await _brandRepo.AddCategoriesAsync(brandId, categoryIds);
-            await _repo.SaveChangesAsync();
-            _response.Result = _mapper.Map<BaseDto>(await _brandRepo.GetByIdAsync(brandId));
-            _response.IsSuccess = true;
-
-            return _response;
+            var req = new AddBrandCategories(brandId,categoryIds);
+            return await _mediator.Send(req);
         }
 
         [HttpPost]
@@ -49,12 +36,8 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [Authorize(Policy = "ECommerceAdmin")]
         public async Task<ResponseDto> RemoveCategoryAsync(int brandId, [FromBody]List<int> categoryIds)
         {
-            await _brandRepo.RemoveCategoriesAsync(brandId, categoryIds);
-            await _repo.SaveChangesAsync();
-            _response.Result = _mapper.Map<BaseDto>(await _brandRepo.GetByIdAsync(brandId));
-            _response.IsSuccess = true;
-
-            return _response;
+            var req = new RemoveBrandCategories(brandId, categoryIds);
+            return await _mediator.Send(req);
         }
 
         [HttpPost]
@@ -62,12 +45,8 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [Authorize(Policy = "ECommerceAdmin")]
         public async Task<ResponseDto> UpdateCategoryAsync(int brandId, [FromBody]List<int> categoryIds)
         {
-            await _brandRepo.UpdateCategoriesAsync(brandId, categoryIds);
-            await _repo.SaveChangesAsync();
-            _response.Result = _mapper.Map<BaseDto>(await _brandRepo.GetByIdAsync(brandId));
-            _response.IsSuccess = true;
-
-            return _response;
+            var req = new UpdateBrandCategories(brandId, categoryIds);
+            return await _mediator.Send(req);
         }
     }
 }

@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ECommerce.ItemService.Infra;
 
-public static class InfrasServiceRegistration
+public static class InfraServiceRegistration
 {
     public static IServiceCollection AddInfraServices(this  IServiceCollection services, 
         IConfiguration configuration)
@@ -22,9 +22,9 @@ public static class InfrasServiceRegistration
         //string conStr = Environment.GetEnvironmentVariable("DB_CON_STR");
         services.AddDbContext<ItemAPIDbContext>(options => options.UseMySQL(conStr));
 
-        services.AddScoped<ICategoryRepository, DBCategoryRepository>();
-        services.AddScoped<IBrandRepository, DBBrandRepository>();
-        services.AddScoped<IProductRepository, DBProductRepository>();
+        services.AddScoped<ICategoryRepo, DBCategoryRepo>();
+        services.AddScoped<IBrandRepo, DBBrandRepo>();
+        services.AddScoped<IProductRepo, DBProductRepo>();
 
         return services;
     }

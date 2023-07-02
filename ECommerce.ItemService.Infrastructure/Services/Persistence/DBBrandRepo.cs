@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.ItemService.Infra.Services.Persistence;
 
-public class DBBrandRepository : DBRepository<Brand>, IBrandRepository
+public class DBBrandRepo : DBBaseItemRepo<Brand>, IBrandRepo
 {
 
-    public DBBrandRepository(ItemAPIDbContext dbContext) : base(dbContext)
+    public DBBrandRepo(ItemAPIDbContext dbContext) : base(dbContext)
     {
     }
 
@@ -23,7 +23,7 @@ public class DBBrandRepository : DBRepository<Brand>, IBrandRepository
     //    return models;
     //}
 
-    public async Task<List<Brand>> GetAllBrandsByCategoryIdAsync(int categoryId)
+    public async Task<List<Brand>> GetBrandsByCategoryIdAsync(int categoryId)
     {
         var entities = await _dbContext.BrandCategories
             .Where(x => x.CategoryId == categoryId)
@@ -59,19 +59,19 @@ public class DBBrandRepository : DBRepository<Brand>, IBrandRepository
     //    return model;
     //}
 
-    public async Task AddCategoriesAsync(int brandId, List<int> categoryIds)
+    public async Task AddBrandCategoriesAsync(int brandId, List<int> categoryIds)
     {
         var added = categoryIds.Select(x => new BrandCategory { BrandId = brandId, CategoryId = x });
         await _dbContext.BrandCategories.AddRangeAsync(added);
     }
 
-    public async Task RemoveCategoriesAsync(int brandId, List<int> categoryIds)
+    public async Task RemoveBrandCategoriesAsync(int brandId, List<int> categoryIds)
     {
         var removed = categoryIds.Select(x => new BrandCategory { BrandId = brandId, CategoryId = x });
         await Task.Run(() => _dbContext.BrandCategories.RemoveRange(removed));
     }
 
-    public async Task UpdateCategoriesAsync(int brandId, List<int> categoryIds)
+    public async Task UpdateBrandCategoriesAsync(int brandId, List<int> categoryIds)
     {
         var removed =  await _dbContext.BrandCategories.Where(x => x.BrandId == brandId).ToListAsync();
         await Task.Run(() => _dbContext.BrandCategories.RemoveRange(removed));

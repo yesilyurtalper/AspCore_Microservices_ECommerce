@@ -5,10 +5,10 @@ using ECommerce.ItemService.Infra.DBContext;
 
 namespace ECommerce.ItemService.Infra.Services.Persistence;
 
-public class DBProductRepository : DBRepository<Product> , IProductRepository
+public class DBProductRepo : DBBaseItemRepo<Product> , IProductRepo
 {
 
-    public DBProductRepository(ItemAPIDbContext dbContext) : base (dbContext)
+    public DBProductRepo(ItemAPIDbContext dbContext) : base (dbContext)
     {
     }
 
@@ -22,7 +22,7 @@ public class DBProductRepository : DBRepository<Product> , IProductRepository
         return models;
     }
 
-    public async Task<List<Product>> GetAllProductsByBrandIdAsync(int brandId)
+    public async Task<List<Product>> GetProductsByBrandIdAsync(int brandId)
     {
         var models = await _dbContext.Products
             .Include(x => x.Brand)
@@ -33,7 +33,7 @@ public class DBProductRepository : DBRepository<Product> , IProductRepository
         return models;
     }
 
-    public async Task<List<Product>> GetAllProductsByCategoryIdAsync(int categoryId)
+    public async Task<List<Product>> GetProductsByCategoryIdAsync(int categoryId)
     {
         var models = await _dbContext.Products
             .Include(x => x.Brand)
