@@ -19,7 +19,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
 
         [HttpGet]
         [Route("brandid/{brandId}")]
-        public async Task<ResponseDto> GetByBrandIdAsync(int brandId)
+        public async Task<ResponseDto<List<BaseDto>>> GetByBrandIdAsync(int brandId)
         {
             var req = new GetCategoriesByBrandId(brandId);
             return await _mediator.Send(req);
@@ -27,7 +27,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
 
         [HttpGet]
         [Route("outofbrandid/{brandId}")]
-        public async Task<ResponseDto> GetOutOfBrandIdAsync(int brandId)
+        public async Task<ResponseDto<List<BaseDto>>> GetOutOfBrandIdAsync(int brandId)
         {
             var req = new GetCategoriesOutOfByBrandId(brandId);
             return await _mediator.Send(req);

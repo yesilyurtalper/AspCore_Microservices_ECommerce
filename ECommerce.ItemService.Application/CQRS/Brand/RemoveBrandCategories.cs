@@ -5,7 +5,7 @@ using MediatR;
 
 namespace ECommerce.ItemService.Application.CQRS.Brand;
 
-public class RemoveBrandCategories : IRequest<ResponseDto>
+public class RemoveBrandCategories : IRequest<ResponseDto<BaseDto>>
 {
     internal readonly int _id;
     internal readonly List<int> _categoryIds;
@@ -17,7 +17,7 @@ public class RemoveBrandCategories : IRequest<ResponseDto>
     }
 }
 
-public class RemoveBrandCategoriesHandler : IRequestHandler<RemoveBrandCategories, ResponseDto>
+public class RemoveBrandCategoriesHandler : IRequestHandler<RemoveBrandCategories, ResponseDto<BaseDto>>
 {
     private readonly IMapper _mapper;
     private readonly IBrandRepo _repo;
@@ -28,11 +28,11 @@ public class RemoveBrandCategoriesHandler : IRequestHandler<RemoveBrandCategorie
         _repo = repo;
     }
 
-    public async Task<ResponseDto> Handle(RemoveBrandCategories request, CancellationToken cancellationToken)
+    public async Task<ResponseDto<BaseDto>> Handle(RemoveBrandCategories request, CancellationToken cancellationToken)
     {
-        var _response = new ResponseDto();
+        var _response = new ResponseDto<BaseDto>();
         await _repo.RemoveBrandCategoriesAsync(request._id, request._categoryIds);
-        _response.Result = _mapper.Map<BaseDto>(await _repo.GetByIdAsync(request._id));
+        _response.Data = _mapper.Map<BaseDto>(await _repo.GetByIdAsync(request._id));
         _response.IsSuccess = true;
 
         return _response;

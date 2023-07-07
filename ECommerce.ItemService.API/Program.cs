@@ -7,72 +7,31 @@ using ECommerce.ItemService.Infra;
 using System.Text.Json.Serialization;
 using ECommerce.ItemService.Infra.DBContext;
 using Microsoft.EntityFrameworkCore;
-using ECommerce.ItemService.API.Middleware;
-using Autofac;
 using ECommerce.ItemService.API.Filters;
-using Autofac.Core;
 using Microsoft.AspNetCore.Mvc;
+using ECommerce.ItemService.API.Extentions;
+using ECommerce.ItemService.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args); 
 var services = builder.Services;
 
 services.AddControllers(options => { 
     options.Filters.Add(new ValidationFilter()); }).
+    ConfigureApiBehaviorOptions(options =>
+    {
+        options.SuppressModelStateInvalidFilter = true;
+    }).
     AddJsonOptions(options =>
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-services.Configure<ApiBehaviorOptions>(options =>
-{
-    options.SuppressModelStateInvalidFilter = true;
-});
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 if (builder.Environment.IsDevelopment())
-{
-    services.AddEndpointsApiExplorer();
-    services.AddSwaggerGen(c => {
-
-        //c.OperationFilter<SwaggerRequestHeader>();
-
-        c.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
-        {
-            Type = SecuritySchemeType.Http,
-            BearerFormat = "JWT",
-            In = ParameterLocation.Header,
-            Scheme = "bearer"
-        });
-        c.OperationFilter<AuthenticationRequirementsOperationFilter>();
-    });
-}
+    services.AddSwaggerServices();
 
 services.AddInfraServices(builder.Configuration);
 services.AddApplicationServices();
 
-services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
-{
-    options.Authority = Environment.GetEnvironmentVariable("OIDC_AUTHORITY");
-    options.RequireHttpsMetadata = false;
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateAudience = false
-    };
-});
-
-services.AddAuthorization(options =>
-{
-    options.AddPolicy("ECommerceWebClient", policy =>
-    {
-        policy.RequireClaim("ECommerceWebClient", "ECommerceWebClient");
-    });
-});
-
-services.AddAuthorization(options =>
-{
-    options.AddPolicy("ECommerceAdmin", policy =>
-    {
-        policy.RequireClaim("RealmRole", "ECommerceAdmin");
-    });
-});
+services.AddAuthServices();
 
 var app = builder.Build();
 
@@ -86,6 +45,8 @@ using (var scope = app.Services.CreateScope())
 //custom global exception handling middleware
 app.UseExceptionMiddleware();
 
+app.UseHttpsRedirection();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -93,9 +54,17 @@ if (app.Environment.IsDevelopment())
 }
 
 //app.UseSerilogRequestLogging();
+//var elasticAPMSettings = new Dictionary<string, string>();
+//elasticAPMSettings.Add("ElasticApm:SecretToken","");
+//elasticAPMSettings.Add("ElasticApm:ServerUrl", Environment.GetEnvironmentVariable("ELK_APMURL"));
+//elasticAPMSettings.Add("ElasticApm:ServiceName", "ECommerce.ItemService");
+//app.UseAllElasticApm(new ConfigurationBuilder().AddInMemoryCollection(elasticAPMSettings).Build());
 
-app.UseHttpsRedirection();
 app.UseCors("all");
+//app.UseCors(builder =>
+//    builder.WithOrigins(Environment.GetEnvironmentVariable("ALLOWED_ORIGINS").Split(","))
+//    .AllowAnyMethod().
+//    AllowAnyHeader());
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -6,7 +6,7 @@ using MediatR;
 
 namespace ECommerce.ItemService.Application.CQRS.BaseItem;
 
-public class DeleteBaseItem<TModel,TDto> : IRequest<ResponseDto>
+public class DeleteBaseItem<TModel,TDto> : IRequest<ResponseDto<string>>
     where TModel : Domain.BaseItem where TDto : BaseDto
 {
     public int Id;
@@ -18,7 +18,7 @@ public class DeleteBaseItem<TModel,TDto> : IRequest<ResponseDto>
 }
 
 public class DeleteBaseItemHandler<TModel, TDto> :
-    IRequestHandler<DeleteBaseItem<TModel, TDto>, ResponseDto>
+    IRequestHandler<DeleteBaseItem<TModel, TDto>, ResponseDto<string>>
     where TModel : Domain.BaseItem where TDto : BaseDto
 
 {
@@ -29,9 +29,9 @@ public class DeleteBaseItemHandler<TModel, TDto> :
         _repo = repo;
     }
 
-    public async Task<ResponseDto> Handle(DeleteBaseItem<TModel, TDto> command, CancellationToken cancellationToken)
+    public async Task<ResponseDto<string>> Handle(DeleteBaseItem<TModel, TDto> command, CancellationToken cancellationToken)
     {
-        var _response = new ResponseDto();
+        var _response = new ResponseDto<string>();
 
         if (command.Id == 0)
             throw new BadRequestException("Invalid input for Id");

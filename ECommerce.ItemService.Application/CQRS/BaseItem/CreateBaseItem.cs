@@ -6,7 +6,7 @@ using MediatR;
 
 namespace ECommerce.ItemService.Application.CQRS.BaseItem;
 
-public class CreateBaseItem<TModel,TDto> : IRequest<ResponseDto> 
+public class CreateBaseItem<TModel,TDto> : IRequest<ResponseDto<TDto>> 
     where TModel : Domain.BaseItem where TDto : BaseDto
 {
     public TDto _dto;
@@ -18,7 +18,7 @@ public class CreateBaseItem<TModel,TDto> : IRequest<ResponseDto>
 }
 
 public class CreateBaseItemHandler<TModel, TDto> :
-    IRequestHandler<CreateBaseItem<TModel, TDto>, ResponseDto>
+    IRequestHandler<CreateBaseItem<TModel, TDto>, ResponseDto<TDto>>
     where TModel : Domain.BaseItem where TDto : BaseDto
 
 {
@@ -32,9 +32,9 @@ public class CreateBaseItemHandler<TModel, TDto> :
         _mapper = mapper;
     }
 
-    public async Task<ResponseDto> Handle(CreateBaseItem<TModel, TDto> command, CancellationToken cancellationToken)
+    public async Task<ResponseDto<TDto>> Handle(CreateBaseItem<TModel, TDto> command, CancellationToken cancellationToken)
     {
-        var _response = new ResponseDto();
+        var _response = new ResponseDto<TDto>();
 
         var model = await _repo.GetByNameAsync(command._dto.Name);
         if (model != null)
@@ -42,7 +42,7 @@ public class CreateBaseItemHandler<TModel, TDto> :
 
         model = _mapper.Map<TModel>(command._dto);
         await _repo.CreateAsync(model);
-        _response.Result = _mapper.Map<TDto>(model);
+        _response.Data = _mapper.Map<TDto>(model);
         _response.IsSuccess = true;
 
         return _response;

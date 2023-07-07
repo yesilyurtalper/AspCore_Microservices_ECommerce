@@ -6,6 +6,6 @@
         public string DisplayMessage { get; set; } = "";
         public string ResultCode { get; set; } = "";
         public List<string> ErrorMessages { get; set; }
-        public object Result { get; set; }
+        public object Data { get; set; }
     }
 }

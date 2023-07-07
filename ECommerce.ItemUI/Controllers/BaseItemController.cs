@@ -32,7 +32,7 @@ namespace ECommer.ItemUI.Controllers
             var response = await _itemService.GetAsync<ResponseDto>(relativeUrl, await GetAccessTokenAsync());
             
             if (response.IsSuccess)
-                items = JsonConvert.DeserializeObject<List<TDto>>(Convert.ToString(response.Result));
+                items = JsonConvert.DeserializeObject<List<TDto>>(Convert.ToString(response.Data));
             return items;
         }
 
@@ -43,7 +43,7 @@ namespace ECommer.ItemUI.Controllers
             var response = await _itemService.GetAsync<ResponseDto>(relativeUrl+"/"+type+"/"+id, await GetAccessTokenAsync());
             
             if (response.IsSuccess)
-                items = JsonConvert.DeserializeObject<List<TDto>>(Convert.ToString(response.Result));
+                items = JsonConvert.DeserializeObject<List<TDto>>(Convert.ToString(response.Data));
             return items;
         }
 
@@ -54,7 +54,7 @@ namespace ECommer.ItemUI.Controllers
 
             if (response.IsSuccess)
             {
-                var model = JsonConvert.DeserializeObject<TDto>(Convert.ToString(response.Result));
+                var model = JsonConvert.DeserializeObject<TDto>(Convert.ToString(response.Data));
                 return View(model);
             }
 
@@ -69,7 +69,7 @@ namespace ECommer.ItemUI.Controllers
 
             if (response.IsSuccess)
             {
-                var model = JsonConvert.DeserializeObject<TDto>(Convert.ToString(response.Result));
+                var model = JsonConvert.DeserializeObject<TDto>(Convert.ToString(response.Data));
                 return View(model);
             }
                 
@@ -118,7 +118,7 @@ namespace ECommer.ItemUI.Controllers
                 
                 if (response.IsSuccess)
                     return RedirectToAction(nameof(Details), 
-                        new { id = JsonConvert.DeserializeObject<TDto>(Convert.ToString(response.Result)).Id });
+                        new { id = JsonConvert.DeserializeObject<TDto>(Convert.ToString(response.Data)).Id });
                 else
                 {
                     foreach (var error in response.ErrorMessages)
@@ -138,7 +138,7 @@ namespace ECommer.ItemUI.Controllers
 
             if (response.IsSuccess)
             {
-                var model = JsonConvert.DeserializeObject<TDto>(Convert.ToString(response.Result));
+                var model = JsonConvert.DeserializeObject<TDto>(Convert.ToString(response.Data));
                 return View(model);
             }
 

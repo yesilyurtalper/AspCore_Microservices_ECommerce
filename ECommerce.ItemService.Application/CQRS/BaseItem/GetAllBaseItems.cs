@@ -5,13 +5,13 @@ using MediatR;
 
 namespace ECommerce.ItemService.Application.CQRS.BaseItem;
 
-public class GetAllBaseItems<TModel, TDto> : IRequest<ResponseDto>
+public class GetAllBaseItems<TModel, TDto> : IRequest<ResponseDto<List<TDto>>>
         where TModel : Domain.BaseItem where TDto : BaseDto
 {
 }
 
 public class GetAllBaseItemsHandler<TModel, TDto> :
-    IRequestHandler<GetAllBaseItems<TModel, TDto>, ResponseDto>
+    IRequestHandler<GetAllBaseItems<TModel, TDto>, ResponseDto<List<TDto>>>
     where TModel : Domain.BaseItem where TDto : BaseDto
 {
     private IBaseItemRepo<TModel> _repo;
@@ -23,12 +23,12 @@ public class GetAllBaseItemsHandler<TModel, TDto> :
         _mapper = mapper;
     }
 
-    public async Task<ResponseDto> Handle(GetAllBaseItems<TModel, TDto> request, CancellationToken cancellationToken)
+    public async Task<ResponseDto<List<TDto>>> Handle(GetAllBaseItems<TModel, TDto> request, CancellationToken cancellationToken)
     {
-        var _response = new ResponseDto();
+        var _response = new ResponseDto<List<TDto>>();
         var models = await _repo.GetAllAsync();
         var dtos = _mapper.Map<List<TDto>>(models);
-        _response.Result = dtos;
+        _response.Data = dtos;
         _response.IsSuccess = true;
         return _response;
     }

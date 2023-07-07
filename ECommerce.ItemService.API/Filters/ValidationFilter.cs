@@ -14,18 +14,19 @@ public class ValidationFilter : IAsyncActionFilter
                 .Where(x => x.Value.Errors.Count > 0)
                 .ToDictionary(kvp => kvp.Key, kvp => kvp.Value.Errors.Select(x => x.ErrorMessage)).ToArray();
 
-            ResponseDto responseDto = new ResponseDto();
-            responseDto.DisplayMessage = "There are errors in the request";
-            responseDto.ResultCode = "400";
-            List<string> errors = new List<string>();
-
+            ResponseDto<string> responseDto = new()
+            {
+                Message = "There are errors in the request",
+                ResultCode = "400",
+            }; 
+            
+            List<string> errors = new ();
             foreach (var error in errorsInModelState)
                 foreach (var subError in error.Value)
                     errors.Add(error.Key + " - " + subError);
             responseDto.ErrorMessages = errors;
 
             context.Result = new BadRequestObjectResult(responseDto);
-            return;
         }
 
         await next();

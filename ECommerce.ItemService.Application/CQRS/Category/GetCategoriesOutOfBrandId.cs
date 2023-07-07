@@ -5,7 +5,7 @@ using MediatR;
 
 namespace ECommerce.ItemService.Application.CQRS.Category;
 
-public class GetCategoriesOutOfByBrandId : IRequest<ResponseDto>
+public class GetCategoriesOutOfByBrandId : IRequest<ResponseDto<List<BaseDto>>>
 {
     internal readonly int _id;
     public GetCategoriesOutOfByBrandId(int id)
@@ -14,7 +14,7 @@ public class GetCategoriesOutOfByBrandId : IRequest<ResponseDto>
     }
 }
 
-public class GetCategoriesOutOfByBrandIdHandler : IRequestHandler<GetCategoriesOutOfByBrandId, ResponseDto>
+public class GetCategoriesOutOfByBrandIdHandler : IRequestHandler<GetCategoriesOutOfByBrandId, ResponseDto<List<BaseDto>>>
 {
     private readonly IMapper _mapper;
     private readonly ICategoryRepo _repo;
@@ -25,12 +25,12 @@ public class GetCategoriesOutOfByBrandIdHandler : IRequestHandler<GetCategoriesO
         _repo = repo;
     }
 
-    public async Task<ResponseDto> Handle(GetCategoriesOutOfByBrandId request, CancellationToken cancellationToken)
+    public async Task<ResponseDto<List<BaseDto>>> Handle(GetCategoriesOutOfByBrandId request, CancellationToken cancellationToken)
     {
-        var _response = new ResponseDto();
+        var _response = new ResponseDto<List<BaseDto>>();
         var models = await _repo.GetCategoriesOutOfBrandIdAsync(request._id);
         var dtos = _mapper.Map<List<BaseDto>>(models);
-        _response.Result = dtos;
+        _response.Data = dtos;
         _response.IsSuccess = true;
 
         return _response;

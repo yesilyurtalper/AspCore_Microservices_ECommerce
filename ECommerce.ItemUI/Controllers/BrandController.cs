@@ -27,7 +27,7 @@ namespace ECommer.ItemUI.Controllers
                 var response = await _itemService.CreateItemAsync<ResponseDto, BrandDto>(relativeUrl, dto, await GetAccessTokenAsync());
                 if (response != null && response.IsSuccess)
                 {
-                    int newId = JsonConvert.DeserializeObject<BrandDto>(Convert.ToString(response.Result)).Id;
+                    int newId = JsonConvert.DeserializeObject<BrandDto>(Convert.ToString(response.Data)).Id;
                     var result2 = _itemService.AddCategoryToBrandAsync<ResponseDto, BrandDto>
                         (relativeUrl+"/addcat/"+newId, dto.CategoryIdAdd, await GetAccessTokenAsync());
 

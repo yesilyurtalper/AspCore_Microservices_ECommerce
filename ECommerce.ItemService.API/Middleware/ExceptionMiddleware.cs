@@ -33,7 +33,7 @@ public class ExceptionMiddleware
     private async Task HandleExceptionAsync(HttpContext httpContext, Exception ex)
     {
         HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
-        ResponseDto problem = new();
+        ResponseDto<string> problem = new();
 
         switch (ex)
         {
@@ -48,7 +48,7 @@ public class ExceptionMiddleware
         httpContext.Response.StatusCode = (int)statusCode;
         problem.ResultCode = httpContext.Response.StatusCode.ToString();
         problem.ErrorMessages = new List<string> { ex.ToString() };
-        problem.DisplayMessage = ex.Message;
+        problem.Message = ex.Message;
         var logMessage = JsonSerializer.Serialize(problem);
         _logger.LogError(logMessage);
         await httpContext.Response.WriteAsJsonAsync(problem);

@@ -16,7 +16,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
 
         [HttpGet]
         [Route("categoryid/{categoryId}")]
-        public async Task<ResponseDto> GetByCategoryIdAsync(int categoryId)
+        public async Task<ResponseDto<List<BaseDto>>> GetByCategoryIdAsync(int categoryId)
         {
             var req = new GetBrandsByCategoryId(categoryId);
             return await _mediator.Send(req);
@@ -25,7 +25,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [HttpPost]
         [Route("addcat/{brandId}")]
         [Authorize(Policy = "ECommerceAdmin")]
-        public async Task<ResponseDto> AddCategoryAsync(int brandId, [FromBody]List<int> categoryIds)
+        public async Task<ResponseDto<BaseDto>> AddCategoryAsync(int brandId, [FromBody]List<int> categoryIds)
         {
             var req = new AddBrandCategories(brandId,categoryIds);
             return await _mediator.Send(req);
@@ -34,7 +34,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [HttpPost]
         [Route("remcat/{brandId}")]
         [Authorize(Policy = "ECommerceAdmin")]
-        public async Task<ResponseDto> RemoveCategoryAsync(int brandId, [FromBody]List<int> categoryIds)
+        public async Task<ResponseDto<BaseDto>> RemoveCategoryAsync(int brandId, [FromBody]List<int> categoryIds)
         {
             var req = new RemoveBrandCategories(brandId, categoryIds);
             return await _mediator.Send(req);
@@ -43,7 +43,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         [HttpPost]
         [Route("updatecat/{brandId}")]
         [Authorize(Policy = "ECommerceAdmin")]
-        public async Task<ResponseDto> UpdateCategoryAsync(int brandId, [FromBody]List<int> categoryIds)
+        public async Task<ResponseDto<BaseDto>> UpdateCategoryAsync(int brandId, [FromBody]List<int> categoryIds)
         {
             var req = new UpdateBrandCategories(brandId, categoryIds);
             return await _mediator.Send(req);

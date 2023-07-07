@@ -6,7 +6,7 @@ using MediatR;
 
 namespace ECommerce.ItemService.Application.CQRS.BaseItem;
 
-public class UpdateBaseItem<TModel,TDto> : IRequest<ResponseDto> 
+public class UpdateBaseItem<TModel,TDto> : IRequest<ResponseDto<TDto>> 
     where TModel : Domain.BaseItem where TDto : BaseDto
 {
     public TDto _dto;
@@ -18,7 +18,7 @@ public class UpdateBaseItem<TModel,TDto> : IRequest<ResponseDto>
 }
 
 public class UpdateBaseItemHandler<TModel, TDto> :
-    IRequestHandler<UpdateBaseItem<TModel, TDto>, ResponseDto>
+    IRequestHandler<UpdateBaseItem<TModel, TDto>, ResponseDto<TDto>>
     where TModel : Domain.BaseItem where TDto : BaseDto
 
 {
@@ -32,10 +32,10 @@ public class UpdateBaseItemHandler<TModel, TDto> :
         _mapper = mapper;
     }
 
-    public async Task<ResponseDto> Handle(UpdateBaseItem<TModel, TDto> command, CancellationToken cancellationToken)
+    public async Task<ResponseDto<TDto>> Handle(UpdateBaseItem<TModel, TDto> command, CancellationToken cancellationToken)
     {
         var dto = command._dto;
-        var _response = new ResponseDto();
+        var _response = new ResponseDto<TDto>();
 
         if (dto == null || dto.Id == 0)
             throw new BadRequestException("No input or invalid input for Id");
@@ -46,7 +46,7 @@ public class UpdateBaseItemHandler<TModel, TDto> :
 
         _mapper.Map(dto, model);
         await _repo.UpdateAsync(model);
-        _response.Result = _mapper.Map<TDto>(model);
+        _response.Data = _mapper.Map<TDto>(model);
         _response.IsSuccess = true;
 
         return _response;

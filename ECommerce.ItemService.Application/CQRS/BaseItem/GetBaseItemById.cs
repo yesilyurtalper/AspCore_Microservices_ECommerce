@@ -6,7 +6,7 @@ using MediatR;
 
 namespace ECommerce.ItemService.Application.CQRS.BaseItem;
 
-public class GetBaseItemById<TModel,TDto> : IRequest<ResponseDto>
+public class GetBaseItemById<TModel,TDto> : IRequest<ResponseDto<TDto>>
     where TModel : Domain.BaseItem where TDto : BaseDto
 {
     public int Id { get; set; }
@@ -17,7 +17,7 @@ public class GetBaseItemById<TModel,TDto> : IRequest<ResponseDto>
 }
 
 public class GetBaseItemByIdHandler<TModel, TDto> :
-        IRequestHandler<GetBaseItemById<TModel, TDto>, ResponseDto>
+        IRequestHandler<GetBaseItemById<TModel, TDto>, ResponseDto<TDto>>
         where TModel : Domain.BaseItem where TDto : BaseDto
 {
     private readonly IBaseItemRepo<TModel> _repo;
@@ -28,9 +28,9 @@ public class GetBaseItemByIdHandler<TModel, TDto> :
         _repo = repo;
         _mapper = mapper;
     }
-    public async Task<ResponseDto> Handle(GetBaseItemById<TModel, TDto> request, CancellationToken cancellationToken)
+    public async Task<ResponseDto<TDto>> Handle(GetBaseItemById<TModel, TDto> request, CancellationToken cancellationToken)
     {
-        var _response = new ResponseDto();
+        var _response = new ResponseDto<TDto>();
 
         if (request.Id == 0)
             throw new BadRequestException("Invalid input for Id");
@@ -42,7 +42,7 @@ public class GetBaseItemByIdHandler<TModel, TDto> :
         {
             _response.IsSuccess = true;
             var dto = _mapper.Map<TDto>(model);
-            _response.Result = dto;
+            _response.Data = dto;
         }
 
         return _response;

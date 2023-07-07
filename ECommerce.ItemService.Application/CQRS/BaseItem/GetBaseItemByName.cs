@@ -6,7 +6,7 @@ using MediatR;
 
 namespace ECommerce.ItemService.Application.CQRS.BaseItem;
 
-public class GetBaseItemByName<TModel,TDto> : IRequest<ResponseDto>
+public class GetBaseItemByName<TModel,TDto> : IRequest<ResponseDto<TDto>>
     where TModel : Domain.BaseItem where TDto : BaseDto
 {
     public string Name { get; set; }
@@ -17,7 +17,7 @@ public class GetBaseItemByName<TModel,TDto> : IRequest<ResponseDto>
 }
 
 public class GetBaseItemByNameHandler<TModel, TDto> :
-    IRequestHandler<GetBaseItemByName<TModel, TDto>, ResponseDto>
+    IRequestHandler<GetBaseItemByName<TModel, TDto>, ResponseDto<TDto>>
     where TModel : Domain.BaseItem where TDto : BaseDto
 {
     private IBaseItemRepo<TModel> _repo;
@@ -29,9 +29,9 @@ public class GetBaseItemByNameHandler<TModel, TDto> :
         _mapper = mapper;
     }
 
-    public async Task<ResponseDto> Handle(GetBaseItemByName<TModel, TDto> request, CancellationToken cancellationToken)
+    public async Task<ResponseDto<TDto>> Handle(GetBaseItemByName<TModel, TDto> request, CancellationToken cancellationToken)
     {
-        var _response = new ResponseDto();
+        var _response = new ResponseDto<TDto>();
 
         if (string.IsNullOrEmpty(request.Name))
             throw new BadRequestException("Invalid input for Name");
@@ -43,7 +43,7 @@ public class GetBaseItemByNameHandler<TModel, TDto> :
         {
             _response.IsSuccess = true;
             var dto = _mapper.Map<TDto>(model);
-            _response.Result = dto;
+            _response.Data = dto;
         }
 
         return _response;
