@@ -15,7 +15,7 @@ public class ExceptionMiddleware
     public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
     {
         _next = next;
-        this._logger = logger;
+        _logger = logger;
     }
 
     public async Task InvokeAsync(HttpContext httpContext)

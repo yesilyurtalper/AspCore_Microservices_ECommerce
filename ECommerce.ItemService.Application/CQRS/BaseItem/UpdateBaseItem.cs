@@ -3,6 +3,7 @@ using ECommerce.ItemService.Application.Contracts.Persistence;
 using ECommerce.ItemService.Application.DTOs;
 using ECommerce.ItemService.Application.Exceptions;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace ECommerce.ItemService.Application.CQRS.BaseItem;
 
@@ -24,12 +25,14 @@ public class UpdateBaseItemHandler<TModel, TDto> :
 {
     private readonly IBaseItemRepo<TModel> _repo;
     private readonly IMapper _mapper;
+    private readonly ILogger _logger;
 
     public UpdateBaseItemHandler(IBaseItemRepo<TModel> repo,
-        IMapper mapper)
+        IMapper mapper, ILogger<UpdateBaseItemHandler<TModel, TDto>> logger)
     {
         _repo = repo;
         _mapper = mapper;
+        _logger = logger;
     }
 
     public async Task<ResponseDto<TDto>> Handle(UpdateBaseItem<TModel, TDto> command, CancellationToken cancellationToken)
@@ -44,10 +47,16 @@ public class UpdateBaseItemHandler<TModel, TDto> :
         if (model == null)
             throw new NotFoundException(typeof(TModel).Name, dto.Id);
 
+        if (await _repo.GetByNameAsync(dto.Name) != null)
+            throw new BadRequestException($"{typeof(TModel).Name} with name = {command._dto.Name} already exists!");
+
+
         _mapper.Map(dto, model);
         await _repo.UpdateAsync(model);
         _response.Data = _mapper.Map<TDto>(model);
         _response.IsSuccess = true;
+
+        _logger.LogInformation($"{typeof(TModel).Name} {model} was updated");
 
         return _response;
     }

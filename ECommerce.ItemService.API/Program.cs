@@ -11,6 +11,7 @@ using ECommerce.ItemService.API.Filters;
 using Microsoft.AspNetCore.Mvc;
 using ECommerce.ItemService.API.Extentions;
 using ECommerce.ItemService.API.Extensions;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args); 
 var services = builder.Services;
@@ -23,6 +24,16 @@ services.AddControllers(options => {
     }).
     AddJsonOptions(options =>
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+//services.AddLogging(loggingBuilder =>
+//{
+//    loggingBuilder.ClearProviders();
+//    loggingBuilder.AddSerilog();
+//});
+
+builder.Host.UseSerilog((context, loggerConfig) => loggerConfig
+    .ReadFrom.Configuration(context.Configuration)
+    );
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 if (builder.Environment.IsDevelopment())
@@ -45,6 +56,8 @@ using (var scope = app.Services.CreateScope())
 //custom global exception handling middleware
 app.UseExceptionMiddleware();
 
+app.UseSerilogRequestLogging();
+
 app.UseHttpsRedirection();
 
 if (app.Environment.IsDevelopment())
@@ -53,7 +66,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.UseSerilogRequestLogging();
 //var elasticAPMSettings = new Dictionary<string, string>();
 //elasticAPMSettings.Add("ElasticApm:SecretToken","");
 //elasticAPMSettings.Add("ElasticApm:ServerUrl", Environment.GetEnvironmentVariable("ELK_APMURL"));
