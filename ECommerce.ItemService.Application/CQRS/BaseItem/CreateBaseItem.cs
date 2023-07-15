@@ -4,6 +4,7 @@ using ECommerce.ItemService.Application.DTOs;
 using ECommerce.ItemService.Application.Exceptions;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace ECommerce.ItemService.Application.CQRS.BaseItem;
 
@@ -25,14 +26,11 @@ public class CreateBaseItemHandler<TModel, TDto> :
 {
     private readonly IBaseItemRepo<TModel> _repo;
     private readonly IMapper _mapper;
-    private readonly ILogger _logger;
 
-    public CreateBaseItemHandler(IBaseItemRepo<TModel> repo,
-        IMapper mapper, ILogger<CreateBaseItemHandler<TModel, TDto>> logger)
+    public CreateBaseItemHandler(IBaseItemRepo<TModel> repo, IMapper mapper)
     {
         _repo = repo;
         _mapper = mapper;
-        _logger = logger;
     }
 
     public async Task<ResponseDto<TDto>> Handle(CreateBaseItem<TModel, TDto> command, CancellationToken cancellationToken)
@@ -48,7 +46,7 @@ public class CreateBaseItemHandler<TModel, TDto> :
         _response.Data = _mapper.Map<TDto>(model);
         _response.IsSuccess = true;
 
-        _logger.LogInformation($"{typeof(TModel).Name} {model} was created");
+        //_logger.LogInformation("{@resp}",_response);
 
         return _response;
     }

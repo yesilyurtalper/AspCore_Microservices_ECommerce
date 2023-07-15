@@ -16,8 +16,7 @@ public class CreateBrand : CreateBaseItem<Domain.Brand,BaseDto>
 
 public class CreateBrandHandler : CreateBaseItemHandler<Domain.Brand, DTOs.BaseDto>
 {
-    public CreateBrandHandler(IBrandRepo repo, IMapper mapper, ILogger<CreateBrandHandler> logger) :
-        base(repo, mapper, logger)
+    public CreateBrandHandler(IBrandRepo repo, IMapper mapper) : base(repo, mapper)
     {
 
     }

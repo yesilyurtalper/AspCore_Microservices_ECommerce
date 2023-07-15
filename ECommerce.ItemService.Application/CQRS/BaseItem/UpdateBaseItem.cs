@@ -25,14 +25,11 @@ public class UpdateBaseItemHandler<TModel, TDto> :
 {
     private readonly IBaseItemRepo<TModel> _repo;
     private readonly IMapper _mapper;
-    private readonly ILogger _logger;
 
-    public UpdateBaseItemHandler(IBaseItemRepo<TModel> repo,
-        IMapper mapper, ILogger<UpdateBaseItemHandler<TModel, TDto>> logger)
+    public UpdateBaseItemHandler(IBaseItemRepo<TModel> repo,IMapper mapper)
     {
         _repo = repo;
         _mapper = mapper;
-        _logger = logger;
     }
 
     public async Task<ResponseDto<TDto>> Handle(UpdateBaseItem<TModel, TDto> command, CancellationToken cancellationToken)
@@ -55,8 +52,6 @@ public class UpdateBaseItemHandler<TModel, TDto> :
         await _repo.UpdateAsync(model);
         _response.Data = _mapper.Map<TDto>(model);
         _response.IsSuccess = true;
-
-        _logger.LogInformation($"{typeof(TModel).Name} {model} was updated");
 
         return _response;
     }

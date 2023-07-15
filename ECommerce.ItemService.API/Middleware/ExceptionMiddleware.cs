@@ -49,8 +49,7 @@ public class ExceptionMiddleware
         problem.ResultCode = httpContext.Response.StatusCode.ToString();
         problem.ErrorMessages = new List<string> { ex.ToString() };
         problem.Message = ex.Message;
-        var logMessage = JsonSerializer.Serialize(problem);
-        _logger.LogError(logMessage);
+        _logger.LogError("{@problem}",problem);
         await httpContext.Response.WriteAsJsonAsync(problem);
     }
 }

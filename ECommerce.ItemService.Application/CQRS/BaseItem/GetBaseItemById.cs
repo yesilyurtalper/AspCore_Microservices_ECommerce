@@ -3,6 +3,7 @@ using ECommerce.ItemService.Application.Contracts.Persistence;
 using ECommerce.ItemService.Application.DTOs;
 using ECommerce.ItemService.Application.Exceptions;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace ECommerce.ItemService.Application.CQRS.BaseItem;
 
@@ -22,7 +23,7 @@ public class GetBaseItemByIdHandler<TModel, TDto> :
 {
     private readonly IBaseItemRepo<TModel> _repo;
     private readonly IMapper _mapper;
-
+        
     public GetBaseItemByIdHandler(IBaseItemRepo<TModel> repo, IMapper mapper)
     {
         _repo = repo;
@@ -44,6 +45,8 @@ public class GetBaseItemByIdHandler<TModel, TDto> :
             var dto = _mapper.Map<TDto>(model);
             _response.Data = dto;
         }
+
+        //_logger.LogInformation("{@resp}", _response);
 
         return _response;
     }

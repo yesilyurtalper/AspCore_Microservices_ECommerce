@@ -5,6 +5,7 @@ using ECommerce.ItemService.Domain;
 using ECommerce.ItemService.Application.DTOs;
 using MediatR;
 using ECommerce.ItemService.Application.CQRS.BaseItem;
+using ECommerce.ItemService.API.Filters;
 
 namespace ECommerce.APIs.ItemAPI.Controllers
 {
@@ -41,6 +42,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             return await _mediator.Send(req);
         }
 
+        [ResultLogger]
         [Authorize(Policy = "ECommerceAdmin")]
         [HttpPost]
         public async Task<ResponseDto<TDto>> UpdateAsync(TDto dto)
@@ -49,6 +51,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             return await _mediator.Send(command);
         }
 
+        [ResultLogger]
         [Authorize(Policy = "ECommerceAdmin")]
         [HttpPut]
         public async Task<ResponseDto<TDto>> CreateAsync(TDto dto)
@@ -57,6 +60,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             return await _mediator.Send(command);
         }
 
+        [ResultLogger]
         [Authorize(Policy = "ECommerceAdmin")]
         [HttpDelete]
         public async Task<ResponseDto<string>> DeleteAsync([FromBody]int id)

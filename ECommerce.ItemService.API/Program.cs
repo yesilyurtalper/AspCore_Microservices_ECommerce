@@ -16,8 +16,9 @@ using Serilog;
 var builder = WebApplication.CreateBuilder(args); 
 var services = builder.Services;
 
-services.AddControllers(options => { 
-    options.Filters.Add(new ValidationFilter()); }).
+services.AddControllers(options => {
+    options.Filters.Add<ValidationFilter>();
+    }).
     ConfigureApiBehaviorOptions(options =>
     {
         options.SuppressModelStateInvalidFilter = true;
@@ -33,7 +34,7 @@ services.AddControllers(options => {
 
 builder.Host.UseSerilog((context, loggerConfig) => loggerConfig
     .ReadFrom.Configuration(context.Configuration)
-    );
+    ) ;
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 if (builder.Environment.IsDevelopment())
@@ -56,7 +57,7 @@ using (var scope = app.Services.CreateScope())
 //custom global exception handling middleware
 app.UseExceptionMiddleware();
 
-app.UseSerilogRequestLogging();
+//app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
 

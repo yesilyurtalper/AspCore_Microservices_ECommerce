@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 using ECommerce.ItemService.Application.DTOs;
+using Serilog;
 
 namespace ECommerce.ItemService.API.Filters;
 
@@ -26,10 +27,11 @@ public class ValidationFilter : IAsyncActionFilter
                     errors.Add(error.Key + " - " + subError);
             responseDto.ErrorMessages = errors;
 
+            Log.Error("{@response}", responseDto);
             context.Result = new BadRequestObjectResult(responseDto);
         }
-
-        await next();
+        else
+            await next();
     }
 }
 
