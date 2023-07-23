@@ -9,4 +9,10 @@ public static class CustomMiddlewareRegistration
         builder.UseMiddleware<ExceptionMiddleware>();
         return builder;
     }
+
+    public static IApplicationBuilder UseErrorMiddleware(this IApplicationBuilder builder)
+    {
+        builder.UseMiddleware<ErrorMiddleware>();
+        return builder;
+    }
 }

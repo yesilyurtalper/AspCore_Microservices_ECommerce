@@ -15,9 +15,17 @@ public class ResultLoggerAttribute : Attribute, IAsyncResultFilter
         if (result.IsSuccess)
         {
             result.ResultCode = context.HttpContext.Response.StatusCode.ToString();
+            var user = context.HttpContext.User.Claims.
+                    FirstOrDefault(c => c.Type == "preferred_username").Value;
+            var log = new
+            {
+                method = context.HttpContext.Request.Method,
+                path = context.HttpContext.Request.Path.Value,
+                result,
+                user
+            };
 
-            Log.Information("{method} {path} with result: {@result}",
-                context.HttpContext.Request.Method, context.HttpContext.Request.Path, result);
+            Log.Information("{@result}",log);
         }
         
         await next();

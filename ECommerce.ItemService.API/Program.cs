@@ -56,6 +56,7 @@ using (var scope = app.Services.CreateScope())
 
 //custom global exception handling middleware
 app.UseExceptionMiddleware();
+app.UseErrorMiddleware();
 
 //app.UseSerilogRequestLogging();
 
