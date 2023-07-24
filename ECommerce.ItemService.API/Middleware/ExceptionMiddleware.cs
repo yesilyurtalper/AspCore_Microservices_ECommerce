@@ -1,6 +1,8 @@
 ﻿
+using ECommerce.ItemService.API.Models;
 using ECommerce.ItemService.Application.DTOs;
 using ECommerce.ItemService.Application.Exceptions;
+using Serilog;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
@@ -10,12 +12,10 @@ namespace ECommerce.ItemService.Api.Middleware;
 public class ExceptionMiddleware
 {
     private readonly RequestDelegate _next;
-    private readonly ILogger<ExceptionMiddleware> _logger;
 
-    public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
+    public ExceptionMiddleware(RequestDelegate next)
     {
         _next = next;
-        _logger = logger;
     }
 
     public async Task InvokeAsync(HttpContext httpContext)
@@ -49,7 +49,16 @@ public class ExceptionMiddleware
         problem.ResultCode = httpContext.Response.StatusCode.ToString();
         problem.ErrorMessages = new List<string> { ex.ToString() };
         problem.Message = ex.Message;
-        _logger.LogError("{@problem}",problem);
+
+        var log = new CustomLog
+        {
+            Method = httpContext.Request.Method,
+            Path = httpContext.Request.Path.Value,
+            Result = problem,
+            User = httpContext.User.Claims.FirstOrDefault(c => c.Type == "preferred_username")?.Value,
+        };
+        Log.Error("{@log}",log);
+
         await httpContext.Response.WriteAsJsonAsync(problem);
     }
 }

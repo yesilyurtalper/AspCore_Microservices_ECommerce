@@ -1,7 +1,9 @@
 ﻿
 using ECommerce.ItemService.API.Constants;
+using ECommerce.ItemService.API.Models;
 using ECommerce.ItemService.Application.DTOs;
 using ECommerce.ItemService.Application.Exceptions;
+using Serilog;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
@@ -11,12 +13,10 @@ namespace ECommerce.ItemService.Api.Middleware;
 public class ErrorMiddleware
 {
     private readonly RequestDelegate _next;
-    private readonly ILogger<ErrorMiddleware> _logger;
 
-    public ErrorMiddleware(RequestDelegate next, ILogger<ErrorMiddleware> logger)
+    public ErrorMiddleware(RequestDelegate next)
     {
         _next = next;
-        _logger = logger;
     }
 
     public async Task InvokeAsync(HttpContext httpContext)
@@ -26,15 +26,26 @@ public class ErrorMiddleware
 
         if (!APIConstants.KnownCodes.Contains(statusCode))
         {
+            var desc = APIConstants.StatusDescriptions.TryGetValue(statusCode, out var message);
+            if (!desc)
+                message = statusCode.ToString();
             ResponseDto<string> problem = new()
             {
                 ResultCode = statusCode.ToString(),
                 IsSuccess = false,
-                Message = statusCode.ToString(),
-                ErrorMessages = new List<string> {statusCode.ToString()}
+                Message = desc == true ? message : message,
+                ErrorMessages = new List<string> {message}
             };
 
-            _logger.LogError("{@problem}", problem);
+            var log = new CustomLog
+            {
+                Method = httpContext.Request.Method,
+                Path = httpContext.Request.Path.Value,
+                Result = problem,
+                User = httpContext.User.Claims.FirstOrDefault(c => c.Type == "preferred_username")?.Value
+            };
+            Log.Error("{@log}", log);
+
             await httpContext.Response.WriteAsJsonAsync(problem);
         }
     }

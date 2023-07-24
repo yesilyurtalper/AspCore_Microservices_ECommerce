@@ -44,9 +44,9 @@ public class UpdateBaseItemHandler<TModel, TDto> :
         if (model == null)
             throw new NotFoundException(typeof(TModel).Name, dto.Id);
 
-        if (await _repo.GetByNameAsync(dto.Name) != null)
+        var existing = await _repo.GetByNameAsync(dto.Name);
+        if (existing != null && model.Id != existing.Id)
             throw new BadRequestException($"{typeof(TModel).Name} with name = {command._dto.Name} already exists!");
-
 
         _mapper.Map(dto, model);
         await _repo.UpdateAsync(model);

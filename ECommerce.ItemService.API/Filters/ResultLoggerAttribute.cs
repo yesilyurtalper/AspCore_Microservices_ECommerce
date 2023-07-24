@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ECommerce.ItemService.Application.DTOs;
 using Serilog;
+using ECommerce.ItemService.API.Models;
 
 namespace ECommerce.ItemService.API.Filters;
 
@@ -11,21 +12,20 @@ public class ResultLoggerAttribute : Attribute, IAsyncResultFilter
     
     public async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
     {
-        var result = (ResponseDtoBase)((context.Result as ObjectResult).Value);
-        if (result.IsSuccess)
+        var result = (ResponseDtoBase)((context.Result as ObjectResult)?.Value);
+        if (result != null && result.IsSuccess)
         {
             result.ResultCode = context.HttpContext.Response.StatusCode.ToString();
-            var user = context.HttpContext.User.Claims.
-                    FirstOrDefault(c => c.Type == "preferred_username").Value;
-            var log = new
+            
+            var log = new CustomLog
             {
-                method = context.HttpContext.Request.Method,
-                path = context.HttpContext.Request.Path.Value,
-                result,
-                user
+                Method = context.HttpContext.Request.Method,
+                Path = context.HttpContext.Request.Path.Value,
+                Result = result,
+                User = context.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "preferred_username")?.Value,
             };
 
-            Log.Information("{@result}",log);
+            Log.Information("{@log}",log);
         }
         
         await next();
