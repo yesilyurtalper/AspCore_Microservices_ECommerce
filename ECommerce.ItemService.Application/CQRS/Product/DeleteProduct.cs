@@ -16,8 +16,8 @@ public class DeleteProduct : DeleteBaseItem<Domain.Product,BaseDto>
 
 public class DeleteProductHandler : DeleteBaseItemHandler<Domain.Product, DTOs.ProductDto>
 {
-    public DeleteProductHandler(IProductRepo repo, ILogger<DeleteProductHandler> logger)
-        : base(repo,logger)
+    public DeleteProductHandler(IProductRepo repo, ILogger<DeleteProductHandler> logger,
+        IMapper mapper) : base(repo, logger, mapper)
     {
 
     }

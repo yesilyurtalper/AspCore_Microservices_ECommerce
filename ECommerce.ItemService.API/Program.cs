@@ -22,6 +22,8 @@ services.AddControllers(options => {
     AddJsonOptions(options =>
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
+services.AddScoped<ResultLoggerAttribute>();
+
 //services.AddLogging(loggingBuilder =>
 //{
 //    loggingBuilder.ClearProviders();

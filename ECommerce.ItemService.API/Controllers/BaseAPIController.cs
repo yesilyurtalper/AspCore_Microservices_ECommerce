@@ -6,6 +6,7 @@ using ECommerce.ItemService.Application.DTOs;
 using MediatR;
 using ECommerce.ItemService.Application.CQRS.BaseItem;
 using ECommerce.ItemService.API.Filters;
+using Serilog;
 
 namespace ECommerce.APIs.ItemAPI.Controllers
 {
@@ -60,13 +61,14 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             return await _mediator.Send(command);
         }
 
-        //[ResultLogger]
+        //[ServiceFilter(typeof(ResultLoggerAttribute))]
         [Authorize(Policy = "ECommerceAdmin")]
         [HttpDelete]
-        public async Task<ResponseDto<string>> DeleteAsync([FromBody]int id)
+        public async Task<ResponseDto<TDto>> DeleteAsync([FromBody]int id)
         {
             DeleteBaseItem<TModel, TDto> command = new(id);
-            return await _mediator.Send(command);
+            var response = await _mediator.Send(command);
+            return response;
         }
     }
 }

@@ -16,8 +16,8 @@ public class DeleteBrand : DeleteBaseItem<Domain.Brand,BaseDto>
 
 public class DeleteBrandHandler : DeleteBaseItemHandler<Domain.Brand, DTOs.BaseDto>
 {
-    public DeleteBrandHandler(IBrandRepo repo, ILogger<DeleteBrandHandler> logger)
-        : base(repo, logger)
+    public DeleteBrandHandler(IBrandRepo repo, ILogger<DeleteBrandHandler> logger,
+        IMapper mapper) : base(repo, logger, mapper)
     {
 
     }

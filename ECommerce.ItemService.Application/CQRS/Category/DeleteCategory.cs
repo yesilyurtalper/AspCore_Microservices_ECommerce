@@ -16,8 +16,8 @@ public class DeleteCategory : DeleteBaseItem<Domain.Category,BaseDto>
 
 public class DeleteCategoryHandler : DeleteBaseItemHandler<Domain.Category, DTOs.BaseDto>
 {
-    public DeleteCategoryHandler(ICategoryRepo repo, ILogger<DeleteCategoryHandler> logger) : 
-        base(repo, logger)
+    public DeleteCategoryHandler(ICategoryRepo repo, ILogger<DeleteCategoryHandler> logger, 
+        IMapper mapper) : base(repo, logger, mapper)
     {
 
     }

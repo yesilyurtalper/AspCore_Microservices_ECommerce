@@ -1,6 +1,5 @@
 ﻿using Serilog;
 using Serilog.Sinks.Elasticsearch;
-using System.Reflection.Metadata.Ecma335;
 
 namespace ECommerce.ItemService.API.Extentions;
 
