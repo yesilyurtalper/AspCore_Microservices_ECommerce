@@ -12,10 +12,12 @@ namespace ECommerce.ItemService.Api.Middleware;
 public class ExceptionMiddleware
 {
     private readonly RequestDelegate _next;
+    private readonly ILogger<ExceptionMiddleware> _logger;
 
-    public ExceptionMiddleware(RequestDelegate next)
+    public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
     {
         _next = next;
+        _logger = logger;
     }
 
     public async Task InvokeAsync(HttpContext httpContext)
@@ -50,14 +52,7 @@ public class ExceptionMiddleware
         problem.ErrorMessages = new List<string> { ex.ToString() };
         problem.Message = ex.Message;
 
-        var log = new CustomLog
-        {
-            Method = httpContext.Request.Method,
-            Path = httpContext.Request.Path.Value,
-            Result = problem,
-            User = httpContext.User.Claims.FirstOrDefault(c => c.Type == "preferred_username")?.Value,
-        };
-        Log.Error("{@log}",log);
+        _logger.LogError("{@problem}",problem);
 
         await httpContext.Response.WriteAsJsonAsync(problem);
     }

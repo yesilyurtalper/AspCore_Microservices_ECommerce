@@ -3,6 +3,7 @@ using ECommerce.ItemService.Application.Contracts.Persistence;
 using ECommerce.ItemService.Application.DTOs;
 using ECommerce.ItemService.Application.Exceptions;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace ECommerce.ItemService.Application.CQRS.BaseItem;
 
@@ -23,10 +24,13 @@ public class DeleteBaseItemHandler<TModel, TDto> :
 
 {
     private readonly IBaseItemRepo<TModel> _repo;
+    private readonly ILogger<DeleteBaseItemHandler<TModel, TDto>> _logger;
 
-    public DeleteBaseItemHandler(IBaseItemRepo<TModel> repo)
+    public DeleteBaseItemHandler(IBaseItemRepo<TModel> repo,
+        ILogger<DeleteBaseItemHandler<TModel, TDto>> logger)
     {
         _repo = repo;
+        _logger = logger;
     }
 
     public async Task<ResponseDto<string>> Handle(DeleteBaseItem<TModel, TDto> command, CancellationToken cancellationToken)
@@ -43,6 +47,8 @@ public class DeleteBaseItemHandler<TModel, TDto> :
         await _repo.DeleteAsync(model);
         _response.Data = command.Id.ToString();
         _response.IsSuccess = true;
+
+        _logger.LogInformation("{@response}", _response);
 
         return _response;
     }

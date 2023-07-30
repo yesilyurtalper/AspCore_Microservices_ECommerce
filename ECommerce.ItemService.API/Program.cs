@@ -1,8 +1,5 @@
 
-using ECommerce.ItemService.API.Models;
 using ECommerce.ItemService.Application;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using ECommerce.ItemService.Infra;
 using System.Text.Json.Serialization;
 using ECommerce.ItemService.Infra.DBContext;
@@ -11,7 +8,6 @@ using ECommerce.ItemService.API.Filters;
 using Microsoft.AspNetCore.Mvc;
 using ECommerce.ItemService.API.Extentions;
 using ECommerce.ItemService.API.Extensions;
-using Serilog;
 
 var builder = WebApplication.CreateBuilder(args); 
 var services = builder.Services;
@@ -32,9 +28,7 @@ services.AddControllers(options => {
 //    loggingBuilder.AddSerilog();
 //});
 
-builder.Host.UseSerilog((context, loggerConfig) => loggerConfig
-    .ReadFrom.Configuration(context.Configuration)
-    ) ;
+builder.Host.AddCustomSerilog();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 if (builder.Environment.IsDevelopment())

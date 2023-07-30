@@ -1,0 +1,27 @@
+version: '3.4'
+
+name: ecommerce_itemapi
+
+services:
+  ecommerce_itemapi:
+    image: ecommerce_itemapi
+    build:
+      context: .
+      dockerfile: D:/repo/AspCore_Microservices_ECommerce/ECommerce.ItemService.API/Dockerfile
+    ports:
+      - 7207:443
+      - 5207:80
+    environment:
+       DB_CON_STR: server=mysql;port=3306;database=ECommerceItemService;user=root;password=pass;
+       OIDC_AUTHORITY: http://keycloak:8080/auth/realms/local_realm
+       ASPNETCORE_ENVIRONMENT: Development
+       ASPNETCORE_URLS: https://+:443;http://+:80
+    networks:
+      - network1
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+networks:
+  network1:
+    name: local_network

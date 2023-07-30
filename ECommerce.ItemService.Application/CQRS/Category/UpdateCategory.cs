@@ -16,8 +16,9 @@ public class UpdateCategory : UpdateBaseItem<Domain.Category,BaseDto>
 
 public class UpdateCategoryHandler : UpdateBaseItemHandler<Domain.Category, DTOs.BaseDto>
 {
-    public UpdateCategoryHandler(ICategoryRepo repo, IMapper mapper) :
-        base(repo, mapper)
+    public UpdateCategoryHandler(ICategoryRepo repo, IMapper mapper,
+        ILogger<UpdateCategoryHandler> logger) :
+        base(repo, mapper, logger)
     {
 
     }

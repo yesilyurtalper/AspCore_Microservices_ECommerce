@@ -42,7 +42,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             return await _mediator.Send(req);
         }
 
-        [ResultLogger]
+        //[ResultLogger]
         [Authorize(Policy = "ECommerceAdmin")]
         [HttpPost]
         public async Task<ResponseDto<TDto>> UpdateAsync(TDto dto)
@@ -51,7 +51,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             return await _mediator.Send(command);
         }
 
-        [ResultLogger]
+        //[ResultLogger]
         [Authorize(Policy = "ECommerceAdmin")]
         [HttpPut]
         public async Task<ResponseDto<TDto>> CreateAsync(TDto dto)
@@ -60,7 +60,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
             return await _mediator.Send(command);
         }
 
-        [ResultLogger]
+        //[ResultLogger]
         [Authorize(Policy = "ECommerceAdmin")]
         [HttpDelete]
         public async Task<ResponseDto<string>> DeleteAsync([FromBody]int id)

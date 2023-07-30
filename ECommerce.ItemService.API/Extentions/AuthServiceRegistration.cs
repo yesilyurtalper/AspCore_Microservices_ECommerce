@@ -13,7 +13,8 @@ public static class AuthServiceRegistration
             options.RequireHttpsMetadata = false;
             options.TokenValidationParameters = new TokenValidationParameters
             {
-                ValidateAudience = false
+                ValidateAudience = false,
+                ValidateIssuer = false,
             };
         });
 

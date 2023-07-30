@@ -9,6 +9,12 @@ namespace ECommerce.ItemService.API.Filters;
 
 public class ValidationFilter : IAsyncActionFilter
 {
+    private readonly ILogger<ValidationFilter> _logger;
+
+    public ValidationFilter(ILogger<ValidationFilter> logger)
+    {
+        _logger = logger;
+    }
     public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
         if (!context.ModelState.IsValid)
@@ -29,14 +35,7 @@ public class ValidationFilter : IAsyncActionFilter
                     errors.Add(error.Key + " - " + subError);
             problem.ErrorMessages = errors;
 
-            var log = new CustomLog
-            {
-                Method = context.HttpContext.Request.Method,
-                Path = context.HttpContext.Request.Path.Value,
-                Result = problem,
-                User = context.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "preferred_username")?.Value,
-            };
-            Log.Error("{@log}", log);
+            _logger.LogError("{@problem}", problem);
 
             context.Result = new BadRequestObjectResult(problem);
         }

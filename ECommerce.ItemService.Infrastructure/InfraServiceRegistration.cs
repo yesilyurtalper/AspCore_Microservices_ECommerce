@@ -18,8 +18,8 @@ public static class InfraServiceRegistration
         services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
 
         //string conStr = "server=localhost;port=3306;database=ECommerceItemAPI;user=root;password=pass;";
-        string conStr = configuration.GetConnectionString("DefaultConnection");
-        //string conStr = Environment.GetEnvironmentVariable("DB_CON_STR");
+        //string conStr = configuration.GetConnectionString("DefaultConnection");
+        string conStr = Environment.GetEnvironmentVariable("DB_CON_STR");
         services.AddDbContext<ItemAPIDbContext>(options => options.UseMySQL(conStr));
 
         services.AddScoped<ICategoryRepo, DBCategoryRepo>();

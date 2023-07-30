@@ -13,10 +13,12 @@ namespace ECommerce.ItemService.Api.Middleware;
 public class ErrorMiddleware
 {
     private readonly RequestDelegate _next;
+    private readonly ILogger<ErrorMiddleware> _logger;
 
-    public ErrorMiddleware(RequestDelegate next)
+    public ErrorMiddleware(RequestDelegate next,ILogger<ErrorMiddleware> logger)
     {
         _next = next;
+        _logger = logger;
     }
 
     public async Task InvokeAsync(HttpContext httpContext)
@@ -24,7 +26,8 @@ public class ErrorMiddleware
         await _next(httpContext);
         var statusCode = httpContext.Response.StatusCode;
 
-        if (!APIConstants.KnownCodes.Contains(statusCode))
+        if (!APIConstants.KnownCodes.Contains(statusCode) 
+            && statusCode.ToString().StartsWith("4"))
         {
             var desc = APIConstants.StatusDescriptions.TryGetValue(statusCode, out var message);
             if (!desc)
@@ -33,18 +36,11 @@ public class ErrorMiddleware
             {
                 ResultCode = statusCode.ToString(),
                 IsSuccess = false,
-                Message = desc == true ? message : message,
+                Message = message,
                 ErrorMessages = new List<string> {message}
             };
 
-            var log = new CustomLog
-            {
-                Method = httpContext.Request.Method,
-                Path = httpContext.Request.Path.Value,
-                Result = problem,
-                User = httpContext.User.Claims.FirstOrDefault(c => c.Type == "preferred_username")?.Value
-            };
-            Log.Error("{@log}", log);
+            _logger.LogError("{@problem}", problem);
 
             await httpContext.Response.WriteAsJsonAsync(problem);
         }

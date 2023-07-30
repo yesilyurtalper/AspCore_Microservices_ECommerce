@@ -1,25 +1,20 @@
-﻿{
-  "$schema": "https://json.schemastore.org/launchsettings.json",
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:45595",
-      "sslPort": 44368
-    }
-  },
+{
   "profiles": {
     "ECommerce.APIs.ItemAPI": {
-        "commandName": "Project",
-        "dotnetRunMessages": true,
-        "launchBrowser": true,
-        "launchUrl": "swagger",
-        "applicationUrl": "https://localhost:7207;http://localhost:5207",
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DB_CON_STR": "server=localhost;port=3306;database=ECommerceItemService;user=root;password=pass;",
-        "OIDC_AUTHORITY": "http://localhost:8080/auth/realms/local_realm"
-      }
+        "OIDC_AUTHORITY": "http://localhost:8080/auth/realms/local_realm",
+        "ELK_URL": "http://localhost:9200/",
+        "ELK_PASS": "password",
+        "ELK_USER": "elastic",
+        "LOG_LEVEL": "info"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7207;http://localhost:5207"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -28,6 +23,28 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "publishAllPorts": true,
+      "useSSL": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DB_CON_STR": "server=mysql;port=3306;database=ECommerceItemService;user=root;password=pass;",
+        "OIDC_AUTHORITY": "http://keycloak:8080/auth/realms/local_realm"
+      },
+      "DockerfileRunArguments": "--network=local_network -e DB_CON_STR=\"server=mysql;port=3306;database=ECommerceItemService;user=root;password=pass;\" -e OIDC_AUTHORITY=\"http://keycloak:8080/auth/realms/local_realm\""  
+    }
+  },
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:45595",
+      "sslPort": 44368
     }
   }
 }

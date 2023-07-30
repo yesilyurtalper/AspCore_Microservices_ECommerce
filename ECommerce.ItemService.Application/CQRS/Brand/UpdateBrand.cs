@@ -16,8 +16,9 @@ public class UpdateBrand : UpdateBaseItem<Domain.Brand,BaseDto>
 
 public class UpdateBrandHandler : UpdateBaseItemHandler<Domain.Brand, DTOs.BaseDto>
 {
-    public UpdateBrandHandler(IBrandRepo repo, IMapper mapper) :
-        base(repo, mapper)
+    public UpdateBrandHandler(IBrandRepo repo, IMapper mapper,
+        ILogger<UpdateBrandHandler> logger) :
+        base(repo, mapper, logger)
     {
 
     }

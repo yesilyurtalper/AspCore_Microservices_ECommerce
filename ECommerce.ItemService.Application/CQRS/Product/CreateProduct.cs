@@ -16,8 +16,8 @@ public class CreateProduct : CreateBaseItem<Domain.Product,ProductDto>
 
 public class CreateProductHandler : CreateBaseItemHandler<Domain.Product, DTOs.ProductDto>
 {
-    public CreateProductHandler(IProductRepo repo, IMapper mapper) :
-        base(repo, mapper)
+    public CreateProductHandler(IProductRepo repo, IMapper mapper,
+        ILogger<CreateProductHandler> logger) : base(repo, mapper, logger)
     {
 
     }

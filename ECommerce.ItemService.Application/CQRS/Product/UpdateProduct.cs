@@ -16,7 +16,8 @@ public class UpdateProduct : UpdateBaseItem<Domain.Product,ProductDto>
 
 public class UpdateProductHandler : UpdateBaseItemHandler<Domain.Product, DTOs.ProductDto>
 {
-    public UpdateProductHandler(IProductRepo repo, IMapper mapper) : base(repo, mapper)
+    public UpdateProductHandler(IProductRepo repo, IMapper mapper, 
+        ILogger<UpdateProductHandler> logger) : base(repo, mapper, logger)
     {
 
     }

@@ -26,11 +26,14 @@ public class CreateBaseItemHandler<TModel, TDto> :
 {
     private readonly IBaseItemRepo<TModel> _repo;
     private readonly IMapper _mapper;
+    private readonly ILogger<CreateBaseItemHandler<TModel, TDto>> _logger;
 
-    public CreateBaseItemHandler(IBaseItemRepo<TModel> repo, IMapper mapper)
+    public CreateBaseItemHandler(IBaseItemRepo<TModel> repo, IMapper mapper,
+        ILogger<CreateBaseItemHandler<TModel, TDto>> logger)
     {
         _repo = repo;
         _mapper = mapper;
+        _logger = logger;
     }
 
     public async Task<ResponseDto<TDto>> Handle(CreateBaseItem<TModel, TDto> command, CancellationToken cancellationToken)
@@ -46,7 +49,7 @@ public class CreateBaseItemHandler<TModel, TDto> :
         _response.Data = _mapper.Map<TDto>(model);
         _response.IsSuccess = true;
 
-        //_logger.LogInformation("{@resp}",_response);
+        _logger.LogInformation("{@response}",_response);
 
         return _response;
     }
