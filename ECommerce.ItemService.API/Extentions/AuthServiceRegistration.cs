@@ -13,8 +13,13 @@ public static class AuthServiceRegistration
             options.RequireHttpsMetadata = false;
             options.TokenValidationParameters = new TokenValidationParameters
             {
-                ValidateAudience = false,
-                ValidateIssuer = false,
+                ValidateAudience = true,
+                ValidAudiences = new[] { "ECommerce_ItemAPI", "ECommerceWebClient_AspMvc" },
+                ValidateIssuer = true,
+                ValidIssuers = new List<string> { 
+                    "http://localhost:8080/auth/realms/local_realm",
+                    Environment.GetEnvironmentVariable("OIDC_AUTHORITY")
+        }
             };
         });
 

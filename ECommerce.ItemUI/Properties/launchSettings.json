@@ -7,7 +7,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "OIDC_AUTHORITY": "http://localhost:8080/auth/realms/local_realm",
         "OIDC_CLIENT": "ECommerceWebClient_AspMvc",
-        "OIDC_PASSWORD": "T0kX756UHTwZ8ncJxkatlSt4fxkWQC4x",
+        "OIDC_PASSWORD": "JXOHGYwVQgH6IvBbpw6rcGxWkTBeNTTP",
         "ITEM_API_BASE_URL": "https://localhost:7207/itemapi/"
       },
       "dotnetRunMessages": true,
