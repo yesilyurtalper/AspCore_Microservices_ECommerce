@@ -7,5 +7,7 @@
             { 401,"Kullanıcı doğrulanamadı"},
             { 403,"Yetkiniz yetersiz" }
         };
+        public static string OrderAPIClient = "OrderAPIClient";
+        public static string OrderAPIBaseUrl = "OrderAPIClient";
     }
 }
