@@ -9,5 +9,8 @@
         };
         public static string OrderAPIClient = "OrderAPIClient";
         public static string OrderAPIBaseUrl = "OrderAPIClient";
+        public const string ECommerceAdmin = "ECommerceAdmin";
+        public const string ECommerceWebClient = "ECommerceWebClient";
+
     }
 }

@@ -8,6 +8,7 @@ using ECommerce.ItemService.API.Filters;
 using Microsoft.AspNetCore.Mvc;
 using ECommerce.ItemService.API.Extentions;
 using ECommerce.ItemService.API.Extensions;
+using ECommerce.ItemService.API.Constants;
 
 var builder = WebApplication.CreateBuilder(args); 
 var services = builder.Services;
@@ -79,6 +80,6 @@ app.UseCors("all");
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers().RequireAuthorization("ECommerceWebClient");
+app.MapControllers().RequireAuthorization(APIConstants.ECommerceWebClient);
 
 app.Run();

@@ -1,4 +1,5 @@
 ﻿
+using ECommerce.ItemService.API.Constants;
 using Microsoft.IdentityModel.Tokens;
 
 namespace ECommerce.ItemService.API.Extensions;
@@ -25,17 +26,17 @@ public static class AuthServiceRegistration
 
         services.AddAuthorization(options =>
         {
-            options.AddPolicy("ECommerceWebClient", policy =>
+            options.AddPolicy(APIConstants.ECommerceWebClient, policy =>
             {
-                policy.RequireClaim("ECommerceWebClient", "ECommerceWebClient");
+                policy.RequireClaim(APIConstants.ECommerceWebClient, APIConstants.ECommerceWebClient);
             });
         });
 
         services.AddAuthorization(options =>
         {
-            options.AddPolicy("ECommerceAdmin", policy =>
+            options.AddPolicy(APIConstants.ECommerceAdmin, policy =>
             {
-                policy.RequireClaim("RealmRole", "ECommerceAdmin");
+                policy.RequireClaim("RealmRole", APIConstants.ECommerceAdmin);
             });
         });
 

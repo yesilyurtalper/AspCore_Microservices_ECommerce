@@ -4,6 +4,7 @@ using ECommerce.ItemService.Domain;
 using ECommerce.ItemService.Application.DTOs;
 using MediatR;
 using ECommerce.ItemService.Application.CQRS.Brand;
+using ECommerce.ItemService.API.Constants;
 
 namespace ECommerce.APIs.ItemAPI.Controllers
 {
@@ -24,7 +25,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
 
         [HttpPost]
         [Route("addcat/{brandId}")]
-        [Authorize(Policy = "ECommerceAdmin")]
+        [Authorize(Policy = APIConstants.ECommerceAdmin)]
         public async Task<ResponseDto<BaseDto>> AddCategoryAsync(int brandId, [FromBody]List<int> categoryIds)
         {
             var req = new AddBrandCategories(brandId,categoryIds);
@@ -33,7 +34,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
 
         [HttpPost]
         [Route("remcat/{brandId}")]
-        [Authorize(Policy = "ECommerceAdmin")]
+        [Authorize(Policy = APIConstants.ECommerceAdmin)]
         public async Task<ResponseDto<BaseDto>> RemoveCategoryAsync(int brandId, [FromBody]List<int> categoryIds)
         {
             var req = new RemoveBrandCategories(brandId, categoryIds);
@@ -42,7 +43,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
 
         [HttpPost]
         [Route("updatecat/{brandId}")]
-        [Authorize(Policy = "ECommerceAdmin")]
+        [Authorize(Policy = APIConstants.ECommerceAdmin)]
         public async Task<ResponseDto<BaseDto>> UpdateCategoryAsync(int brandId, [FromBody]List<int> categoryIds)
         {
             var req = new UpdateBrandCategories(brandId, categoryIds);

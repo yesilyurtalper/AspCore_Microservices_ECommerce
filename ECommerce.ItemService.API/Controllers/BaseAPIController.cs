@@ -7,6 +7,7 @@ using MediatR;
 using ECommerce.ItemService.Application.CQRS.BaseItem;
 using ECommerce.ItemService.API.Filters;
 using Serilog;
+using ECommerce.ItemService.API.Constants;
 
 namespace ECommerce.APIs.ItemAPI.Controllers
 {
@@ -44,7 +45,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         }
 
         //[ResultLogger]
-        [Authorize(Policy = "ECommerceAdmin")]
+        [Authorize(Policy = APIConstants.ECommerceAdmin)]
         [HttpPost]
         public async Task<ResponseDto<TDto>> UpdateAsync(TDto dto)
         {
@@ -53,7 +54,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         }
 
         //[ResultLogger]
-        [Authorize(Policy = "ECommerceAdmin")]
+        [Authorize(Policy = APIConstants.ECommerceAdmin)]
         [HttpPut]
         public async Task<ResponseDto<TDto>> CreateAsync(TDto dto)
         {
@@ -62,7 +63,7 @@ namespace ECommerce.APIs.ItemAPI.Controllers
         }
 
         //[ServiceFilter(typeof(ResultLoggerAttribute))]
-        [Authorize(Policy = "ECommerceAdmin")]
+        [Authorize(Policy = APIConstants.ECommerceAdmin)]
         [HttpDelete]
         public async Task<ResponseDto<TDto>> DeleteAsync([FromBody]int id)
         {
