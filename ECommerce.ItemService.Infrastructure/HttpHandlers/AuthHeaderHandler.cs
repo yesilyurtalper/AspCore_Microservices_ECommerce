@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 
-namespace ECommerce.ItemService.API.HttpHandlers
+namespace ECommerce.ItemService.Infrastructure.HttpHandlers
 {
     public class AuthHeaderHandler : DelegatingHandler
     {
