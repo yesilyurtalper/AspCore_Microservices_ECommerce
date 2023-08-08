@@ -38,12 +38,12 @@ public static class InfraServiceRegistration
         {
             options.BaseAddress = new Uri(InfraConstants.OrderAPIBaseUrl);
         })
-            .AddHttpMessageHandler<AuthHeaderHandler>()
-            .AddTransientHttpErrorPolicy(policyBuilder =>
-                policyBuilder.WaitAndRetryAsync(3, retryNumber => TimeSpan.FromSeconds(5)))
-            .AddPolicyHandler(Policy.TimeoutAsync(15).AsAsyncPolicy<HttpResponseMessage>())
-            .AddTransientHttpErrorPolicy(policyBuilder =>
-                policyBuilder.CircuitBreakerAsync(5, TimeSpan.FromSeconds(20)));
+        .AddHttpMessageHandler<AuthHeaderHandler>()
+        .AddTransientHttpErrorPolicy(policyBuilder =>
+            policyBuilder.WaitAndRetryAsync(3, retryNumber => TimeSpan.FromSeconds(5)))
+        .AddPolicyHandler(Policy.TimeoutAsync(15).AsAsyncPolicy<HttpResponseMessage>())
+        .AddTransientHttpErrorPolicy(policyBuilder =>
+            policyBuilder.CircuitBreakerAsync(5, TimeSpan.FromSeconds(20)));
 
         return services;
     }
